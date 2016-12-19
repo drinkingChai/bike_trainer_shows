@@ -1,10 +1,14 @@
 {
   "name": "bike_trainer_shows",
   "version": "1.0.0",
-  "description": "",
+  "description": "Database for movies/shows when riding your indoor trainer/roller!",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drinkingChai/bike_trainer_shows.git"
   },
   "author": "Wasif Zaman",
   "license": "ISC",
