@@ -28,11 +28,11 @@ describe('Create new entries', function() {
     });
   });
 
-  it('Returns a status code of 201', function(done) {
+  it('Redirects back to hom and sends a status code of 302', function(done) {
       request(app)
         .post('/new')
         .type('JSON')
         .send('{"title": "The Incredible Hulk"}')
-        .expect(201, done);
+        .expect(302, done);
   });
 });

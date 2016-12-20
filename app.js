@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var parseUrlJSON = bodyParser.json();
+var parseUrlEncoded = bodyParser.urlencoded({ extended: true });
 
 var MongoClient = require('mongodb').MongoClient;
 
@@ -30,9 +31,11 @@ app.get('/movies', function(request, response) {
   });
 });
 
-app.post('/new', parseUrlJSON, function(request, response) {
+app.post('/new', parseUrlJSON, parseUrlEncoded, function(request, response) {
+  console.log(request.body);
   var item = {
-    title: request.body.title
+    title: request.body.title,
+    source: request.body.source
   };
 
   MongoClient.connect(url, function(err, db) {
@@ -42,7 +45,7 @@ app.post('/new', parseUrlJSON, function(request, response) {
 
     db.close();
 
-    response.sendStatus(201);
+    response.status(201).redirect('/');
   });
 });
 

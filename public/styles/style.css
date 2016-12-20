@@ -1,0 +1,372 @@
+/* Reset */
+html, body, h1, h2,
+h3, p, ol, ul, li, a {
+    padding: 0;
+    border: 0;
+    margin: 0; }
+
+/* Style guide */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: 100%;
+  line-height: 1.5em;
+}
+
+h1 {
+  font-family: 'Vesper Libre', serif;
+  font-size: 3em;
+}
+
+h2 {
+  font-family: 'Vesper Libre', serif;
+  font-size: 1.5em;
+}
+
+h3 {
+  font-family: 'Vesper Libre', serif;
+  font-size: 0.75em;
+}
+
+nav, footer {
+  font-size: 1em;
+}
+/****************/
+
+body {
+  /*background-image: url('../assets/images/wccsnfwrkz0-cameron-kirby.jpg');*/
+  position: relative;
+  transition: margin 0.5s;
+}
+
+.v-nav.slide-right {
+  left: 0;
+}
+
+nav.v-nav {
+  position: fixed;
+  top: 0px;
+  /*left: -25%;*/
+  height: 100vh;
+  width: 20%;
+  /*width: 25%;*/
+  /*background-color: hsl(0, 0%, 20%);*/
+  background-color: #F0E45A;
+  transition: left 0.5s;
+  z-index: 10;
+}
+
+nav.v-nav ul {
+  position: relative;
+  top: 40vh;
+  margin: 0;
+  text-align: center;
+  list-style-type: none;
+}
+
+footer {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-bottom: 12.72265%;
+}
+
+footer ul {
+  white-space: nowrap;
+  list-style-type: none;
+}
+
+footer ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+
+nav.v-nav ul li a {
+  display: block;
+  width: 100%;
+  color: hsl(0, 0%, 20%);
+}
+
+nav.v-nav ul li a:hover {
+  background-color: #F0C35A;
+  color: hsl(0, 0%, 25%);
+}
+
+nav.horiz-nav {
+  visibility: hidden;
+  z-index: 1;
+}
+
+nav.horiz-nav a,
+nav.horiz-nav i,
+.fa-bars.side-menu-icon {
+  color: hsl(0, 0%, 20%);
+}
+
+nav.v-nav ul li a,
+nav.horiz-nav a {
+  text-decoration: none;
+}
+
+.nav-header {
+  /*display: inline;*/
+  /*width: 80%;*/
+  position: absolute;
+  right: 3.5%;
+}
+
+.navbar-menu-icon {
+  text-align: right;
+  /*display: inline;*/
+  /*width: 20%;*/
+  position: absolute;
+  left: 3.5%;
+}
+
+.navbar-menu-icon .fa,
+.nav-header a {
+  line-height: 2.6em;
+}
+
+pre.quarter-code,
+pre.small-code {
+  display: none;
+}
+
+pre.small-code {
+  padding-left: 12.65823%;
+  padding-right: 12.65823%;
+}
+
+pre,
+.hljs {
+  border: none;
+  color: hsl(0, 0%, 30%);
+}
+
+.home section {
+  /*max-width: 400px;*/
+}
+
+.home h1 {
+  text-align: center;
+}
+
+main,
+nav.horiz-nav {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 3.55239%;
+  padding-right: 3.55239%;
+}
+
+/*.home h1,
+.about,
+.contact {
+  padding-top: 12.72265%;
+}*/
+.home section,
+.home pre {
+  margin-top: 12.72265%;
+}
+
+.search-container {
+  padding-top: 4.83871%;
+}
+
+.about,
+.home,
+.contact,
+.all-projects {
+  padding-top: 12.72265%;
+  padding-bottom: 12.72265%;
+}
+
+.list-project {
+  padding: 4.83871% 0;
+}
+
+.list-project:nth-child(2) {
+  /* what is this for ? :( */
+  margin-top: 8.29032%;
+}
+
+.list-project a {
+  margin-top: 1.68634%;
+}
+
+.tag-filter {
+  margin-top: 1.68634%;
+}
+
+.side-menu-icon {
+  visibility: hidden;
+  position: relative;;
+  /*width: 100%;*/
+  text-align: left;
+  top: 20px;
+  left: 20px;
+  color: hsl(0, 0%, 20%);
+  transition: all 0.5s;
+  z-index: 15;
+}
+
+.fa {
+  font-size: 1.2em;
+}
+
+.search-container .input-group input,
+.search-container .input-group .input-group-btn button {
+  z-index: auto;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: hsla(0, 0%, 50%, 0.5);
+}
+
+.overlay-visibility {
+  visibility: hidden;
+}
+
+.tag {
+  padding: 5px 7px;
+  color: hsl(0, 0%, 20%);
+  margin-right: 5px;
+  margin-bottom: 5px;
+  font-size: 0.75em;
+}
+
+/*.tag-filter .tag:last-child {
+  background-color: #231854;
+}*/
+
+.tag:hover {
+  background-color: hsla(42, 83%, 86%, 1);
+  color: hsl(0, 0%, 20%);
+}
+
+p .tag {
+  padding: 3px 7px;
+  line-height: 3.6em;
+}
+
+input.form-control,
+textarea.form-control {
+  font-size: 1em;
+}
+
+input[type=search],
+input[type=text],
+input[type=email],
+.contact textarea.form-control,
+input[type=search]:focus,
+input[type=text]:focus,
+input[type=email]:focus  {
+  border: 0;
+  border-bottom: solid 1px #000;
+  box-shadow: none;
+}
+
+.tag,
+input[type=submit] {
+  background-color: #F0C35A;
+}
+
+.contact textarea.form-control {
+  resize: vertical;
+  min-height: 25.81019%;
+}
+
+.tag,
+input.form-control,
+textarea.form-control,
+input[type=submit] {
+  border-radius: 0;
+}
+
+@media only screen and (min-width: 1100px) {
+  .contact,
+  .about {
+    padding-top: 34.13940%;
+  }
+
+  footer {
+    /*position: fixed;*/
+    z-index: 200;
+    /*width: 20%;*/
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  nav.v-nav,
+  footer {
+    width: 15%;
+  }
+}
+@media only screen and (max-width: 1100px) {
+  nav.v-nav {
+    left: -25%;
+    width: 25%;
+  }
+
+  nav.horiz-nav {
+    visibility: visible;
+  }
+}
+
+@media only screen and (max-width: 558px) {
+  .home pre.full-code {
+    display: none;
+  }
+
+  .home pre.quarter-code {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .home pre.quarter-code {
+    display: none;
+  }
+
+  .home pre.small-code {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  nav.v-nav {
+    left: -40%;
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  nav.v-nav {
+    left: -60%;
+    width: 60%;
+  }
+  nav.horiz-nav {
+    visibility: hidden;
+  }
+
+  .side-menu-icon {
+    visibility: visible;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  pre.small-code {
+    padding-left: 5.55556%;
+    padding-right: 5.55556%;
+}

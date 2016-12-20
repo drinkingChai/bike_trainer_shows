@@ -1,12 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="BikeTrainerShows">
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="styles/bootstrap.css" media="screen" title="no title">
+    <link rel="stylesheet" href="styles/bootstrap-theme.css" media="screen" title="no title">
+    <link rel="stylesheet" href="styles/font-awesome.css" media="screen" title="no title">
   </head>
   <body>
 
-    
+    <!-- <div ng-view></div> -->
+
+    <form class="" action="/new" method="post">
+      <label for="title">Title</label>
+      <input type="text" name="title">
+
+      <label for="source">Source</label>
+      <input type="text" name="source">
+
+      <input type="submit" name="" value="Submit">
+    </form>
+
+    <!-- <div ng-controller="moviesCtrl"> -->
+      <div ng-repeat="movie in movies">
+        {{movie.title}}
+      </div>
+    <!-- </div> -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Vendor -->
+    <script src="assets/js/vendor/jquery-3.1.1.js" charset="utf-8"></script>
+    <script src="assets/js/vendor/bootstrap.js" charset="utf-8"></script>
+    <script src="assets/js/vendor/angular.js" charset="utf-8"></script>
+    <script src="assets/js/vendor/angular-route.js" charset="utf-8"></script>
+    <script src="assets/js/vendor/angular-resource.js" charset="utf-8"></script>
+
+    <!-- App -->
+    <script src="assets/js/app.js" charset="utf-8"></script>
+
+    <!-- Controllers -->
+    <script src="assets/js/controllers/movieController.js" charset="utf-8"></script>
+
+    <!-- Services -->
+    <!-- <script src="assets/js/services/project.js" charset="utf-8"></script> -->
+
+
+
+
 
   </body>
 </html>
