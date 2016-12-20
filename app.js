@@ -18,11 +18,15 @@ app.get('/', function(request, response) {
 });
 
 app.get('/movies', function(request, response) {
+  var result = [];
   MongoClient.connect(url, function(err, db) {
     var allMovies = db.collection('movies').find();
-
-    response.sendStatus(200);
-    db.close();
+    allMovies.forEach(function(item) {
+      result.push(item);
+    }, function() {
+      db.close();
+      response.status(200).json(result);
+    });
   });
 });
 
