@@ -3,5 +3,13 @@ angular.module('BikeTrainerShows')
     return $resource('/movies/:id', {id: '@id'});
   })
   .factory('Search', function($resource) {
-    return $resource('/search');
+    return $resource('/search/:title', {title: '@title'}, {
+      'get': {
+        method: 'GET',
+        // transformResponse: function(data) {
+        //   console.log(data);
+        // },
+        isArray: true
+      }
+    });
   });

@@ -27,13 +27,22 @@
         {{movie.source}}
       </div>
 
-      <form class="" action="/search" method="post">
+      <!-- <form class="" action="/search" method="post"> -->
+      <form class="">
         <label for="title"></label>
-        <input type="search" name="title" value="">
-        <input type="submit" name="" value="Search">
-      </form>
-    </div>
+        <input type="search" name="title" value="" ng-model="title">
+        <!-- <input type="submit" name="" value="Search"> -->
 
+        <a class="btn btn-default" ng-click="searchMovies2()">Search</a>
+      </form>
+
+      <div class="" ng-repeat="movie in searchResults">
+        {{movie.title}} {{movie.year}}
+      </div>
+
+
+
+    </div>
 
 
 

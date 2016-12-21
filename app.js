@@ -12,8 +12,6 @@ app.use(express.static('public'));
 var url = 'mongodb://localhost:27017/bike_trainer_shows';
 
 
-
-
 // routes
 app.get('/', function(request, response) {
   response.send('Ok');
@@ -28,22 +26,6 @@ app.get('/movies', function(request, response) {
     }, function() {
       db.close();
       response.status(200).json(result);
-    });
-  });
-});
-
-app.post('/search', parseUrlJSON, parseUrlEncoded, function(request, response) {
-  var result = [];
-  omdb.search(request.body.title, function(err, movies) {
-    result.forEach(function(movie) {
-      result.push({
-        title: movie.title,
-        year: movie.year,
-        imdbRating: movie.imdb.rating,
-        synopsis: movie.plot
-      });
-    }, function() {
-      console.log(result);
     });
   });
 });
@@ -72,7 +54,46 @@ app.post('/new', parseUrlJSON, parseUrlEncoded, function(request, response) {
   });
 });
 
+//
+//
+// OMDB
+// app.post('/search', parseUrlJSON, parseUrlEncoded, function(request, response) {
+//   var searchResults = [];
+//   omdb.search(request.body.title, function(err, movies) {
+//     movies.forEach(function(movie) {
+//       searchResults.push({
+//         title: movie.title,
+//         year: movie.year,
+//         imdbRating: movie.imdb.rating,
+//         synopsis: movie.plot
+//       });
+//       console.log(searchResults);
+//     });
+//     response.status(201).redirect('/');
+//     // response.status(201).json(searchResults);
+//   });
+// });
 
+app.get('/search/:title', function(request, response) {
+  console.log(request.params);
+  console.log(request.params.title);
+
+  var searchResults = [];
+  omdb.search(request.params.title, function(err, movies) {
+    movies.forEach(function(movie) {
+      searchResults.push({
+        title: movie.title,
+        year: movie.year,
+        imdbRating: movie.imdb.rating,
+        synopsis: movie.plot
+      });
+    });
+    console.log(searchResults);
+    response.status(200).json(searchResults);
+  });
+
+
+});
 
 
 module.exports = app;
