@@ -21,11 +21,12 @@
       <input type="submit" name="" value="Submit">
     </form>
 
-    <!-- <div ng-controller="moviesCtrl"> -->
+    <div ng-controller="MovieController">
       <div ng-repeat="movie in movies">
         {{movie.title}}
+        {{movie.source}}
       </div>
-    <!-- </div> -->
+    </div>
 
 
 
@@ -51,7 +52,7 @@
     <script src="assets/js/controllers/movieController.js" charset="utf-8"></script>
 
     <!-- Services -->
-    <!-- <script src="assets/js/services/project.js" charset="utf-8"></script> -->
+    <script src="assets/js/services/movie.js" charset="utf-8"></script>
 
 
 

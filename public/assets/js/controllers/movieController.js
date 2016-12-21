@@ -1,6 +1,4 @@
 angular.module('BikeTrainerShows')
-  .controller('movieController', function() {
-    return {
-      controllerAs: 'moviesCtl'
-    }
+  .controller('MovieController', function($scope, Movie) {
+    $scope.movies = Movie.query();
   });
