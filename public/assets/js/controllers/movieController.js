@@ -1,11 +1,6 @@
 angular.module('BikeTrainerShows')
   .controller('MovieController', function($scope, Movie, Search) {
     $scope.movies = Movie.query();
-    $scope.search = new Search();
-    $scope.searchMovies = function(search) {
-      search.$save();
-      // $scope.searchResults = search.$save();
-    }
 
     $scope.searchMovies2 = function() {
       // $scope.searchResults = [];
@@ -16,6 +11,13 @@ angular.module('BikeTrainerShows')
           //   console.log(i.title);
           // });
         });
+    }
+
+    $scope.addMovie = function(title, source) {
+      var newMovie = new Movie();
+      newMovie.title = title;
+      newMovie.$save();
+      $scope.movies.push({title: title});
     }
 
     // $scope.searchQuery = new Search();

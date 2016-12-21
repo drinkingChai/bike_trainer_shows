@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var omdb = require('omdb');
+var imdb = require('imdb-api');
 var bodyParser = require('body-parser');
 var parseUrlJSON = bodyParser.json();
 var parseUrlEncoded = bodyParser.urlencoded({ extended: true });
@@ -30,7 +31,7 @@ app.get('/movies', function(request, response) {
   });
 });
 
-app.post('/new', parseUrlJSON, parseUrlEncoded, function(request, response) {
+app.post('/movies', parseUrlJSON, parseUrlEncoded, function(request, response) {
   // console.log(request.body);
   var item = {
     title: request.body.title,
@@ -85,13 +86,20 @@ app.get('/search/:title', function(request, response) {
         title: movie.title,
         year: movie.year,
         imdbRating: movie.imdb.rating,
-        synopsis: movie.plot
+        synopsis: movie.plot,
+        id: movie.imdb
       });
     });
     console.log(searchResults);
     response.status(200).json(searchResults);
   });
 
+  // imdb.get(request.params.title).then(function(err, data) {
+  //   if (err) {
+  //     return err;
+  //   }
+  //   console.log(data);
+  // });
 
 });
 

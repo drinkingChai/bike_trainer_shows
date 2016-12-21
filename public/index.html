@@ -11,7 +11,7 @@
 
     <!-- <div ng-view></div> -->
 
-    <form class="" action="/new" method="post">
+    <!-- <form class="" action="/new" method="post">
       <label for="title">Title</label>
       <input type="text" name="title">
 
@@ -19,12 +19,12 @@
       <input type="text" name="source">
 
       <input type="submit" name="" value="Submit">
-    </form>
+    </form> -->
 
     <div ng-controller="MovieController">
       <div ng-repeat="movie in movies">
         {{movie.title}}
-        {{movie.source}}
+        <!-- {{movie.source}} -->
       </div>
 
       <!-- <form class="" action="/search" method="post"> -->
@@ -38,6 +38,7 @@
 
       <div class="" ng-repeat="movie in searchResults">
         {{movie.title}} {{movie.year}}
+        <a class="btn btn-default" ng-click="addMovie(movie.title)">Add</a>
       </div>
 
 
