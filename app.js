@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var omdb = require('omdb');
 var bodyParser = require('body-parser');
 var parseUrlJSON = bodyParser.json();
 var parseUrlEncoded = bodyParser.urlencoded({ extended: true });
@@ -31,12 +32,34 @@ app.get('/movies', function(request, response) {
   });
 });
 
+app.post('/search', parseUrlJSON, parseUrlEncoded, function(request, response) {
+  var result = [];
+  omdb.search(request.body.title, function(err, movies) {
+    result.forEach(function(movie) {
+      result.push({
+        title: movie.title,
+        year: movie.year,
+        imdbRating: movie.imdb.rating,
+        synopsis: movie.plot
+      });
+    }, function() {
+      console.log(result);
+    });
+  });
+});
+
 app.post('/new', parseUrlJSON, parseUrlEncoded, function(request, response) {
-  console.log(request.body);
+  // console.log(request.body);
   var item = {
     title: request.body.title,
     source: request.body.source
   };
+
+  // omdb.search(item.title, function(err, result) {
+  //   result.forEach(function(movie) {
+  //     console.log(movie.title, movie.year);
+  //   });
+  // });
 
   MongoClient.connect(url, function(err, db) {
     db.collection('movies').insertOne(item, function(err, result) {
