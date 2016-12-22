@@ -3,11 +3,8 @@ angular.module('BikeTrainerShows')
     $scope.movies = [];
     Movie.query().$promise.then(function(data) {
       for (var i = 0, l = data.length; i < l; i++) {
-        //   SearchById.get({id: id});
-        $scope.movies.push(SearchById.get({id: data[i].imdbId}));
+        $scope.movies.push({imdbData: SearchById.get({id: data[i].imdbId}), source: data[i].source});
       }
-      // data.forEach(function(id) {
-      // })
     });
 
     $scope.searchMovies2 = function() {
@@ -22,10 +19,15 @@ angular.module('BikeTrainerShows')
     }
 
     $scope.addMovie = function(imdbId, source) {
+      console.log(source);
       var newMovie = new Movie();
       newMovie.imdbId = imdbId;
+      newMovie.source = source;
       newMovie.$save();
-      $scope.movies.push({imdbId: imdbId});
+      $scope.movies.push({
+        imdbId: imdbId,
+        source: source
+      });
     }
 
     // $scope.searchQuery = new Search();

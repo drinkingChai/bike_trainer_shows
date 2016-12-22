@@ -32,7 +32,6 @@ app.get('/movies', function(request, response) {
 });
 
 app.post('/movies', parseUrlJSON, parseUrlEncoded, function(request, response) {
-  // console.log(request.body);
   var item = {
     imdbId: request.body.imdbId,
     source: request.body.source
@@ -57,8 +56,8 @@ app.post('/movies', parseUrlJSON, parseUrlEncoded, function(request, response) {
 
 
 app.get('/search/:title', function(request, response) {
-  console.log(request.params);
-  console.log(request.params.title);
+  // console.log(request.params);
+  // console.log(request.params.title);
 
   var searchResults = [];
   omdb.search(request.params.title, function(err, movies) {

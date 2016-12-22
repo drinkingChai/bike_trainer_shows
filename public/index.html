@@ -23,8 +23,8 @@
 
     <div ng-controller="MovieController">
       <div ng-repeat="movie in movies">
-        {{movie.title}}
-        <!-- {{movie.source}} -->
+        {{movie.imdbData.title}}
+        {{movie.source}}
       </div>
 
       <!-- <form class="" action="/search" method="post"> -->
@@ -38,7 +38,9 @@
 
       <div class="" ng-repeat="movie in searchResults">
         {{movie.title}} {{movie.year}}
-        <a class="btn btn-default" ng-click="addMovie(movie.imdbId)">Add</a>
+        <input type="text" ng-model="movie.source">
+        {{movie.source}}
+        <a class="btn btn-default" ng-click="addMovie(movie.imdbId, movie.source)">Add</a>
       </div>
 
 
