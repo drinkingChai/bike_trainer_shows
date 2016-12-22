@@ -67,7 +67,8 @@ app.get('/search/:title', function(request, response) {
         year: movie.year,
         imdbRating: movie.imdb.rating,
         synopsis: movie.plot,
-        imdbId: movie.imdb
+        imdbId: movie.imdb,
+        poster: movie.poster
       });
     });
     // console.log(searchResults);
@@ -77,13 +78,22 @@ app.get('/search/:title', function(request, response) {
 });
 
 app.get('/searchById/:id', function(request, response) {
+  imdb.getById(request.params.id, function(err, movie) {
+    if (movie.hasOwnProperty('_episodes')) {
+      movie.episodes(function(err, allEpisodes) {
+        console.log(movie.title, allEpisodes.length);
+      })
+    };
+  });
+
   omdb.get(request.params.id, function(err, movie) {
     response.status(200).json({
       title: movie.title,
       year: movie.year,
       imdbRating: movie.imdb.rating,
       synopsis: movie.plot,
-      imdbId: movie.imdb
+      imdbId: movie.imdb,
+      poster: movie.poster
     });
   });
 });

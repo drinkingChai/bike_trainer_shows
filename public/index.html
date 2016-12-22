@@ -25,6 +25,7 @@
       <div ng-repeat="movie in movies">
         {{movie.imdbData.title}}
         {{movie.source}}
+        {{movie.episodes}}
       </div>
 
       <!-- <form class="" action="/search" method="post"> -->
@@ -37,6 +38,7 @@
       </form>
 
       <div class="" ng-repeat="movie in searchResults">
+        <img ng-src="{{movie.poster}}" alt="">
         {{movie.title}} {{movie.year}}
         <input type="text" ng-model="movie.source">
         {{movie.source}}
