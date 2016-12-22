@@ -34,7 +34,7 @@ app.get('/movies', function(request, response) {
 app.post('/movies', parseUrlJSON, parseUrlEncoded, function(request, response) {
   // console.log(request.body);
   var item = {
-    title: request.body.title,
+    imdbId: request.body.imdbId,
     source: request.body.source
   };
 
@@ -55,25 +55,6 @@ app.post('/movies', parseUrlJSON, parseUrlEncoded, function(request, response) {
   });
 });
 
-//
-//
-// OMDB
-// app.post('/search', parseUrlJSON, parseUrlEncoded, function(request, response) {
-//   var searchResults = [];
-//   omdb.search(request.body.title, function(err, movies) {
-//     movies.forEach(function(movie) {
-//       searchResults.push({
-//         title: movie.title,
-//         year: movie.year,
-//         imdbRating: movie.imdb.rating,
-//         synopsis: movie.plot
-//       });
-//       console.log(searchResults);
-//     });
-//     response.status(201).redirect('/');
-//     // response.status(201).json(searchResults);
-//   });
-// });
 
 app.get('/search/:title', function(request, response) {
   console.log(request.params);
@@ -87,20 +68,25 @@ app.get('/search/:title', function(request, response) {
         year: movie.year,
         imdbRating: movie.imdb.rating,
         synopsis: movie.plot,
-        id: movie.imdb
+        imdbId: movie.imdb
       });
     });
-    console.log(searchResults);
+    // console.log(searchResults);
     response.status(200).json(searchResults);
   });
 
-  // imdb.get(request.params.title).then(function(err, data) {
-  //   if (err) {
-  //     return err;
-  //   }
-  //   console.log(data);
-  // });
+});
 
+app.get('/searchById/:id', function(request, response) {
+  omdb.get(request.params.id, function(err, movie) {
+    response.status(200).json({
+      title: movie.title,
+      year: movie.year,
+      imdbRating: movie.imdb.rating,
+      synopsis: movie.plot,
+      imdbId: movie.imdb
+    });
+  });
 });
 
 

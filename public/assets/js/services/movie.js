@@ -12,4 +12,7 @@ angular.module('BikeTrainerShows')
         isArray: true
       }
     });
+  })
+  .factory('SearchById', function($resource) {
+    return $resource('/searchById/:id', {id: '@id'});
   });
