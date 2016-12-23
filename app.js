@@ -87,7 +87,6 @@ app.get('/searchById/:id', function(request, response) {
   imdb.getById(request.params.id).then(function(movie) {
     MongoClient.connect(url, function(err, db) {
       db.collection('movies').findOne({imdbid: request.params.id}, function(err, result) {
-        // console.log(movie.runtime, parseInt(movie.runtime, 10));
         var mov = {
           title: movie.title,
           year: movie.year,
@@ -100,6 +99,7 @@ app.get('/searchById/:id', function(request, response) {
           blurb: result.blurb
         }
         if (movie.hasOwnProperty('_episodes')) {
+          mov.totalseasons = movie.totalseasons;
           movie.episodes().then(function(allEpisodes) {
             mov.runtime = allEpisodes.length * mov.runtime;
             response.status(200).json(mov);

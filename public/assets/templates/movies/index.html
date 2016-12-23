@@ -2,7 +2,13 @@
   <div ng-repeat="movie in movies">
     {{movie.title}}
     <span ng-show="movie.source">{{movie.source}}</span>
-    <p ng-show="movie.blurb">{{movie.blurb}}</p>
-    {{movie.runtime}}
+    <!-- <p ng-show="movie.blurb">{{movie.synopsis | limitTo: 250}} ...</p> -->
+    <p>{{movie.synopsis | limitTo: 250}} ...</p>
+    <p>{{movie.totalseasons}} seasons</p>
+    {{movie.runtime | minutesToHours}}
+    <p>{{movie.rating}} / 10</p>
+
+
   </div>
+
 </div>
