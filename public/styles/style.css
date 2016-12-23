@@ -33,3 +33,22 @@ nav, footer {
   font-size: 1em;
 }
 /****************/
+
+main {
+  margin-top: 50px;
+}
+/*
+.movie-cards img {
+  max-height: 250px;
+  width: 170px;
+}
+
+.movie-cards .card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: hsl(0, 0%, 95%);
+}
+
+.card .col-md-3 {
+  padding: 0;
+}*/

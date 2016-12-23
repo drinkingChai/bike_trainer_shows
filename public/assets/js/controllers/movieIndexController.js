@@ -1,5 +1,6 @@
 angular.module('BikeTrainerShows')
   .controller('MovieIndexController', function($scope, Movie, Search, SearchById) {
+    $scope.sort = 'runtime_ascending';
     $scope.movies = [];
     Movie.query().$promise.then(function(allMovies) {
       for (var i = 0, l = allMovies.length; i < l; i++) {

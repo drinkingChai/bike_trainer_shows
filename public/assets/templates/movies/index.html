@@ -1,13 +1,56 @@
 <div class="">
-  <div ng-repeat="movie in movies">
-    {{movie.title}}
-    <span ng-show="movie.source">{{movie.source}}</span>
-    <!-- <p ng-show="movie.blurb">{{movie.synopsis | limitTo: 250}} ...</p> -->
-    <p>{{movie.synopsis | limitTo: 250}} ...</p>
-    <p>{{movie.totalseasons}} seasons</p>
-    {{movie.runtime | minutesToHours}}
-    <p>{{movie.rating}} / 10</p>
 
+  <!-- <div class="row filters-sort">
+    <div class="col-md-2 col-md-offset-8">
+      Filter
+    </div>
+    <div class="col-md-2">
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Dropdown
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><a href="#/" ng-click="sort = 'runtime_ascending'">Runtime ^</a></li>
+          <li><a href="#/" ng-click="sort = 'runtime_descending'">Runtime</a></li>
+          <li><a href="#/" ng-click="sort = 'rating_ascending'">Rating ^</a></li>
+          <li><a href="#/" ng-click="sort = 'rating_descending'">Rating</a></li>
+        </ul>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div class="row movie-cards">
+
+    <div class="col-md-12">
+      <div class="card row" ng-repeat="movie in movies">
+
+        <div class="col-md-3">
+          <img ng-src="{{movie.poster}}" alt="">
+        </div>
+
+        <div class="col-md-6">
+          <h2>{{movie.title}}</h2>
+          <p>{{movie.synopsis | limitTo: 250}} ...</p>
+          <br>
+          <p ng-show="movie.source">You can watch it on {{movie.source}}</p>
+        </div>
+
+        <div class="col-md-3">
+          <div class="row">
+            <h2>{{movie.runtime | minutesToHours}}</h2>
+          </div>
+
+          <div class="row">
+            <h2>{{movie.rating}} / 10</h2>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
 
   </div>
 
