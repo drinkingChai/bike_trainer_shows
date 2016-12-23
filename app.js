@@ -37,12 +37,6 @@ app.post('/movies', parseUrlJSON, parseUrlEncoded, function(request, response) {
     source: request.body.source
   };
 
-  // omdb.search(item.title, function(err, result) {
-  //   result.forEach(function(movie) {
-  //     console.log(movie.title, movie.year);
-  //   });
-  // });
-
   MongoClient.connect(url, function(err, db) {
     db.collection('movies').insertOne(item, function(err, result) {
       console.log(('Item inserted'));
@@ -71,29 +65,36 @@ app.get('/search/:title', function(request, response) {
         poster: movie.poster
       });
     });
-    // console.log(searchResults);
     response.status(200).json(searchResults);
   });
 
 });
 
-app.get('/searchById/:id', function(request, response) {
-  imdb.getById(request.params.id, function(err, movie) {
-    if (movie.hasOwnProperty('_episodes')) {
-      movie.episodes(function(err, allEpisodes) {
-        console.log(movie.title, allEpisodes.length);
-      })
-    };
-  });
 
-  omdb.get(request.params.id, function(err, movie) {
-    response.status(200).json({
-      title: movie.title,
-      year: movie.year,
-      imdbRating: movie.imdb.rating,
-      synopsis: movie.plot,
-      imdbId: movie.imdb,
-      poster: movie.poster
+app.get('/searchById/:id', function(request, response) {
+  imdb.getById(request.params.id).then(function(movie) {
+    MongoClient.connect(url, function(err, db) {
+      db.collection('movies').findOne({imdbId: request.params.id}, function(err, result) {
+        // console.log(movie.runtime, parseInt(movie.runtime, 10));
+        var mov = {
+          title: movie.title,
+          year: movie.year,
+          rating: movie.rating,
+          synopsis: movie.plot,
+          imdbid: movie.imdbid,
+          poster: movie.poster,
+          runtime: parseInt(movie.runtime, 10),
+          source: result.source
+        }
+        if (movie.hasOwnProperty('_episodes')) {
+          movie.episodes().then(function(allEpisodes) {
+            mov.runtime = allEpisodes.length * mov.runtime;
+            response.status(200).json(mov);
+          });
+        } else {
+          response.status(200).json(mov);
+        }
+      });
     });
   });
 });
