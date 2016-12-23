@@ -34,7 +34,8 @@ app.get('/movies', function(request, response) {
 app.post('/movies', parseUrlJSON, parseUrlEncoded, function(request, response) {
   var item = {
     imdbId: request.body.imdbId,
-    source: request.body.source
+    source: request.body.source,
+    blurb: request.body.blurb
   };
 
   MongoClient.connect(url, function(err, db) {
@@ -84,7 +85,8 @@ app.get('/searchById/:id', function(request, response) {
           imdbid: movie.imdbid,
           poster: movie.poster,
           runtime: parseInt(movie.runtime, 10),
-          source: result.source
+          source: result.source,
+          blurb: result.blurb
         }
         if (movie.hasOwnProperty('_episodes')) {
           movie.episodes().then(function(allEpisodes) {

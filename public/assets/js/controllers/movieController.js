@@ -21,11 +21,12 @@ angular.module('BikeTrainerShows')
         // });
     }
 
-    $scope.addMovie = function(imdbId, source) {
+    $scope.addMovie = function(imdbId, source, blurb) {
       console.log(source);
       var newMovie = new Movie();
       newMovie.imdbId = imdbId;
       newMovie.source = source || false;
+      newMovie.blurb = blurb || false;
       newMovie.$save();
       $scope.movies.push({
         imdbId: imdbId,

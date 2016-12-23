@@ -25,6 +25,7 @@
       <div ng-repeat="movie in movies">
         {{movie.title}}
         <span ng-show="movie.source">{{movie.source}}</span>
+        <p ng-show="movie.blurb">{{movie.blurb}}</p>
         {{movie.runtime}}
       </div>
 
@@ -41,7 +42,8 @@
         <img ng-src="{{movie.poster}}" alt="">
         {{movie.title}} {{movie.year}}
         <input type="text" ng-model="movie.source">
-        <a class="btn btn-default" ng-click="addMovie(movie.imdbId, movie.source)">Add</a>
+        <textarea name="blurb" rows="8" cols="80" ng-model="movie.blurb"></textarea>
+        <a class="btn btn-default" ng-click="addMovie(movie.imdbId, movie.source, movie.blurb)">Add</a>
       </div>
 
 
