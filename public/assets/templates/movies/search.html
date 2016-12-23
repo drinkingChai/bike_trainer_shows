@@ -1,0 +1,24 @@
+<div class="">
+  <form class="">
+    <label for="title"></label>
+    <input type="search" name="title" value="" ng-model="title">
+    <!-- <input type="submit" name="" value="Search"> -->
+
+    <a class="btn btn-default" ng-click="searchMovies2()">Search</a>
+  </form>
+
+  <div class="" ng-repeat="movie in searchResults">
+    <img ng-src="{{movie.poster}}" alt="">
+    {{movie.title}} {{movie.year}}
+    {{movie.imdbid}}
+    <a ng-href="#/movies/new/{{movie.imdbid}}">Select</a>
+  </div>
+
+  <!-- <div class="" ng-repeat="movie in searchResults">
+    {{movie.title}} {{movie.year}}
+    <img ng-src="{{movie.poster}}" alt="">
+    <input type="text" ng-model="movie.source">
+    <textarea name="blurb" rows="8" cols="80" ng-model="movie.blurb"></textarea>
+    <a class="btn btn-default" ng-click="addMovie(movie.imdbid, movie.source, movie.blurb)">Add</a>
+  </div> -->
+</div>

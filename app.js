@@ -31,9 +31,20 @@ app.get('/movies', function(request, response) {
   });
 });
 
+app.get('/movies/new/:id', function(request, response) {
+  imdb.getById(request.params.id).then(function(movie) {
+    response.status(200).json({
+      title: movie.title,
+      year: movie.year,
+      poster: movie.poster,
+      imdbid: movie.imdbid
+    });
+  });
+});
+
 app.post('/movies', parseUrlJSON, parseUrlEncoded, function(request, response) {
   var item = {
-    imdbId: request.body.imdbId,
+    imdbid: request.body.imdbid,
     source: request.body.source,
     blurb: request.body.blurb
   };
@@ -62,7 +73,7 @@ app.get('/search/:title', function(request, response) {
         year: movie.year,
         imdbRating: movie.imdb.rating,
         synopsis: movie.plot,
-        imdbId: movie.imdb,
+        imdbid: movie.imdb,
         poster: movie.poster
       });
     });
@@ -75,7 +86,7 @@ app.get('/search/:title', function(request, response) {
 app.get('/searchById/:id', function(request, response) {
   imdb.getById(request.params.id).then(function(movie) {
     MongoClient.connect(url, function(err, db) {
-      db.collection('movies').findOne({imdbId: request.params.id}, function(err, result) {
+      db.collection('movies').findOne({imdbid: request.params.id}, function(err, result) {
         // console.log(movie.runtime, parseInt(movie.runtime, 10));
         var mov = {
           title: movie.title,
@@ -97,6 +108,7 @@ app.get('/searchById/:id', function(request, response) {
           response.status(200).json(mov);
         }
       });
+      db.close();
     });
   });
 });

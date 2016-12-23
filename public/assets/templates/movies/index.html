@@ -1,0 +1,8 @@
+<div class="">
+  <div ng-repeat="movie in movies">
+    {{movie.title}}
+    <span ng-show="movie.source">{{movie.source}}</span>
+    <p ng-show="movie.blurb">{{movie.blurb}}</p>
+    {{movie.runtime}}
+  </div>
+</div>

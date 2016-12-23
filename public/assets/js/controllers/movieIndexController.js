@@ -1,9 +1,9 @@
 angular.module('BikeTrainerShows')
-  .controller('MovieController', function($scope, Movie, Search, SearchById) {
+  .controller('MovieIndexController', function($scope, Movie, Search, SearchById) {
     $scope.movies = [];
     Movie.query().$promise.then(function(allMovies) {
       for (var i = 0, l = allMovies.length; i < l; i++) {
-        SearchById.get({id: allMovies[i].imdbId}).$promise.then(function(data) {
+        SearchById.get({id: allMovies[i].imdbid}).$promise.then(function(data) {
           $scope.movies.push(data);
         });
 
@@ -21,15 +21,15 @@ angular.module('BikeTrainerShows')
         // });
     }
 
-    $scope.addMovie = function(imdbId, source, blurb) {
+    $scope.addMovie = function(imdbid, source, blurb) {
       console.log(source);
       var newMovie = new Movie();
-      newMovie.imdbId = imdbId;
+      newMovie.imdbid = imdbid;
       newMovie.source = source || false;
       newMovie.blurb = blurb || false;
       newMovie.$save();
       $scope.movies.push({
-        imdbId: imdbId,
+        imdbid: imdbid,
         source: source
       });
     }

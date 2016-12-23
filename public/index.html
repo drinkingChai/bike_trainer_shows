@@ -9,49 +9,7 @@
   </head>
   <body>
 
-    <!-- <div ng-view></div> -->
-
-    <!-- <form class="" action="/new" method="post">
-      <label for="title">Title</label>
-      <input type="text" name="title">
-
-      <label for="source">Source</label>
-      <input type="text" name="source">
-
-      <input type="submit" name="" value="Submit">
-    </form> -->
-
-    <div ng-controller="MovieController">
-      <div ng-repeat="movie in movies">
-        {{movie.title}}
-        <span ng-show="movie.source">{{movie.source}}</span>
-        <p ng-show="movie.blurb">{{movie.blurb}}</p>
-        {{movie.runtime}}
-      </div>
-
-      <!-- <form class="" action="/search" method="post"> -->
-      <form class="">
-        <label for="title"></label>
-        <input type="search" name="title" value="" ng-model="title">
-        <!-- <input type="submit" name="" value="Search"> -->
-
-        <a class="btn btn-default" ng-click="searchMovies2()">Search</a>
-      </form>
-
-      <div class="" ng-repeat="movie in searchResults">
-        <img ng-src="{{movie.poster}}" alt="">
-        {{movie.title}} {{movie.year}}
-        <input type="text" ng-model="movie.source">
-        <textarea name="blurb" rows="8" cols="80" ng-model="movie.blurb"></textarea>
-        <a class="btn btn-default" ng-click="addMovie(movie.imdbId, movie.source, movie.blurb)">Add</a>
-      </div>
-
-
-
-    </div>
-
-
-
+    <div ng-view></div>
 
 
 
@@ -68,9 +26,12 @@
 
     <!-- App -->
     <script src="assets/js/app.js" charset="utf-8"></script>
+    <script src="assets/js/routes.js" charset="utf-8"></script>
 
     <!-- Controllers -->
-    <script src="assets/js/controllers/movieController.js" charset="utf-8"></script>
+    <script src="assets/js/controllers/movieIndexController.js" charset="utf-8"></script>
+    <script src="assets/js/controllers/searchMovieController.js" charset="utf-8"></script>
+    <script src="assets/js/controllers/newMovieController.js" charset="utf-8"></script>
 
     <!-- Services -->
     <script src="assets/js/services/movie.js" charset="utf-8"></script>

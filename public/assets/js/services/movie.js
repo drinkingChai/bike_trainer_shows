@@ -13,6 +13,11 @@ angular.module('BikeTrainerShows')
       }
     });
   })
+  .factory('SearchId', function($resource) {
+    // rename this
+    return $resource('/movies/new/:imdbid', {id: '@imdbid'})
+  })
   .factory('SearchById', function($resource) {
+    // rename this
     return $resource('/searchById/:id', {id: '@id'});
   });
