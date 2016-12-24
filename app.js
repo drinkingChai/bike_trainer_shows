@@ -101,7 +101,9 @@ app.get('/searchById/:id', function(request, response) {
         if (movie.hasOwnProperty('_episodes')) {
           mov.totalseasons = movie.totalseasons;
           movie.episodes().then(function(allEpisodes) {
+            mov.runtimePerEp = mov.runtime;
             mov.runtime = allEpisodes.length * mov.runtime;
+            mov.totalepisodes = allEpisodes.length;
             response.status(200).json(mov);
           });
         } else {

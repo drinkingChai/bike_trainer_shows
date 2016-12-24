@@ -26,24 +26,56 @@
     <div class="col-md-12">
       <div class="card row" ng-repeat="movie in movies">
 
-        <div class="col-md-3">
-          <img ng-src="{{movie.poster}}" alt="">
+        <div class="col-md-8 movie-desc">
+          <div class="inner">
+            <h2>{{movie.title}}</h2>
+            <p>{{movie.synopsis | limitTo: 250}} ...</p>
+            <br>
+            <p ng-show="movie.source">You can watch it on {{movie.source}}</p>
+
+            <br>
+            <a class="btn more-button" href="#/" ng-click="currentMovie = movie.imdbid">More...</a>
+          </div>
         </div>
 
-        <div class="col-md-6">
-          <h2>{{movie.title}}</h2>
-          <p>{{movie.synopsis | limitTo: 250}} ...</p>
-          <br>
-          <p ng-show="movie.source">You can watch it on {{movie.source}}</p>
+        <div class="col-md-2 runtime">
+          <h2>{{movie.runtime | minutesToHours}}</h2>
         </div>
 
-        <div class="col-md-3">
-          <div class="row">
+        <div class="col-md-2 rating">
+          <h2>{{movie.rating}} / 10</h2>
+        </div>
+
+        <!-- <div class="col-md-2 runtime-rating">
+          <div class="row runtime">
             <h2>{{movie.runtime | minutesToHours}}</h2>
           </div>
 
-          <div class="row">
+          <div class="row rating">
             <h2>{{movie.rating}} / 10</h2>
+          </div>
+        </div> -->
+
+        <!-- <div class="col-md-3 poster">
+          <img ng-src="{{movie.poster}}" alt="">
+        </div> -->
+
+        <!-- Details -->
+        <!-- Directive -->
+        <!-- <bts-movie-details imdbid="movie.imdbid"></bts-movie-details> -->
+        <div class="movie-details" ng-show="currentMovie == movie.imdbid">
+          <a ng-click="currentMovie = false">Close</a>
+          <div class="inner">
+            <h2>{{movie.title}}</h2>
+            <p>{{movie.synopsis}}</p>
+            <ul>
+              <li>{{movie.rating}} / 10</li>
+              <li ng-show="movie.totalseasons">{{movie.totalseasons}}</li>
+              <li ng-show="movie.totalepisodes">{{movie.totalepisodes}}</li>
+              <li ng-show="movie.runtimePerEp">{{movie.runtimePerEp}}</li>
+            </ul>
+
+            <img ng-src="{{movie.poster}}" alt="">
           </div>
         </div>
 

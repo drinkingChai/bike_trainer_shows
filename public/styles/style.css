@@ -33,22 +33,101 @@ nav, footer {
   font-size: 1em;
 }
 /****************/
+body {
+  background-color: hsl(0, 0%, 25%);
+}
+
+nav {
+  background-color: hsl(20, 80%, 50%);
+}
+nav a,
+nav a:hover {
+  color: #fff;
+}
 
 main {
   margin-top: 50px;
 }
-/*
+
+.card {
+  position: relative;
+  box-shadow: 0 5px 10px hsl(0, 0%, 20%);
+}
+
+.card,
+.movie-desc {
+  display: flex;
+}
+
+.movie-desc {
+  align-items: center;
+}
+
+.more-button {
+  background-color: hsl(20, 80%, 50%);
+  color: #fff;
+  padding: 10px 15px;
+}
+.more-button:hover,
+.more-button:focus {
+  color: #fff;
+}
+
 .movie-cards img {
-  max-height: 250px;
-  width: 170px;
+  max-width: 100%;
+}
+
+.movie-desc {
+  background-color: hsl(0, 0%, 95%);
+  padding: 30px;
 }
 
 .movie-cards .card {
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: hsl(0, 0%, 95%);
 }
 
-.card .col-md-3 {
-  padding: 0;
+.movie-details {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: hsla(0, 0%, 80%, 0.96);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 999;
+}
+
+.movie-details .inner {
+  max-width: 900px;
+}
+
+
+.runtime,
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*.runtime {
+  height: 50%;
+  background-color: hsl(360, 70%, 60%);
+}
+.rating {
+  height: 50%;
+  background-color: hsl(120, 70%, 60%);
 }*/
+.runtime {
+  background-color: hsl(360, 70%, 60%);
+}
+.rating {
+  background-color: hsl(120, 70%, 60%);
+}
+
+.poster {
+  padding: 0;
+}
