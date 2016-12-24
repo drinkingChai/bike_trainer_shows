@@ -35,6 +35,7 @@
 
             <br>
             <a class="btn more-button" href="#/" ng-click="currentMovie = movie.imdbid">More...</a>
+            <a class="btn" href="#/" ng-click="deleteMovie(movie.imdbid)">Delete</a>
           </div>
         </div>
 
@@ -46,36 +47,34 @@
           <h2>{{movie.rating}} / 10</h2>
         </div>
 
-        <!-- <div class="col-md-2 runtime-rating">
-          <div class="row runtime">
-            <h2>{{movie.runtime | minutesToHours}}</h2>
-          </div>
-
-          <div class="row rating">
-            <h2>{{movie.rating}} / 10</h2>
-          </div>
-        </div> -->
-
-        <!-- <div class="col-md-3 poster">
-          <img ng-src="{{movie.poster}}" alt="">
-        </div> -->
 
         <!-- Details -->
-        <!-- Directive -->
-        <!-- <bts-movie-details imdbid="movie.imdbid"></bts-movie-details> -->
         <div class="movie-details" ng-show="currentMovie == movie.imdbid">
-          <a ng-click="currentMovie = false">Close</a>
-          <div class="inner">
-            <h2>{{movie.title}}</h2>
-            <p>{{movie.synopsis}}</p>
-            <ul>
-              <li>{{movie.rating}} / 10</li>
-              <li ng-show="movie.totalseasons">{{movie.totalseasons}}</li>
-              <li ng-show="movie.totalepisodes">{{movie.totalepisodes}}</li>
-              <li ng-show="movie.runtimePerEp">{{movie.runtimePerEp}}</li>
-            </ul>
+          <a class="btn" ng-click="currentMovie = false">Close</a>
+          <div class="inner row">
+            <div class="col-md-8">
+              <h2>{{movie.title}}</h2>
+              <p>{{movie.synopsis}}</p>
 
-            <img ng-src="{{movie.poster}}" alt="">
+              <br>
+              <ul>
+                <li>Rating: {{movie.rating}} / 10</li>
+                <li ng-hide="movie.totalseasons">Runtime: {{movie.runtime}} minutes</li>
+                <li ng-show="movie.totalseasons">Seasons: {{movie.totalseasons}}</li>
+                <li ng-show="movie.totalepisodes">Total episodes: {{movie.totalepisodes}}</li>
+                <li ng-show="movie.runtimePerEp">Runtime per ep: {{movie.runtimePerEp}} minutes</li>
+              </ul>
+
+              <br>
+              <p ng-show="movie.source">You can watch it on {{movie.source}}</p>
+
+            </div>
+
+            <div class="col-md-4">
+              <img ng-src="{{movie.poster}}" alt="">
+
+            </div>
+
           </div>
         </div>
 

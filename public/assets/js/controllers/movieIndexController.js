@@ -35,6 +35,13 @@ angular.module('BikeTrainerShows')
       });
     }
 
+
+    $scope.deleteMovie = function(imdbid) {
+      // var movie = new Movie();
+      // movie.imdbid = imdbid;
+      Movie.delete({id: imdbid});
+    }
+
     // $scope.searchQuery = new Search();
     // $scope.searchMovies = Search.get({id: $scope.searchQuery.title});
 

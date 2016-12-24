@@ -51,13 +51,21 @@ app.post('/movies', parseUrlJSON, parseUrlEncoded, function(request, response) {
 
   MongoClient.connect(url, function(err, db) {
     db.collection('movies').insertOne(item, function(err, result) {
-      console.log(('Item inserted'));
+      console.log('Item inserted');
     });
 
     db.close();
 
     response.status(201).redirect('/');
   });
+});
+
+app.delete('/movies/:id', function(request, response) {
+  MongoClient.connect(url, function(err, db) {
+    db.collection('movies').remove({imdbid: request.params.id}, function(err, result) {
+      console.log('Item deleted');
+    })
+  })
 });
 
 
