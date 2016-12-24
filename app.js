@@ -104,9 +104,10 @@ app.get('/searchById/:id', function(request, response) {
           synopsis: movie.plot,
           imdbid: movie.imdbid,
           poster: movie.poster,
+          imdburl: movie.imdburl,
           runtime: parseInt(movie.runtime, 10),
           source: result.source,
-          blurb: result.blurb
+          blurb: result.blurb,
         }
         if (movie.hasOwnProperty('_episodes')) {
           mov.totalseasons = movie.totalseasons;
