@@ -106,6 +106,12 @@ main {
   max-width: 900px;
 }
 
+.movie-details .btn-close-details {
+  font-size: 3em;
+  width: 48px;
+  float: right;
+  padding-bottom: 36px;
+}
 
 .runtime,
 .rating {

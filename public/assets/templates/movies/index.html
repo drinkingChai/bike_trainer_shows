@@ -50,29 +50,33 @@
 
         <!-- Details -->
         <div class="movie-details" ng-show="currentMovie == movie.imdbid">
-          <a class="btn" ng-click="currentMovie = false">Close</a>
-          <div class="inner row">
-            <div class="col-md-8">
-              <h2>{{movie.title}}</h2>
-              <p>{{movie.synopsis}}</p>
-
-              <br>
-              <ul>
-                <li>Rating: {{movie.rating}} / 10</li>
-                <li ng-hide="movie.totalseasons">Runtime: {{movie.runtime}} minutes</li>
-                <li ng-show="movie.totalseasons">Seasons: {{movie.totalseasons}}</li>
-                <li ng-show="movie.totalepisodes">Total episodes: {{movie.totalepisodes}}</li>
-                <li ng-show="movie.runtimePerEp">Runtime per ep: {{movie.runtimePerEp}} minutes</li>
-              </ul>
-
-              <br>
-              <p ng-show="movie.source">You can watch it on {{movie.source}}</p>
-
+          <div class="inner">
+            <div class="row">
+              <a class="btn-close-details" ng-click="currentMovie = false" href=""><i class="fa fa-times fa-3x" aria-hidden="true"></i></a>
             </div>
 
-            <div class="col-md-4">
-              <img ng-src="{{movie.poster}}" alt="">
+            <div class="row">
+              <div class="col-md-8">
+                <h2>{{movie.title}}</h2>
+                <p>{{movie.synopsis}}</p>
 
+                <br>
+                <ul>
+                  <li><strong>Rating:</strong> {{movie.rating}} / 10</li>
+                  <li ng-hide="movie.totalseasons"><strong>Runtime:</strong> {{movie.runtime}} minutes</li>
+                  <li ng-show="movie.totalseasons"><strong>Seasons:</strong> {{movie.totalseasons}}</li>
+                  <li ng-show="movie.totalepisodes"><strong>Total episodes:</strong> {{movie.totalepisodes}}</li>
+                  <li ng-show="movie.runtimePerEp"><strong>Runtime per ep:</strong> {{movie.runtimePerEp}} minutes</li>
+                </ul>
+
+                <br>
+                <p ng-show="movie.source">You can watch it on {{movie.source}}</p>
+
+              </div>
+
+              <div class="col-md-4">
+                <img ng-src="{{movie.poster}}" alt="">
+              </div>
             </div>
 
           </div>

@@ -65,6 +65,8 @@ app.delete('/movies/:id', function(request, response) {
     db.collection('movies').remove({imdbid: request.params.id}, function(err, result) {
       console.log('Item deleted');
     })
+
+    db.close();
   })
 });
 
