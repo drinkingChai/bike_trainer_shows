@@ -10,7 +10,7 @@ angular.module('BikeTrainerShows')
           $scope.movies.push(data);
 
           data.genres.forEach(function(genre) {
-            $scope.genres[genre] = true;
+            $scope.genres[genre] = false;
           })
         });
 
@@ -35,15 +35,8 @@ angular.module('BikeTrainerShows')
       Movie.delete({id: imdbid});
     }
 
-    $scope.showGenres = function() {
-      console.log($scope.genres);
-    }
-
-    // $scope.genreSearch = {'name': ''};
-
     $scope.toggleGenre = function(genre) {
       $scope.genres[genre] = !$scope.genres[genre];
-      // console.log($scope.genres);
     }
 
   });
