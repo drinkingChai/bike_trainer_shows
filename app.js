@@ -105,6 +105,7 @@ app.get('/searchById/:id', function(request, response) {
           imdbid: movie.imdbid,
           poster: movie.poster,
           imdburl: movie.imdburl,
+          genres: movie.genres.split(', '),
           runtime: parseInt(movie.runtime, 10),
           source: result.source,
           blurb: result.blurb,
