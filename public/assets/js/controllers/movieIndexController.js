@@ -3,6 +3,16 @@ angular.module('BikeTrainerShows')
     $scope.sort = 'runtime_ascending';
     $scope.movies = [];
     $scope.genres = {};
+    $scope.sources = {
+      "All": true,
+      "Netflix": false,
+      "Hulu": false,
+      "HBO GO": false,
+      "Amazon Prime": false,
+      "YouTube": false,
+      "Crackle": false
+    }
+    $scope.propertyName = null;
 
     Movie.query().$promise.then(function(allMovies) {      var allGenres = [];
       for (var i = 0, l = allMovies.length; i < l; i++) {
@@ -37,6 +47,10 @@ angular.module('BikeTrainerShows')
 
     $scope.toggleGenre = function(genre) {
       $scope.genres[genre] = !$scope.genres[genre];
+    }
+
+    $scope.sortBy = function(propertyName, reverse) {
+      $scope.propertyName = reverse? '-'+propertyName : propertyName;
     }
 
   });

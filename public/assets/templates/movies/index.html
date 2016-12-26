@@ -1,7 +1,7 @@
 <div class="row movie-cards">
 
   <div class="col-md-10">
-    <div class="card row" ng-repeat="movie in movies | genreFilter:genres">
+    <div class="card row" ng-repeat="movie in movies | genreFilter:genres | orderBy:propertyName">
       <div class="col-md-8 movie-desc">
         <div class="inner">
           <h2>{{movie.title}}</h2>
@@ -69,8 +69,23 @@
     </div>
   </div>
 
-
+  <!-- Sort Filter -->
   <div class="col-md-2">
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Dropdown
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="" ng-click="sortBy('runtime', true)">Runtime: High to Low </a></li>
+        <li><a href="" ng-click="sortBy('runtime', false)">Runtime: Low to High </a></li>
+        <li><a href="" ng-click="sortBy('rating', true)">Rating: High to Low </a></li>
+        <li><a href="" ng-click="sortBy('rating', false)">Rating: Low to High </a></li>
+        <li><a href="" ng-click="sortBy('runtime', false)">Title </a></li>
+      </ul>
+    </div>
+
+
     <ul>
       <li ng-repeat="(genre, value) in genres">
         <label>
