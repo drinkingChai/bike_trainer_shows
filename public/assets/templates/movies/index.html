@@ -1,7 +1,7 @@
 <div class="row movie-cards">
 
   <div class="col-md-10">
-    <div class="card row" ng-repeat="movie in movies | genreFilter:genres | orderBy:propertyName">
+    <div class="card row" ng-repeat="movie in movies | genreFilter:genres | sourceFilter:source | orderBy:propertyName">
       <div class="col-md-8 movie-desc">
         <div class="inner">
           <h2>{{movie.title}}</h2>
@@ -9,7 +9,7 @@
 
           <p>{{movie.synopsis | limitTo: 250}} ...</p>
           <br>
-          <p ng-show="movie.source">You can watch it on {{movie.source}}</p>
+          <p ng-show="movie.source">You can watch it on {{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</p>
 
           <br>
           <a class="btn more-button" href="#/" ng-click="currentMovie = movie.imdbid">More...</a>
@@ -46,7 +46,7 @@
                 <li ng-show="movie.totalseasons"><strong>Seasons:</strong> {{movie.totalseasons}}</li>
                 <li ng-show="movie.totalepisodes"><strong>Total episodes:</strong> {{movie.totalepisodes}}</li>
                 <li ng-show="movie.runtimePerEp"><strong>Runtime per ep:</strong> {{movie.runtimePerEp}} minutes</li>
-                <li ng-show="movie.source"><strong>Watch it on</strong> {{movie.source}}</li>
+                <li ng-show="movie.source"><strong>Watch it on</strong> {{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></li>
                 <li><a ng-href="{{movie.imdburl}}"><strong>More on IMDB</strong></a></li>
               </ul>
 
@@ -86,13 +86,30 @@
     </div>
 
 
+    <form>
+      <ul>
+        <li>
+          <label>
+            <input type="radio" ng-click="setSource(null)" name="movSort" checked> All
+          </label>
+        </li>
+        <li ng-repeat="movSource in sources">
+          <label>
+            <input type="radio" ng-click="setSource(movSource)" name="movSort"> {{movSource}}
+          </label>
+        </li>
+      </ul>
+     </form>
+
+
     <ul>
       <li ng-repeat="(genre, value) in genres">
         <label>
-          <input type="checkbox" ng-click="toggleGenre(genre)"> {{genre}}
+          <input type="checkbox" ng-click="toggleGenre(genre)" ng-checked="master"> {{genre}}
         </label>
       </li>
     </ul>
+    <!-- <input type="checkbox" ng-model="master"> None -->
   </div>
 
 

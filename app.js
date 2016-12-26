@@ -46,7 +46,8 @@ app.post('/movies', parseUrlJSON, parseUrlEncoded, function(request, response) {
   var item = {
     imdbid: request.body.imdbid,
     source: request.body.source,
-    blurb: request.body.blurb
+    blurb: request.body.blurb,
+    sourceOther: request.body.sourceOther
   };
 
   MongoClient.connect(url, function(err, db) {
@@ -109,6 +110,7 @@ app.get('/searchById/:id', function(request, response) {
           runtime: parseInt(movie.runtime, 10),
           source: result.source,
           blurb: result.blurb,
+          sourceOther: result.sourceOther
         }
         if (movie.hasOwnProperty('_episodes')) {
           mov.totalseasons = movie.totalseasons;
