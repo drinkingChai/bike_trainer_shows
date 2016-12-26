@@ -50,6 +50,7 @@ angular.module('BikeTrainerShows')
         $scope.genreCheckbox[genre] = false;
       }
       $scope.source = null;
+      $scope.search = "";
     }
 
     $scope.sortBy = function(propertyName) {

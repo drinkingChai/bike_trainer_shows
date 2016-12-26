@@ -44,6 +44,8 @@ input {
 }
 /****************/
 body {
+  background-color: #222;
+  color: #fff;
   /*background-color: hsl(0, 0%, 25%);*/
 }
 
@@ -55,10 +57,17 @@ nav a:hover,
 nav a:focus {
   color: #fff;
 }
+nav > div > a.navbar-brand.pull-right {
+  visibility: hidden;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: hsla(10, 58%, 57%, 1);
+}
 
 input[type=radio],
 input[type=checkbox] {
   -webkit-appearance: none;
+  cursor: pointer;
 }
 i.fa.fa-circle,
 i.fa.fa-circle-thin,
@@ -73,9 +82,8 @@ main {
 }
 
 .sort-filter > .inner {
-  width: 100%;
   height: 100%;
-  border-left: solid 1px #000;
+  border-left: solid 1px hsl(0, 0%, 30%);
   position: fixed;
   padding: 15px;
   width: 16%;
@@ -88,7 +96,7 @@ main {
 
 .card {
   position: relative;
-  border-bottom: solid 1px #000;
+  border-bottom: solid 1px hsl(0, 0%, 30%);
   margin-left: 0px;
 }
 
@@ -118,11 +126,20 @@ main {
   color: #fff;
 }
 
+.movie-cards {
+  display: flex;
+}
 .movie-cards img {
   min-width: 100%;
   max-width: 100%;
 }
-
+.more-info {
+  width: 100%;
+}
+.sm-runtime-rating {
+  font-size: 1.5em;
+  visibility: hidden;
+}
 
 
 .movie-details {
@@ -131,7 +148,8 @@ main {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: hsla(0, 0%, 95%, 1);
+  background-color: hsla(0, 0%, 13%, 0.95);
+  /*background-color: hsla(0, 0%, 95%, 1);*/
 
   display: flex;
   align-items: center;
@@ -164,7 +182,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-left: solid 1px #000;
+  border-left: solid 1px hsl(0, 0%, 30%);
   margin-top: 15px;
   margin-bottom: 15px;
   text-align: center;
@@ -178,12 +196,12 @@ main {
 .filter-source,
 .filter-genre,
 .search {
-  border-bottom: solid 1px #000;
+  border-bottom: solid 1px hsl(0, 0%, 30%);
   padding-top: 15px;
   padding-bottom: 15px;
 }
 .filter-source {
-  border-top: solid 1px #000;
+  border-top: solid 1px hsl(0, 0%, 30%);
   margin-top: 15px;
 }
 .sort {
@@ -195,6 +213,7 @@ main {
   margin-bottom: 2px;
   width: 83%;
   outline: none;
+  background-color: transparent;
 }
 .sort button {
   border: 0;
@@ -212,4 +231,27 @@ main {
 .filter-source label {
   display: flex;
   align-items: center;
+}
+
+
+@media screen and (max-width: 992px) {
+  .sort-filter .inner {
+    width: 32%;
+  }
+  .runtime,
+  .rating {
+    display: none;
+  }
+  .sm-runtime-rating {
+    visibility: visible;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sort-filter > .inner {
+    border-left: 0;
+  }
+  nav > div > a.navbar-brand.pull-right {
+    visibility: visible;
+  }
 }
