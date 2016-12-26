@@ -69,6 +69,10 @@ input[type=checkbox] {
   -webkit-appearance: none;
   cursor: pointer;
 }
+input[type=radio]:checked,
+input[type=checkbox]:checked  {
+  visibility:hidden;
+}
 i.fa.fa-circle,
 i.fa.fa-circle-thin,
 i.fa.fa-square-o,
@@ -87,11 +91,21 @@ main {
   position: fixed;
   padding: 15px;
   width: 16%;
+  overflow-y: scroll;
 }
 .sort-filter ul li,
 .movie-desc ul li,
 .movie-details ul li {
   list-style-type: none;
+}
+.dropdown-menu {
+  background-color: #222;
+  border-radius: 0;
+}
+.dropdown-menu li a {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #fff;
 }
 
 .card {
@@ -136,7 +150,8 @@ main {
 .more-info {
   width: 100%;
 }
-.sm-runtime-rating {
+.sm-runtime-rating,
+.xsm-runtime-rating {
   font-size: 1.5em;
   visibility: hidden;
 }
@@ -144,11 +159,13 @@ main {
 
 .movie-details {
   position: fixed;
-  top: 0;
-  bottom: 0;
+  top: 50px;
+  /*bottom: 0;*/
   left: 0;
   right: 0;
-  background-color: hsla(0, 0%, 13%, 0.95);
+  height: 100%;
+  overflow-y: auto;
+  background-color: hsla(0, 0%, 13%, 1);
   /*background-color: hsla(0, 0%, 95%, 1);*/
 
   display: flex;
@@ -159,7 +176,10 @@ main {
 }
 
 .movie-details .inner {
+  padding: 30px;
   max-width: 900px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .movie-details .inner .row:first-child {
@@ -175,6 +195,13 @@ main {
 .movie-details .btn-close-details:focus {
   text-decoration: none;
   color: #fff;
+}
+.movie-details > div > div > div > ul > li .more-button {
+  margin-top: 5px;
+  /*margin-bottom: 5px;*/
+
+}
+.movie-details .btn .more-button {
 }
 
 .runtime,
@@ -226,13 +253,13 @@ main {
 }
 .reset-button {
   margin-top: 15px;
+  margin-bottom: 50px;
 }
 .filter-genre label,
 .filter-source label {
   display: flex;
   align-items: center;
 }
-
 
 @media screen and (max-width: 992px) {
   .sort-filter .inner {
@@ -248,10 +275,36 @@ main {
 }
 
 @media screen and (max-width: 768px) {
+  .card {
+    margin-right: 5px;
+  }
   .sort-filter > .inner {
     border-left: 0;
+    background-color: #222;
+    width: 65%;
+    right: -65%;
+    /*width: 50%;
+    right: -50%;*/
+    transition: right 250ms;
   }
   nav > div > a.navbar-brand.pull-right {
+    visibility: visible;
+  }
+  .sort-filter {
+    position: fixed;
+    z-index: 99;
+  }
+}
+
+@media screen and (max-width: 442px) {
+  /*.sort-filter > .inner {
+    width: 65%;
+    right: -65%;
+  }*/
+  .sm-runtime-rating {
+    visibility: hidden;
+  }
+  .xsm-runtime-rating {
     visibility: visible;
   }
 }

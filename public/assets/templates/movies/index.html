@@ -9,15 +9,19 @@
             <li class="label label-default" ng-repeat="genre in movie.genres">{{genre}}</li>
           </ul>
 
-          <p>{{movie.synopsis | limitTo: 250}} ...</p>
+          <p>{{movie.synopsis | limitTo: 250}}<span ng-show="movie.synopsis.length > 250">...</span></p>
           <br>
-          <p ng-show="movie.source">You can watch it on {{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</p>
+          <p ng-show="movie.source">You can watch it on <strong>{{movie.source}}</strong><span ng-show="movie.sourceOther">: {{movie.sourceOther}}</p>
           <br>
 
           <div class="more-info">
             <a class="btn more-button" href="" ng-click="currentMovie = movie.imdbid">More</a>
             <a class="btn more-button imdb" ng-href="{{movie.imdburl}}">IMDb</a>
             <div class="sm-runtime-rating pull-right">
+              <span>{{movie.runtime | minutesToHours}}</span> <span><i class="fa fa-star"></i> {{movie.rating}}</span>
+            </div>
+            <div class="xsm-runtime-rating">
+              <br>
               <span>{{movie.runtime | minutesToHours}}</span> <span><i class="fa fa-star"></i> {{movie.rating}}</span>
             </div>
           </div>
@@ -37,15 +41,15 @@
       <!-- Details -->
       <div class="movie-details" ng-show="currentMovie == movie.imdbid">
         <div class="inner">
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-md-12">
               <a class="btn btn-close-details" ng-click="currentMovie = false" href=""><i class="fa fa-arrow-left"></i></a>
-              <!-- <a class="btn btn-close-details" ng-click="currentMovie = false" href="">Back</a> -->
             </div>
-          </div>
+          </div> -->
 
             <div class="row">
-              <div class="col-md-8">
+              <!-- <div class="col-md-8"> -->
+              <div class="col-md-12">
                 <h2>{{movie.title}}</h2>
 
                 <ul>
@@ -55,25 +59,28 @@
                   <li ng-show="movie.totalepisodes"><strong>Total episodes:</strong> {{movie.totalepisodes}}</li>
                   <li ng-show="movie.runtimePerEp"><strong>Runtime per ep:</strong> {{movie.runtimePerEp}} minutes</li>
                   <li ng-show="movie.source"><strong>Watch it on</strong> {{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></li>
-                  <li><a ng-href="{{movie.imdburl}}"><strong>More on IMDB</strong></a></li>
+                  <!-- <li><a ng-href="{{movie.imdburl}}" class="btn more-button">IMDb</a></li> -->
+                  <!-- <li><a ng-href="{{movie.imdburl}}" class="btn more-button"><strong>More on IMDB</strong></a></li> -->
+                  <li><a class="btn more-button" ng-click="currentMovie = false" href="">Back</a></li>
+                  <!-- <li><a class="btn more-button" ng-click="currentMovie = false" href=""><i class="fa fa-arrow-left"></i> Back</a></li> -->
                 </ul>
 
                 <br>
 
               </div>
 
-              <div class="col-md-4">
-                <!-- <img ng-src="{{movie.poster}}" alt=""> -->
-              </div>
+              <!-- <div class="col-md-4">
+                <img ng-src="{{movie.poster}}" alt="">
+              </div> -->
             </div>
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-md-12">
 
                 <h2>Plot</h2>
-                <p>{{movie.synopsis}}</p>
+                <p>{{movie.synopsis | limitTo: 500}} <span ng-show="movie.synopsis.length > 500">...</span></p>
               </div>
 
-            </div>
+            </div> -->
 
 
         </div>
@@ -99,7 +106,6 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
           <li><a href="" ng-repeat="(option, name) in sortOptions" ng-click="sortBy(option)">{{name}}</a></li>
-          <li><a href="" ng-click="sortBy('runtime', false)">Title </a></li>
         </ul>
       </div>
 
