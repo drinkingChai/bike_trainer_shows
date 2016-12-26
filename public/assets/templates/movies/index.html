@@ -105,11 +105,12 @@
     <ul>
       <li ng-repeat="(genre, value) in genres">
         <label>
-          <input type="checkbox" ng-click="toggleGenre(genre)" ng-checked="master"> {{genre}}
+          <input type="checkbox" ng-click="toggleGenre(genre)" ng-model="genreCheckbox[genre]"> {{genre}}
         </label>
       </li>
     </ul>
-    <!-- <input type="checkbox" ng-model="master"> None -->
+    <!-- <input type="checkbox" ng-model="v"> None -->
+    <a href="" ng-click="resetGenre()">Reset</a>
   </div>
 
 

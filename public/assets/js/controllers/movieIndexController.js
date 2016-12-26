@@ -3,6 +3,7 @@ angular.module('BikeTrainerShows')
     $scope.sort = 'runtime_ascending';
     $scope.movies = [];
     $scope.genres = {};
+    $scope.genreCheckbox = {};
     $scope.sources = sources.all;
     $scope.source = null;
     $scope.propertyName = null;
@@ -45,6 +46,7 @@ angular.module('BikeTrainerShows')
     $scope.resetGenre = function() {
       for (var genre in $scope.genres) {
         $scope.genres[genre] = false;
+        $scope.genreCheckbox[genre] = false;
       }
     }
 
