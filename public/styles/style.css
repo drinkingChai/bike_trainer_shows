@@ -157,6 +157,10 @@ main {
   visibility: hidden;
 }
 
+.xsm-runtime-rating {
+  display: none;
+}
+
 
 .movie-details {
   position: fixed;
@@ -307,6 +311,7 @@ main {
     visibility: hidden;
   }
   .xsm-runtime-rating {
+    display: block;
     visibility: visible;
   }
 }
