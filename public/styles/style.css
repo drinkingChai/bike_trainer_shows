@@ -164,6 +164,11 @@ main {
   display: none;
 }
 
+.prevent-scroll {
+  z-index: 22;
+  overflow: hidden;
+  position: fixed;
+}
 
 .movie-details {
   position: fixed;

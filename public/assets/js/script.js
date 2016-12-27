@@ -9,6 +9,7 @@ $("#sort-button, .overlay").click(function() {
   }
   $('.sort-filter > .inner').toggleClass('right-zero');
   $('.overlay').toggle();
+  $('.movie-cards .inner').toggleClass('prevent-scroll');
 })
 // $("#sort-button").toggle(
 //   function() {
