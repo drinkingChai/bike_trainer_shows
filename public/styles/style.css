@@ -180,7 +180,7 @@ main {
   align-items: center;
   justify-content: center;
 
-  z-index: 999;
+  z-index: 55;
 }
 
 .movie-details .inner {
@@ -269,6 +269,17 @@ main {
   align-items: center;
 }
 
+.overlay {
+  background-color: hsla(0, 0%, 5%, 0.95);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+
 @media screen and (max-width: 992px) {
   .sort-filter .inner {
     width: 32%;
@@ -301,7 +312,7 @@ main {
   }
   .sort-filter {
     position: fixed;
-    z-index: 99;
+    z-index: 999;
   }
 }
 
