@@ -12,20 +12,10 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-fixed-top">
+    <nav class="navbar navbar-fixed-top" ng-controller="NavController">
       <div class="container-fluid">
         <a href="#/" class="navbar-brand"><i class="fa fa-bicycle fa-fw"></i> Trainer Show</a>
-        <a href="#/" class="navbar-brand pull-right" id="sort-button"><i class="fa fa-sort-amount-desc fa-fw"></i>Sort</a>
-
-        <!-- <div class="navbar-header">
-          <a href="#/" class="navbar-brand"><i class="fa fa-bicycle fa-fw"></i> Bike Trainer Show</a>
-        </div>
-
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="#"><i class="fa fa-sort-amount-desc fa-fw"></i>Sort</a>
-          </li>
-        </ul> -->
+        <a href="#/" class="navbar-brand pull-right" id="sort-button" ng-show="currentLocation === '/'"><i class="fa fa-sort-amount-desc fa-fw"></i>Sort</a>
       </div>
 
     </nav>
@@ -55,6 +45,7 @@
     <script src="assets/js/routes.js" charset="utf-8"></script>
 
     <!-- Controllers -->
+    <script src="assets/js/controllers/navController.js" charset="utf-8"></script>
     <script src="assets/js/controllers/movieIndexController.js" charset="utf-8"></script>
     <script src="assets/js/controllers/searchMovieController.js" charset="utf-8"></script>
     <script src="assets/js/controllers/newMovieController.js" charset="utf-8"></script>
