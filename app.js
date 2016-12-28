@@ -130,4 +130,13 @@ app.get('/searchById/:id', function(request, response) {
 });
 
 
+app.get('/exists/:imdbid', function(request, response) {
+  MongoClient.connect(url, function(err, db) {
+    db.collection('movies').findOne({imdbid: request.params.imdbid}, function(err, result) {
+      response.status(200).json({'exists': result === null ? false : true});
+    });
+  });
+})
+
+
 module.exports = app;

@@ -1,10 +1,10 @@
 angular.module('BikeTrainerShows')
-  .controller('NewMovieController', function($scope, $location, sources, $routeParams, Movie, SearchId) {
+  .controller('NewMovieController', function($scope, $location, sources, $routeParams, Movie, SearchId, SearchById, Exists) {
     $scope.movie = SearchId.get({imdbid: $routeParams.imdbid});
+    $scope.exists = Exists.get({imdbid: $routeParams.imdbid});
     $scope.sources = sources.all;
 
     $scope.addMovie = function(imdbid, source, blurb) {
-      // console.log(source);
       var newMovie = new Movie();
       newMovie.imdbid = imdbid;
       newMovie.source = source || false;

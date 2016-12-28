@@ -26,7 +26,8 @@
 
       <textarea name="blurb" rows="8" cols="80" ng-model="movie.blurb" placeholder="blurb..."></textarea>
       <br>
-      <a class="btn default-btn-style add-button" ng-click="addMovie(movie.imdbid, movie.source, movie.blurb)">Add</a>
+      <p class="btn default-btn-style" ng-show="exists">Already added</p>
+      <a class="btn default-btn-style add-button" ng-show="!exists" ng-click="addMovie(movie.imdbid, movie.source, movie.blurb)">Add</a>
 
     </div>
   </div>

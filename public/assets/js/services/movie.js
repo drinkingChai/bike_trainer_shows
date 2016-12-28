@@ -20,4 +20,7 @@ angular.module('BikeTrainerShows')
   .factory('SearchById', function($resource) {
     // rename this
     return $resource('/searchById/:id', {id: '@id'});
+  })
+  .factory('Exists', function($resource) {
+    return $resource('/exists/:imdbid', {imdbid: '@imdbid'});
   });
