@@ -14,7 +14,7 @@ angular.module('BikeTrainerShows')
       newMovie.blurb = blurb || false;
       if ($scope.movie.source === "Other") { newMovie.sourceOther = $scope.other; }
       newMovie.$save();
-      $location.path('/');
+      $location.path('/movies/search');
     }
 
     $scope.setSource = function(source) {
