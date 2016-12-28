@@ -15,7 +15,7 @@
       <h2>{{movie.title}}</h2>
       <h3>Release year: {{movie.year.from || movie.year}}</h3>
       <p>{{movie.plot | limitTo: 250}}</p>
-      <a class="btn default-btn-style" ng-href="#/movies/new/{{movie.imdbid}}">Select</a>
+      <a class="btn default-btn-style select-button" ng-href="#/movies/new/{{movie.imdbid}}">Select</a>
     </div>
   </div>
 </div>

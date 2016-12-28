@@ -312,7 +312,8 @@ textarea {
   min-width: 100%;
 }
 
-.new-movie .source button {
+.new-movie .source button,
+.search-movies .select-button {
   margin-top: 15px;
   margin-bottom: 15px;
 }
