@@ -11,6 +11,7 @@ $("#sort-button, .overlay").click(function() {
   $('.overlay').toggle();
   $('.movie-cards .inner').toggleClass('prevent-scroll');
 })
+
 // $("#sort-button").toggle(
 //   function() {
 //     $('.sort-filter > .inner').css('right', 0);

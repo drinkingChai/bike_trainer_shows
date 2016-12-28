@@ -1,6 +1,6 @@
 <div class="row movie-cards">
 
-  <div class="col-md-10 col-sm-8 inner">
+  <div class="col-md-10 col-sm-8 inner" ng-class="{'prevent-scroll': scrollDisabled}">
     <div class="card row" ng-repeat="movie in movies | filter:search | genreFilter:genres | sourceFilter:source | orderBy:propertyName">
       <div class="col-md-8 movie-desc">
         <div>
@@ -15,8 +15,8 @@
           <br>
 
           <div class="more-info">
-            <a class="btn more-button" href="" ng-click="currentMovie = movie.imdbid">More</a>
-            <a class="btn more-button imdb" ng-href="{{movie.imdburl}}">IMDb</a>
+            <a class="btn default-btn-style more-button" href="" ng-click="toggleDetails(movie.imdbid)">More</a>
+            <a class="btn default-btn-style imdb" ng-href="{{movie.imdburl}}">IMDb</a>
             <div class="sm-runtime-rating pull-right">
               <span>{{movie.runtime | minutesToHours}}</span> <span><i class="fa fa-star"></i> {{movie.rating}}</span>
             </div>
@@ -41,46 +41,36 @@
       <!-- Details -->
       <div class="movie-details" ng-show="currentMovie == movie.imdbid">
         <div class="inner">
-          <!-- <div class="row">
-            <div class="col-md-12">
-              <a class="btn btn-close-details" ng-click="currentMovie = false" href=""><i class="fa fa-arrow-left"></i></a>
+          <!-- <div class="row"> -->
+            <div class="col-md-6 col-sm-6">
+              <h2>{{movie.title}}</h2>
+
+              <ul>
+                <li><strong>Rating:</strong> {{movie.rating}} / 10</li>
+                <li ng-hide="movie.totalseasons"><strong>Runtime:</strong> {{movie.runtime}} minutes</li>
+                <li ng-show="movie.totalseasons"><strong>Seasons:</strong> {{movie.totalseasons}}</li>
+                <li ng-show="movie.totalepisodes"><strong>Total episodes:</strong> {{movie.totalepisodes}}</li>
+                <li ng-show="movie.runtimePerEp"><strong>Runtime per ep:</strong> {{movie.runtimePerEp}} minutes</li>
+                <li ng-show="movie.source"><strong>Watch it on</strong> {{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></li>
+                <!-- <li><a ng-href="{{movie.imdburl}}" class="btn default-btn-style">IMDb</a></li> -->
+                <!-- <li><a ng-href="{{movie.imdburl}}" class="btn default-btn-style"><strong>More on IMDB</strong></a></li> -->
+                <!-- <li><a class="btn default-btn-style back" ng-click="toggleDetails(false)" href="">Back</a></li> -->
+                <!-- <li><a class="btn default-btn-style" ng-click="currentMovie = false" href=""><i class="fa fa-arrow-left"></i> Back</a></li> -->
+              </ul>
+
+              <br>
+
+              <h2>Plot</h2>
+              <p>{{movie.synopsis}}</p>
+              <a class="btn default-btn-style back" ng-click="toggleDetails(false)" href="">Back</a>
             </div>
-          </div> -->
+            <div class="col-md-6 col-sm-6">
 
-            <div class="row">
-              <!-- <div class="col-md-8"> -->
-              <div class="col-md-12">
-                <h2>{{movie.title}}</h2>
-
-                <ul>
-                  <li><strong>Rating:</strong> {{movie.rating}} / 10</li>
-                  <li ng-hide="movie.totalseasons"><strong>Runtime:</strong> {{movie.runtime}} minutes</li>
-                  <li ng-show="movie.totalseasons"><strong>Seasons:</strong> {{movie.totalseasons}}</li>
-                  <li ng-show="movie.totalepisodes"><strong>Total episodes:</strong> {{movie.totalepisodes}}</li>
-                  <li ng-show="movie.runtimePerEp"><strong>Runtime per ep:</strong> {{movie.runtimePerEp}} minutes</li>
-                  <li ng-show="movie.source"><strong>Watch it on</strong> {{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></li>
-                  <!-- <li><a ng-href="{{movie.imdburl}}" class="btn more-button">IMDb</a></li> -->
-                  <!-- <li><a ng-href="{{movie.imdburl}}" class="btn more-button"><strong>More on IMDB</strong></a></li> -->
-                  <li><a class="btn more-button" ng-click="currentMovie = false" href="">Back</a></li>
-                  <!-- <li><a class="btn more-button" ng-click="currentMovie = false" href=""><i class="fa fa-arrow-left"></i> Back</a></li> -->
-                </ul>
-
-                <br>
-
-              </div>
-
-              <!-- <div class="col-md-4">
-                <img ng-src="{{movie.poster}}" alt="">
-              </div> -->
+              <img class="hidden-xs" ng-src="{{movie.poster}}" alt="">
             </div>
-            <!-- <div class="row">
-              <div class="col-md-12">
+          <!-- </div> -->
 
-                <h2>Plot</h2>
-                <p>{{movie.synopsis | limitTo: 500}} <span ng-show="movie.synopsis.length > 500">...</span></p>
-              </div>
 
-            </div> -->
 
 
         </div>
@@ -141,7 +131,7 @@
         </li>
       </ul>
       <!-- <input type="checkbox" ng-model="v"> Non -->
-      <a href="" ng-click="resetGenre()" class="btn reset-button more-button">Reset</a>
+      <a href="" ng-click="resetGenre()" class="btn reset-button default-btn-style">Reset</a>
     </div>
   </div>
 

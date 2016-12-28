@@ -135,21 +135,17 @@ main {
   margin-right: 5px;
 }
 
-.more-button {
+.default-btn-style {
   background-color: hsla(10, 58%, 47%, 1);
   color: #fff;
 }
-.more-button:hover,
-.more-button:focus {
+.default-btn-style:hover,
+.default-btn-style:focus {
   color: #fff;
 }
 
 .movie-cards {
   display: flex;
-}
-.movie-cards img {
-  min-width: 100%;
-  max-width: 100%;
 }
 .more-info {
   width: 100%;
@@ -172,17 +168,17 @@ main {
 
 .movie-details {
   position: fixed;
-  top: 50px;
+  top: 65px;
   /*bottom: 0;*/
   left: 0;
   right: 0;
   height: 100%;
-  overflow-y: auto;
+  overflow-y: scroll;
   background-color: hsla(0, 0%, 13%, 1);
   /*background-color: hsla(0, 0%, 95%, 1);*/
 
   display: flex;
-  align-items: center;
+  /*align-items: center;*/
   justify-content: center;
 
   z-index: 55;
@@ -195,9 +191,13 @@ main {
   margin-bottom: 50px;*/
 }
 
-.movie-details .inner .row:first-child {
-  margin-bottom: 30px;
+.movie-details img {
+  min-width: 100%;
+  margin: 0 auto;
 }
+/*.movie-details .inner .row:first-child {
+  margin-bottom: 30px;
+}*/
 .movie-details .btn-close-details {
   padding: 10px 15px;
   background-color: hsla(10, 58%, 47%, 1);
@@ -209,12 +209,9 @@ main {
   text-decoration: none;
   color: #fff;
 }
-.movie-details > div > div > div > ul > li .more-button {
+.default-btn-style.back {
   margin-top: 5px;
-  /*margin-bottom: 5px;*/
-
-}
-.movie-details .btn .more-button {
+  margin-bottom: 80px;
 }
 
 .runtime,

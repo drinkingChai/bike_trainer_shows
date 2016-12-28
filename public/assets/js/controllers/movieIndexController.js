@@ -8,6 +8,7 @@ angular.module('BikeTrainerShows')
     $scope.source = null;
     $scope.propertyName = null;
     $scope.sortOptions = sortOptions.all;
+    $scope.scrollDisabled = false;
 
     Movie.query().$promise.then(function(allMovies) {      var allGenres = [];
       for (var i = 0, l = allMovies.length; i < l; i++) {
@@ -44,13 +45,18 @@ angular.module('BikeTrainerShows')
       $scope.genres[genre] = !$scope.genres[genre];
     }
 
+    $scope.toggleDetails = function(imdbid) {
+      $scope.currentMovie = imdbid;
+      $scope.scrollDisabled = !$scope.scrollDisabled;
+    }
+
     $scope.resetGenre = function() {
       for (var genre in $scope.genres) {
         $scope.genres[genre] = false;
         $scope.genreCheckbox[genre] = false;
       }
       $scope.source = null;
-      $scope.search = "";
+      $scope.search
     }
 
     $scope.sortBy = function(propertyName) {
