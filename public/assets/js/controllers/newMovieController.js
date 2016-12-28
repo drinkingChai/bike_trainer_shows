@@ -1,5 +1,5 @@
 angular.module('BikeTrainerShows')
-  .controller('NewMovieController', function($scope, sources, $routeParams, Movie, SearchId) {
+  .controller('NewMovieController', function($scope, $location, sources, $routeParams, Movie, SearchId) {
     $scope.movie = SearchId.get({imdbid: $routeParams.imdbid});
     $scope.sources = sources.all;
 
@@ -11,6 +11,7 @@ angular.module('BikeTrainerShows')
       newMovie.blurb = blurb || false;
       if ($scope.movie.source === "Other") { newMovie.sourceOther = $scope.other; }
       newMovie.$save();
+      $location.path('/');
     }
 
     $scope.setSource = function(source) {

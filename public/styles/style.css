@@ -244,7 +244,10 @@ main {
 .sort {
   padding-top: 15px;
 }
-.search input {
+.search input,
+.search-movies input,
+.new-movie input,
+textarea {
   border: 0;
   margin-left: 5px;
   margin-bottom: 2px;
@@ -279,6 +282,44 @@ main {
   left: 0;
   right: 0;
   z-index: 99;
+}
+
+.search-movies,
+.new-movie {
+  margin-top: 15px;
+}
+.search-input,
+.other-input {
+  padding-bottom: 15px;
+  border-bottom: solid 1px #fff;
+}
+.search-movies input {
+  width: 75%;
+}
+.search-movies .card {
+  padding: 20px;
+}
+.search-movies img,
+.new-movie img {
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.new-movie .source button {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.other-input,
+.new-movie textarea {
+  max-width: 80%;
+}
+.new-movie textarea {
+  margin-top: 15px;
+  border-bottom: solid 1px #fff;
+}
+.add-button {
+  margin-top: 15px;
 }
 
 
