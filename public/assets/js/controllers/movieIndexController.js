@@ -3,8 +3,10 @@ angular.module('BikeTrainerShows')
     $scope.sort = 'runtime_ascending';
     $scope.movies = [];
     $scope.genres = {};
+    $scope.sortedGenres = [];
     $scope.genreCheckbox = {};
     $scope.sources = sources.all;
+    $scope.sources.sort();
     $scope.source = null;
     $scope.propertyName = null;
     $scope.sortOptions = sortOptions.all;
@@ -16,6 +18,10 @@ angular.module('BikeTrainerShows')
           $scope.movies.push(data);
 
           data.genres.forEach(function(genre) {
+            if (!(genre in $scope.genres)) {
+              $scope.sortedGenres.push(genre);
+              $scope.sortedGenres.sort();
+            }
             $scope.genres[genre] = false;
           })
         });

@@ -121,7 +121,8 @@
 
 
       <ul class="filter-genre">
-        <li ng-repeat="(genre, value) in genres">
+        <!-- <li ng-repeat="(genre, value) in genres"> -->
+        <li ng-repeat="genre in sortedGenres">
           <label>
             <input type="checkbox" ng-click="toggleGenre(genre)" ng-model="genreCheckbox[genre]">
             <i class="fa fa-square-o fa-fw" ng-show="!genres[genre]"></i>
