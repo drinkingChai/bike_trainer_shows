@@ -317,6 +317,9 @@ textarea {
   align-items: center;
   justify-content: center;
 }
+.no-image {
+  text-align: center;
+}
 
 .new-movie .source button,
 .search-movies .select-button {

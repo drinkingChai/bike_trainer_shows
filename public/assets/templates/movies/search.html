@@ -12,7 +12,10 @@
 
   <div class="row movie-desc card" ng-repeat="movie in searchResults">
     <div class="col-md-2 hidden-xs">
-      <img ng-src="{{movie.poster}}" alt="">
+      <img ng-hide="movie.poster === 'N/A'" ng-src="{{movie.poster}}" alt="">
+      <div ng-show="movie.poster === 'N/A'" class="no-image">
+        <h3>No Image</h3>
+      </div>
     </div>
 
     <div class="col-md-10">
