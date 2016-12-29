@@ -2,6 +2,7 @@ angular.module('BikeTrainerShows')
   .controller('NewMovieController', function($scope, $location, sources, $routeParams, Movie, SearchId, SearchById, Exists) {
     $scope.movie = SearchId.get({imdbid: $routeParams.imdbid});
     $scope.sources = sources.all;
+    $scope.searchTitle = $routeParams.title;
 
     Exists.get({imdbid: $routeParams.imdbid}).$promise.then(function(data) {
       $scope.exists = data.exists;

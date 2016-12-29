@@ -96,7 +96,8 @@ main {
 }
 .sort-filter ul li,
 .movie-desc ul li,
-.movie-details ul li {
+.movie-details ul li,
+.new-movie ul li {
   list-style-type: none;
 }
 .dropdown-menu {
@@ -325,6 +326,9 @@ textarea {
 .new-movie textarea {
   margin-top: 15px;
   border-bottom: solid 1px #fff;
+}
+ul.movie-add-buttons li {
+  display: inline-block;
 }
 .add-button {
   margin-top: 15px;
