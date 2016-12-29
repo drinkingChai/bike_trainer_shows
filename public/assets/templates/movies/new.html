@@ -28,9 +28,10 @@
       <br>
 
       <ul class="movie-add-buttons">
-        <li ng-show="exists"><a class="btn default-btn-style already-added add-button">Already added</a></li>
         <li ng-show="!exists" ><a class="btn default-btn-style add-button" ng-click="addMovie(movie.imdbid, movie.source, movie.blurb)">Add</a></li>
+        <li ng-show="exists"><a class="btn default-btn-style already-added add-button">Added</a></li>
         <li><a class="btn default-btn-style add-button" ng-href="#/movies/search/{{searchTitle}}">Back</a></li>
+        <li ng-show="exists"><a class="btn default-btn-style add-button" ng-href="#/movies/search">New Search</a></li>
       </ul>
 
     </div>

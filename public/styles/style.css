@@ -312,6 +312,11 @@ textarea {
   max-width: 100%;
   min-width: 100%;
 }
+.none-matching {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .new-movie .source button,
 .search-movies .select-button {

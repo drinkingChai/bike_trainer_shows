@@ -6,6 +6,10 @@
     </div>
   </div>
 
+  <div class="row none-matching">
+    <p ng-show="searchResults.length === 0">No matching titles</p>
+  </div>
+
   <div class="row movie-desc card" ng-repeat="movie in searchResults">
     <div class="col-md-2 hidden-xs">
       <img ng-src="{{movie.poster}}" alt="">

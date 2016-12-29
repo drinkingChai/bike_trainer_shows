@@ -3,6 +3,7 @@ angular.module('BikeTrainerShows')
     $scope.movie = SearchId.get({imdbid: $routeParams.imdbid});
     $scope.sources = sources.all;
     $scope.searchTitle = $routeParams.title;
+    $scope.newSearch = false;
 
     Exists.get({imdbid: $routeParams.imdbid}).$promise.then(function(data) {
       $scope.exists = data.exists;
@@ -15,7 +16,9 @@ angular.module('BikeTrainerShows')
       newMovie.blurb = blurb || false;
       if ($scope.movie.source === "Other") { newMovie.sourceOther = $scope.other; }
       newMovie.$save();
-      $location.path('/movies/search');
+
+      $scope.exists = true;
+      // $location.path('/movies/search');
     }
 
     $scope.setSource = function(source) {
