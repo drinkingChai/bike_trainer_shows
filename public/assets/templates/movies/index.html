@@ -64,9 +64,12 @@
               <p>{{movie.synopsis}}</p>
               <a class="btn default-btn-style back" ng-click="toggleDetails(false)" href="">Back</a>
             </div>
-            <div class="col-md-6 col-sm-6">
-
-              <img class="hidden-xs" ng-src="{{movie.poster}}" alt="">
+            <div class="col-md-6 col-sm-6 hidden-xs">
+              <!-- <img class="hidden-xs" ng-src="{{movie.poster}}" alt=""> -->
+              <img ng-hide="movie.poster === 'N/A'" ng-src="{{movie.poster}}" alt="">
+              <div ng-show="movie.poster === 'N/A'" class="no-image">
+                <h3>No Image</h3>
+              </div>
             </div>
           <!-- </div> -->
 
