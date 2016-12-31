@@ -92,7 +92,8 @@ ul li.label.label-default {
   color: hsl(0, 0%, 15%);
 }
 
-.rating i.fa.fa-star {
+.rating i.fa.fa-star,
+.more-info i.fa.fa-star {
   color: #FFFF9D;
 }
 
