@@ -2,14 +2,14 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var parseUrlJSON = bodyParser.json();
 var jwt = require('jsonwebtoken');
-// var expressJwt = require('express-jwt');
+var expressJwt = require('express-jwt');
 
 var jwtSecret = 'oi1q3h4ropiu(*P#240u09)';
 
 var users = express();
 
 users.use(parseUrlJSON);
-// users.use(expressJwt({ secret: jwtSecret }).unless({ path: ['/login']}));
+users.use(expressJwt({ secret: jwtSecret }).unless({ path: ['/users/login'] }));
 
 var user = {
   username: 'test',
@@ -30,6 +30,9 @@ users.post('/login', authenticate, function(request, response) {
   });
 })
 
+users.get('/me', function(request, response) {
+  response.send(request.user);
+})
 
 function authenticate(request, response, next) {
   var body = request.body;

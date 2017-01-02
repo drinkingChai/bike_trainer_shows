@@ -1,5 +1,5 @@
 angular.module('BikeTrainerShows')
-  .factory('User', function($http, AuthTokenFactory) {
+  .factory('User', function($http, AuthTokenFactory, $q) {
     return {
       login: function(username, password) {
         return $http.post('users/login', {
@@ -12,6 +12,13 @@ angular.module('BikeTrainerShows')
       },
       logout: function() {
         AuthTokenFactory.setToken();
+      },
+      getUser: function() {
+        if (AuthTokenFactory.getToken()) {
+          return $http.get('users/me');
+        } else {
+          return $q.reject({ data: 'client has no auth token' });
+        }
       }
     };
   })
@@ -29,6 +36,19 @@ angular.module('BikeTrainerShows')
         } else {
           store.removeItem(key);
         }
+      }
+    }
+  })
+  .factory('AuthInterceptor', function AuthInterceptor(AuthTokenFactory) {
+    return {
+      request: function(config) { //addToken
+        var token = AuthTokenFactory.getToken();
+        if (token) {
+          config.headers = config.headers || {};
+          config.headers.Authorization = 'Bearer ' + token;
+        }
+
+        return config;
       }
     }
   });
