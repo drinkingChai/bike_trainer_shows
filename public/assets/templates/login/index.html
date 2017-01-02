@@ -1,9 +1,13 @@
 <div class="user login">
 
   <form>
-    <label>Username: <input type="text" ng-model="user.username"></label>
-    <label>Password: <input type="password" ng-model="user.password"></label>
-    <button class="btn btn-default" type="submit" ng-click="login()">Login</button>
+    <label>Username: <input type="text" ng-model="username"></label>
+    <label>Password: <input type="password" ng-model="password"></label>
+    <button class="btn btn-default" type="submit" ng-click="login(username, password)">Login</button>
   </form>
+
+  <div class="">
+    <button class="btn btn-default" ng-click="logout()">Log Out</button>
+  </div>
 
 </div>

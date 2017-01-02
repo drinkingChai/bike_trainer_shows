@@ -37,7 +37,7 @@ function authenticate(request, response, next) {
     response.status(400).end('empty_field');
   }
   if (body.username !== user.username || body.password != user.password) {
-    response.status(401).end('wront_userpass');
+    response.status(401).end('wrong_userpass');
   }
   next();
 }

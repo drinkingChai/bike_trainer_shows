@@ -1,9 +1,10 @@
 angular.module('BikeTrainerShows')
   .controller('UserLoginController', function($scope, User) {
-    $scope.user = new User();
-    $scope.login = function() {
-      $scope.user.$save().then(function(data) {
-        // console.log(data.token);
-      });
+    $scope.login = function(username, password) {
+      User.login(username, password);
+    }
+
+    $scope.logout = function() {
+      User.logout();
     }
   })
