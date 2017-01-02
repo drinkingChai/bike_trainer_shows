@@ -354,6 +354,12 @@ ul.movie-add-buttons li {
 }
 
 
+/* users */
+.user input {
+  color: #000;
+}
+
+
 @media screen and (max-width: 992px) {
   .sort-filter .inner {
     width: 32%;

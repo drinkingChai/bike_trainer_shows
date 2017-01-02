@@ -17,4 +17,8 @@ angular.module('BikeTrainerShows')
         templateUrl: 'assets/templates/movies/new.html',
         controller: 'NewMovieController'
       })
+      .when('/login', {
+        templateUrl: 'assets/templates/login/index.html',
+        controller: 'UserLoginController'
+      })
   });

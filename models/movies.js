@@ -11,12 +11,7 @@ var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://localhost:27017/bike_trainer_shows';
 
 
-// routes
 movies.get('/', function(request, response) {
-  response.send('Ok');
-});
-
-movies.get('/movies', function(request, response) {
   var result = [];
   MongoClient.connect(url, function(err, db) {
     var allMovies = db.collection('movies').find();
@@ -29,7 +24,7 @@ movies.get('/movies', function(request, response) {
   });
 });
 
-movies.get('/movies/new/:id', function(request, response) {
+movies.get('/new/:id', function(request, response) {
   imdb.getById(request.params.id).then(function(movie) {
     response.status(200).json({
       title: movie.title,
@@ -40,7 +35,7 @@ movies.get('/movies/new/:id', function(request, response) {
   });
 });
 
-movies.post('/movies', parseUrlJSON, parseUrlEncoded, function(request, response) {
+movies.post('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
   var item = {
     imdbid: request.body.imdbid,
     source: request.body.source,
@@ -59,7 +54,7 @@ movies.post('/movies', parseUrlJSON, parseUrlEncoded, function(request, response
   });
 });
 
-movies.delete('/movies/:id', function(request, response) {
+movies.delete('/:id', function(request, response) {
   MongoClient.connect(url, function(err, db) {
     db.collection('movies').remove({imdbid: request.params.id}, function(err, result) {
       console.log('Item deleted');

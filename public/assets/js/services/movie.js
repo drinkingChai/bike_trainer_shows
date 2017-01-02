@@ -3,12 +3,9 @@ angular.module('BikeTrainerShows')
     return $resource('/movies/:id', {id: '@id'});
   })
   .factory('Search', function($resource) {
-    return $resource('/search/:title', {title: '@title'}, {
+    return $resource('/movies/search/:title', {title: '@title'}, {
       'get': {
         method: 'GET',
-        // transformResponse: function(data) {
-        //   console.log(data);
-        // },
         isArray: true
       }
     });
@@ -19,8 +16,8 @@ angular.module('BikeTrainerShows')
   })
   .factory('SearchById', function($resource) {
     // rename this
-    return $resource('/searchById/:id', {id: '@id'});
+    return $resource('/movies/searchById/:id', {id: '@id'});
   })
   .factory('Exists', function($resource) {
-    return $resource('/exists/:imdbid', {imdbid: '@imdbid'});
+    return $resource('/movies/exists/:imdbid', {imdbid: '@imdbid'});
   });
