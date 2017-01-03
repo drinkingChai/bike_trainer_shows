@@ -11,4 +11,11 @@
     <button class="btn btn-default" ng-click="logout()">Log Out</button>
   </div>
 
+  <ul>
+    <li ng-repeat="movie in movies">
+      {{movie.title}} <br>
+      {{movie.synopsis}}
+    </li>
+  </ul>
+
 </div>

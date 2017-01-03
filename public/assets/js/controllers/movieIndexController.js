@@ -30,7 +30,6 @@ angular.module('BikeTrainerShows')
     });
 
     $scope.addMovie = function(imdbid, source, blurb) {
-      console.log(source);
       var newMovie = new Movie();
       newMovie.imdbid = imdbid;
       newMovie.source = source || false;

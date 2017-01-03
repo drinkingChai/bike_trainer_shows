@@ -3,8 +3,11 @@ var bodyParser = require('body-parser');
 var parseUrlJSON = bodyParser.json();
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
+var MongoClient = require('mongodb').MongoClient;
 
 var jwtSecret = 'oi1q3h4ropiu(*P#240u09)';
+
+var url = 'mongodb://localhost:27017/bike_trainer_shows';
 
 var users = express();
 
@@ -31,7 +34,12 @@ users.post('/login', authenticate, function(request, response) {
 })
 
 users.get('/me', function(request, response) {
-  response.send(request.user);
+  MongoClient.connect(url, function(err, db) {
+    db.collection('users').findOne({ username: 'test' }, function(err, result) {
+      request.user.movies = result.movies;
+      response.send(request.user);
+    })
+  });
 })
 
 function authenticate(request, response, next) {
