@@ -5,6 +5,8 @@ var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var MongoClient = require('mongodb').MongoClient;
 var statics = require('./statics');
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 
 var url = 'mongodb://localhost:27017/bike_trainer_shows';
@@ -43,7 +45,7 @@ users.post('/new', function(request, response) {
   MongoClient.connect(url, function(err, db) {
     db.collection('users').insertOne({
       username: username,
-      password: password,
+      password: bcrypt.hashSync(password, saltRounds),
       movies: []
     }, function(err, result) {
       console.log('new user created');
@@ -68,7 +70,7 @@ function authenticate(request, response, next) {
   }
   MongoClient.connect(url, function(err, db) {
     db.collection('users').findOne({ username: body.username }, function(err, result) {
-      if (result.password === body.password) {
+      if (bcrypt.compareSync(body.password, result.password)) {
         next();
       } else {
         response.status(401).end('wrong_userpass');
