@@ -46,7 +46,7 @@ users.post('/new', function(request, response) {
     db.collection('users').insertOne({
       username: username,
       password: bcrypt.hashSync(password, saltRounds),
-      movies: []
+      watchlist: []
     }, function(err, result) {
       console.log('new user created');
       response.sendStatus(201);
@@ -57,10 +57,32 @@ users.post('/new', function(request, response) {
 users.get('/me', function(request, response) {
   MongoClient.connect(url, function(err, db) {
     db.collection('users').findOne({ username: request.user.username }, function(err, result) {
-      request.user.movies = result.movies;
+      request.user.watchlist = result.watchlist;
       response.send(request.user);
     })
   });
+})
+
+users.post('/addmovie', function(request, response) {
+  MongoClient.connect(url, function(err, db) {
+    db.collection('users').update(
+      { username: request.user.username },
+      { $push: { watchlist: request.body.imdbid }
+    })
+    console.log('movie added');
+    response.sendStatus(201);
+  })
+})
+
+users.post('/removemovie', function(request, response) {
+  MongoClient.connect(url, function(err, db) {
+    db.collection('users').update(
+      { username: request.user.username },
+      { $pull: { watchlist: request.body.imdbid } }
+    )
+    console.log('movie removed');
+    response.sendStatus(201);
+  })
 })
 
 function authenticate(request, response, next) {

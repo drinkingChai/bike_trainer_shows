@@ -25,6 +25,16 @@ angular.module('BikeTrainerShows')
           username: username,
           password: password
         })
+      },
+      addMovie: function(imdbid) {
+        return $http.post('users/addmovie', {
+          imdbid: imdbid
+        });
+      },
+      removeMovie: function(imdbid) {
+        return $http.post('users/removemovie', {
+          imdbid: imdbid
+        })
       }
     };
   })

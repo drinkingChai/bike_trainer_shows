@@ -1,5 +1,5 @@
 angular.module('BikeTrainerShows')
-  .controller('MovieIndexController', function($scope, sources, sortOptions, Movie, Search, SearchById) {
+  .controller('MovieIndexController', function($scope, sources, sortOptions, User, Movie, Search, SearchById) {
     $scope.sort = 'runtime_ascending';
     $scope.movies = [];
     $scope.genres = {};
@@ -11,6 +11,19 @@ angular.module('BikeTrainerShows')
     $scope.propertyName = null;
     $scope.sortOptions = sortOptions.all;
     $scope.scrollDisabled = false;
+    // $scope.userWatchlist = [];
+
+    User.getUser().then(function success(response) {
+      $scope.user = response.data;
+      // $scope.userWatchlist = response.data.movies;
+    });
+
+    $scope.addToChecklist = function(imdbid) {
+      // if ($scope.user !== null) {
+      //   // $scope.userWatchlist.push(imdbid);
+      // }
+      User.addMovie(imdbid);
+    }
 
     Movie.query().$promise.then(function(allMovies) {      var allGenres = [];
       for (var i = 0, l = allMovies.length; i < l; i++) {

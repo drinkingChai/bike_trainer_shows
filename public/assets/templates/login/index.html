@@ -12,9 +12,10 @@
   </div>
 
   <ul>
-    <li ng-repeat="movie in movies">
+    <li ng-repeat="movie in watchlist">
       {{movie.title}} <br>
       {{movie.synopsis}}
+      <a href="" ng-click="removeChecklist(movie.imdbid)">Remove from Watchlist</a>
     </li>
   </ul>
 
