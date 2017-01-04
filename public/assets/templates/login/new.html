@@ -1,0 +1,10 @@
+<div class="user login">
+
+  <form>
+    <label>Username: <input type="text" ng-model="username"></label>
+    <label>Password: <input type="password" ng-model="password1"></label>
+    <label>Password: <input type="password" ng-model="password2"></label>
+    <button class="btn btn-default" type="submit" ng-click="password1 === password2 && newUser(username, password1)">Login</button>
+  </form>
+
+</div>

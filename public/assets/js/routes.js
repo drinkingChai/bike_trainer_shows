@@ -21,4 +21,8 @@ angular.module('BikeTrainerShows')
         templateUrl: 'assets/templates/login/index.html',
         controller: 'UserLoginController'
       })
+      .when('/login/new', {
+        templateUrl: 'assets/templates/login/new.html',
+        controller: 'UserNewController'
+      })
   });

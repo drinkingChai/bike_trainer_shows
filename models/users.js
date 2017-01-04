@@ -12,18 +12,16 @@ var url = 'mongodb://localhost:27017/bike_trainer_shows';
 var users = express();
 
 users.use(parseUrlJSON);
-users.use(expressJwt({ secret: jwtSecret }).unless({ path: ['/users/login'] }));
+users.use(expressJwt({ secret: jwtSecret }).unless({ path: ['/users/login', '/users/new'] }));
 
-var user = {
-  username: 'test',
-  password: 't'
-}
+var user = {};
 
 users.get('/', function(request, response) {
   response.sendStatus(200);
 })
 
 users.post('/login', authenticate, function(request, response) {
+  // MongoDb get user
   var token = jwt.sign({
     username: user.username,
   }, jwtSecret);
@@ -31,6 +29,22 @@ users.post('/login', authenticate, function(request, response) {
     user: user,
     token: token
   });
+})
+
+users.post('/new', function(request, response) {
+  var username = request.body.username,
+    password = request.body.password;
+
+  MongoClient.connect(url, function(err, db) {
+    db.collection('users').insertOne({
+      username: username,
+      password: password,
+      movies: []
+    }, function(err, result) {
+      console.log('new user created');
+      response.sendStatus(201);
+    })
+  })
 })
 
 users.get('/me', function(request, response) {
@@ -47,10 +61,19 @@ function authenticate(request, response, next) {
   if (!body.username || !body.password) {
     response.status(400).end('empty_field');
   }
-  if (body.username !== user.username || body.password != user.password) {
-    response.status(401).end('wrong_userpass');
-  }
-  next();
+  // if (body.username !== user.username || body.password != user.password) {
+  //   response.status(401).end('wrong_userpass');
+  // }
+  // check against MongoDB user database
+  MongoClient.connect(url, function(err, db) {
+    db.collection('users').findOne({ username: body.username }, function(err, result) {
+      if (result.password === body.password) {
+        next();
+      } else {
+        response.status(401).end('wrong_userpass');
+      }
+    })
+  })
 }
 
 module.exports = users;

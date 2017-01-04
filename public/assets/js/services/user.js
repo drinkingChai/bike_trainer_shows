@@ -19,6 +19,12 @@ angular.module('BikeTrainerShows')
         } else {
           return $q.reject({ data: 'client has no auth token' });
         }
+      },
+      new: function(username, password) {
+        return $http.post('users/new', {
+          username: username,
+          password: password
+        })
       }
     };
   })
