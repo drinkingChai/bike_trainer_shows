@@ -92,7 +92,9 @@ function authenticate(request, response, next) {
   }
   MongoClient.connect(url, function(err, db) {
     db.collection('users').findOne({ username: body.username }, function(err, result) {
-      if (bcrypt.compareSync(body.password, result.password)) {
+      if (result === null) {
+        response.status(401).end('wrong_userpass')
+      } else if (bcrypt.compareSync(body.password, result.password)) {
         next();
       } else {
         response.status(401).end('wrong_userpass');

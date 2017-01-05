@@ -9,7 +9,7 @@ angular.module('BikeTrainerShows')
     });
 
     $scope.login = function(username, password) {
-      User.login(username, password).then(function success(response) {
+      User.login(username.toLowerCase(), password).then(function success(response) {
         $scope.user = response.data.user;
         User.getUser().then(function success(res) {
           getUserMovies(res.data.watchlist);
@@ -24,7 +24,7 @@ angular.module('BikeTrainerShows')
       $scope.watchlist = [];
     }
 
-    $scope.removeFrmChecklist = function(imdbid) {
+    $scope.removeFrmWatchlist = function(imdbid) {
       User.removeMovie(imdbid);
       $route.reload();
     }

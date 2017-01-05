@@ -207,6 +207,10 @@ ul li.label.label-default {
   min-width: 100%;
   margin: 0 auto;
 }
+.movie-desc img {
+  min-width: 100%;
+  max-width: 100%;
+}
 /*.movie-details .inner .row:first-child {
   margin-bottom: 30px;
 }*/
@@ -357,17 +361,18 @@ ul.movie-add-buttons li {
 
 .user-login {
   /*height: 100vh;*/
-  position: absolute;
+  /*position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0;
+  right: 0;*/
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .login-form {
+  margin-top: 30vh;
   width: 350px;
 }
 
