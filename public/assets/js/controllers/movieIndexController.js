@@ -11,18 +11,21 @@ angular.module('BikeTrainerShows')
     $scope.propertyName = null;
     $scope.sortOptions = sortOptions.all;
     $scope.scrollDisabled = false;
-    // $scope.userWatchlist = [];
+    $scope.watchlist = [];
 
     User.getUser().then(function success(response) {
       $scope.user = response.data;
-      // $scope.userWatchlist = response.data.movies;
+      $scope.watchlist = response.data.watchlist;
     });
 
-    $scope.addToChecklist = function(imdbid) {
-      // if ($scope.user !== null) {
-      //   // $scope.userWatchlist.push(imdbid);
-      // }
+    $scope.addToWatchlist = function(imdbid) {
       User.addMovie(imdbid);
+      $scope.watchlist.push(imdbid);
+    }
+
+    $scope.removeFrmWatchlist = function(imdbid) {
+      User.removeMovie(imdbid);
+      $scope.watchlist.splice($scope.watchlist.indexOf(imdbid), 1);
     }
 
     Movie.query().$promise.then(function(allMovies) {      var allGenres = [];

@@ -17,7 +17,8 @@
           <div class="more-info">
             <a class="btn default-btn-style more-button" href="" ng-click="toggleDetails(movie.imdbid)">More</a>
             <a class="btn default-btn-style imdb" ng-href="{{movie.imdburl}}">IMDb</a>
-            <a class="btn default-btn-style add-wishilist" ng-click="addToChecklist(movie.imdbid)">Add to Wishlist</a>
+            <a class="btn default-btn-style add-watchlist" ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i> Watchlist</a>
+            <a class="btn default-btn-style add-watchlist" ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i> Watchlist</a>
 
             <div class="sm-runtime-rating pull-right">
               <span>{{movie.runtime | minutesToHours}}</span> <span><i class="fa fa-star"></i> {{movie.rating}}</span>

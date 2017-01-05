@@ -1,6 +1,7 @@
 angular.module('BikeTrainerShows')
-  .controller('UserLoginController', function($scope, User, SearchById) {
+  .controller('UserLoginController', function($scope, User, SearchById, $window, $route) {
     $scope.watchlist = [];
+    $scope.user = null;
 
     User.getUser().then(function success(response) {
       $scope.user = response.data;
@@ -13,6 +14,7 @@ angular.module('BikeTrainerShows')
         User.getUser().then(function success(res) {
           getUserMovies(res.data.watchlist);
         });
+        $window.location.reload();
       });
     }
 
@@ -22,8 +24,9 @@ angular.module('BikeTrainerShows')
       $scope.watchlist = [];
     }
 
-    $scope.removeChecklist = function(imdbid) {
+    $scope.removeFrmChecklist = function(imdbid) {
       User.removeMovie(imdbid);
+      $route.reload();
     }
 
     var getUserMovies = function(watchlist) {

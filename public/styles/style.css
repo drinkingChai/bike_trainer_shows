@@ -59,7 +59,7 @@ nav a:focus {
   color: #fff;
 }
 nav > div > a.navbar-brand.pull-right {
-  visibility: hidden;
+  display: none;
 }
 .nav > li > a:hover, .nav > li > a:focus {
   background-color: hsla(10, 58%, 57%, 1);
@@ -259,6 +259,7 @@ ul li.label.label-default {
 .search input,
 .search-movies input,
 .new-movie input,
+.login-form input,
 textarea {
   border: 0;
   margin-left: 5px;
@@ -301,8 +302,9 @@ textarea {
   margin-top: 15px;
 }
 .search-input,
-.other-input {
-  padding-bottom: 15px;
+.other-input,
+.login-form input {
+  padding-bottom: 5px;
   border-bottom: solid 1px #fff;
 }
 .search-input {
@@ -353,11 +355,37 @@ ul.movie-add-buttons li {
   margin-top: 15px;
 }
 
+.user-login {
+  /*height: 100vh;*/
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form {
+  width: 350px;
+}
+
+.login-form input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.login-form button {
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+}
 
 /* users */
-.user input {
+/*.user input {
   color: #000;
-}
+}*/
 
 
 @media screen and (max-width: 992px) {
@@ -388,7 +416,7 @@ ul.movie-add-buttons li {
     overflow-y: scroll;
   }
   nav > div > a.navbar-brand.pull-right {
-    visibility: visible;
+    display: block;
   }
   .sort-filter {
     position: fixed;

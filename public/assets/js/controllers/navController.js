@@ -1,5 +1,5 @@
 angular.module('BikeTrainerShows')
-  .controller('NavController', function($scope, User, $route, $location) {
+  .controller('NavController', function($scope, User, $route, $location, $window, $route) {
     $scope.currentLocation = $location.path();
     $scope.$on('$locationChangeStart', function(event) {
       $scope.currentLocation = $location.path();
@@ -11,6 +11,6 @@ angular.module('BikeTrainerShows')
 
     $scope.logout = function() {
       User.logout();
-      $route.reload();
+      $window.location.reload();
     }
   });
