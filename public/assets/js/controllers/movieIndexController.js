@@ -1,13 +1,11 @@
 angular.module('BikeTrainerShows')
-  .controller('MovieIndexController', function($scope, sources, sortOptions, User, Movie, Search, SearchById) {
+  .controller('MovieIndexController', function($scope, User, Movie, SearchById) {
     $scope.sort = 'runtime_ascending';
     $scope.movies = [];
     $scope.genres = {};
     $scope.source = null;
-    $scope.scrollDisabled = false;
-    $scope.watchlist = [];
-
     $scope.prop = null;
+    $scope.watchlist = [];
 
     User.getUser().then(function success(response) {
       $scope.user = response.data;

@@ -1,5 +1,8 @@
 angular.module('BikeTrainerShows')
   .controller('UserLoginController', function($scope, User, SearchById, $window, $route) {
+    $scope.genres = {};
+    $scope.source = null;
+    $scope.prop = null;
     $scope.watchlist = [];
     $scope.user = null;
 
@@ -33,6 +36,13 @@ angular.module('BikeTrainerShows')
       for (var i = 0, l = watchlist.length, m = watchlist; i < l; i++) {
         SearchById.get({id: m[i]}).$promise.then(function(data) {
           $scope.watchlist.push(data);
+          data.genres.forEach(function(genre) {
+            // if (!(genre in $scope.genres)) {
+              // $scope.sortedGenres.push(genre);
+              // $scope.sortedGenres.sort();
+            // }
+            $scope.genres[genre] = false;
+          })
         })
       }
     }
