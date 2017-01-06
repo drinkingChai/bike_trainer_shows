@@ -3,15 +3,11 @@ angular.module('BikeTrainerShows')
     $scope.sort = 'runtime_ascending';
     $scope.movies = [];
     $scope.genres = {};
-    $scope.sortedGenres = [];
-    $scope.genreCheckbox = {};
-    $scope.sources = sources.all;
-    $scope.sources.sort();
     $scope.source = null;
-    $scope.propertyName = null;
-    $scope.sortOptions = sortOptions.all;
     $scope.scrollDisabled = false;
     $scope.watchlist = [];
+
+    $scope.prop = null;
 
     User.getUser().then(function success(response) {
       $scope.user = response.data;
@@ -34,10 +30,10 @@ angular.module('BikeTrainerShows')
           $scope.movies.push(data);
 
           data.genres.forEach(function(genre) {
-            if (!(genre in $scope.genres)) {
-              $scope.sortedGenres.push(genre);
-              $scope.sortedGenres.sort();
-            }
+            // if (!(genre in $scope.genres)) {
+              // $scope.sortedGenres.push(genre);
+              // $scope.sortedGenres.sort();
+            // }
             $scope.genres[genre] = false;
           })
         });
@@ -58,34 +54,8 @@ angular.module('BikeTrainerShows')
     }
 
 
-    $scope.deleteMovie = function(imdbid) {
-      Movie.delete({id: imdbid});
-    }
-
-    $scope.toggleGenre = function(genre) {
-      $scope.genres[genre] = !$scope.genres[genre];
-    }
-
-    $scope.toggleDetails = function(imdbid) {
-      $scope.currentMovie = imdbid;
-      $scope.scrollDisabled = !$scope.scrollDisabled;
-    }
-
-    $scope.resetGenre = function() {
-      for (var genre in $scope.genres) {
-        $scope.genres[genre] = false;
-        $scope.genreCheckbox[genre] = false;
-      }
-      $scope.source = null;
-      $scope.search
-    }
-
-    $scope.sortBy = function(propertyName) {
-      $scope.propertyName = propertyName;
-    }
-
-    $scope.setSource = function(source) {
-      $scope.source = source;
-    }
+    // $scope.deleteMovie = function(imdbid) {
+    //   Movie.delete({id: imdbid});
+    // }
 
   });

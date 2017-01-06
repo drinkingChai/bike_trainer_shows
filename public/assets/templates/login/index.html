@@ -1,65 +1,43 @@
-<div class="user-login">
+<div class="">
 
-  <div class="login-form" ng-show="user === null">
+  <div class="" ng-show="user === null">
     <form>
-      <input type="text other-input" ng-model="username" placeholder="Username..."><br>
-      <input type="password other-input" ng-model="password" placeholder="Password..."><br>
-      <button class="btn default-btn-style" type="submit" ng-click="login(username, password)">Login</button>
+      <input type="text" ng-model="username" placeholder="Username..."><br>
+      <input type="password" ng-model="password" placeholder="Password..."><br>
+      <button class="" type="submit" ng-click="login(username, password)">Login</button>
     </form>
   </div>
 
-  <div class="user-profile" ng-show="user !== null">
+  <div class="" ng-show="user !== null">
     <!-- <div class="card row" ng-repeat="movie in movies | filter:search | genreFilter:genres | sourceFilter:source | orderBy:propertyName"> -->
 
     <!-- Turn the following into a directive -->
-    <div class="card row" ng-repeat="movie in watchlist">
-      <div class="col-md-6 movie-desc">
-        <div>
+    <div class="" ng-repeat="movie in watchlist">
           <h2>{{movie.title}}</h2>
           <!-- tags -->
           <ul>
-            <li class="label label-default" ng-repeat="genre in movie.genres">{{genre}}</li>
+            <li class="" ng-repeat="genre in movie.genres">{{genre}}</li>
           </ul>
 
           <p>{{movie.synopsis | limitTo: 250}}<span ng-show="movie.synopsis.length > 250">...</span></p>
-          <br>
           <p ng-show="movie.source">You can watch it on <strong>{{movie.source}}</strong><span ng-show="movie.sourceOther">: {{movie.sourceOther}}</p>
-          <br>
 
-          <div class="more-info">
-            <a class="btn default-btn-style imdb" ng-href="{{movie.imdburl}}">IMDb</a>
-            <a class="btn default-btn-style add-watchlist" ng-click="removeFrmWatchlist(movie.imdbid)">Remove</a>
-          </div>
+          <a class="" ng-href="{{movie.imdburl}}">IMDb</a>
+          <a class="" ng-click="removeFrmWatchlist(movie.imdbid)">Remove</a>
           <!-- <a class="btn" href="#/" ng-click="deleteMovie(movie.imdbid)">Delete</a> -->
-        </div>
-      </div>
 
-      <div class="col-md-3 movie-desc">
-        <div class="">
           <ul>
-            <li><strong>Rating:</strong> {{movie.rating}} / 10</li>
+            <li><strong>Rating:</strong> {{movie.rating}}</li>
             <li ng-hide="movie.totalseasons"><strong>Runtime:</strong> {{movie.runtime}} minutes</li>
             <li ng-show="movie.totalseasons"><strong>Seasons:</strong> {{movie.totalseasons}}</li>
             <li ng-show="movie.totalepisodes"><strong>Total episodes:</strong> {{movie.totalepisodes}}</li>
             <li ng-show="movie.runtimePerEp"><strong>Runtime per ep:</strong> {{movie.runtimePerEp}} minutes</li>
             <li ng-show="movie.source"><strong>Watch it on</strong> {{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></li>
           </ul>
-        </div>
-      </div>
 
-      <div class="col-md-3 movie-desc">
         <div class="">
           <img ng-src="{{movie.poster}}">
         </div>
-      </div>
-    </div>
-    <!-- <ul>
-      <li ng-repeat="movie in watchlist">
-        {{movie.title}} <br>
-        {{movie.synopsis}}
-        <a href="" ng-click="removeFrmChecklist(movie.imdbid)">Remove from Watchlist</a>
-      </li>
-    </ul> -->
   </div>
 
 

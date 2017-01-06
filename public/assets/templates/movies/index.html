@@ -1,146 +1,27 @@
-<div class="row movie-cards">
+<div class="">
+    <bts-sort-filter source="source" genres="genres" genre="genre" prop="prop"></bts-sort-filter>
 
-  <div class="col-md-10 col-sm-8 inner" ng-class="{'prevent-scroll': scrollDisabled}">
-    <div class="card row" ng-repeat="movie in movies | filter:search | genreFilter:genres | sourceFilter:source | orderBy:propertyName">
-      <div class="col-md-8 movie-desc">
-        <div>
+
+    <div ng-repeat="movie in movies | filter:search | genreFilter:genres | sourceFilter:source | orderBy:prop">
           <h2>{{movie.title}}</h2>
           <ul>
-            <li class="label label-default" ng-repeat="genre in movie.genres">{{genre}}</li>
+            <li ng-repeat="genre in movie.genres">{{genre}}</li>
           </ul>
 
           <p>{{movie.synopsis | limitTo: 250}}<span ng-show="movie.synopsis.length > 250">...</span></p>
-          <br>
           <p ng-show="movie.source">You can watch it on <strong>{{movie.source}}</strong><span ng-show="movie.sourceOther">: {{movie.sourceOther}}</p>
-          <br>
 
-          <div class="more-info">
-            <a class="btn default-btn-style more-button" href="" ng-click="toggleDetails(movie.imdbid)">More</a>
-            <a class="btn default-btn-style imdb" ng-href="{{movie.imdburl}}">IMDb</a>
-            <a class="btn default-btn-style add-watchlist" ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i> Watchlist</a>
-            <a class="btn default-btn-style add-watchlist" ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i> Watchlist</a>
+            <a ng-href="{{movie.imdburl}}">IMDb</a>
+            <a ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i> Watchlist</a>
+            <a ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i> Watchlist</a>
 
-            <div class="sm-runtime-rating pull-right">
-              <span>{{movie.runtime | minutesToHours}}</span> <span><i class="fa fa-star"></i> {{movie.rating}}</span>
-            </div>
-            <div class="xsm-runtime-rating">
-              <br>
-              <span>{{movie.runtime | minutesToHours}}</span> <span><i class="fa fa-star"></i> {{movie.rating}}</span>
-            </div>
-          </div>
+            <span>{{movie.runtime | minutesToHours}}</span> <span><i class="fa fa-star"></i> {{movie.rating}}</span>
+            <span>{{movie.runtime | minutesToHours}}</span> <span><i class="fa fa-star"></i> {{movie.rating}}</span>
           <!-- <a class="btn" href="#/" ng-click="deleteMovie(movie.imdbid)">Delete</a> -->
-        </div>
-      </div>
 
-      <div class="col-md-2 runtime">
-        <h2>{{movie.runtime | minutesToHours}}</h2>
-      </div>
+      <h2>{{movie.runtime | minutesToHours}}</h2>
 
-      <div class="col-md-2 rating">
-        <h2><i class="fa fa-star"></i> {{movie.rating}}</h2>
-      </div>
-
-
-      <!-- Details -->
-      <div class="movie-details" ng-show="currentMovie == movie.imdbid">
-        <div class="inner">
-          <!-- <div class="row"> -->
-            <div class="col-md-6 col-sm-6">
-              <h2>{{movie.title}}</h2>
-
-              <ul>
-                <li><strong>Rating:</strong> {{movie.rating}} / 10</li>
-                <li ng-hide="movie.totalseasons"><strong>Runtime:</strong> {{movie.runtime}} minutes</li>
-                <li ng-show="movie.totalseasons"><strong>Seasons:</strong> {{movie.totalseasons}}</li>
-                <li ng-show="movie.totalepisodes"><strong>Total episodes:</strong> {{movie.totalepisodes}}</li>
-                <li ng-show="movie.runtimePerEp"><strong>Runtime per ep:</strong> {{movie.runtimePerEp}} minutes</li>
-                <li ng-show="movie.source"><strong>Watch it on</strong> {{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></li>
-                <!-- <li><a ng-href="{{movie.imdburl}}" class="btn default-btn-style">IMDb</a></li> -->
-                <!-- <li><a ng-href="{{movie.imdburl}}" class="btn default-btn-style"><strong>More on IMDB</strong></a></li> -->
-                <!-- <li><a class="btn default-btn-style back" ng-click="toggleDetails(false)" href="">Back</a></li> -->
-                <!-- <li><a class="btn default-btn-style" ng-click="currentMovie = false" href=""><i class="fa fa-arrow-left"></i> Back</a></li> -->
-              </ul>
-
-              <br>
-
-              <h2>Plot</h2>
-              <p>{{movie.synopsis}}</p>
-              <a class="btn default-btn-style back" ng-click="toggleDetails(false)" href="">Back</a>
-            </div>
-            <div class="col-md-6 col-sm-6 hidden-xs">
-              <!-- <img class="hidden-xs" ng-src="{{movie.poster}}" alt=""> -->
-              <img ng-hide="movie.poster === 'N/A'" ng-src="{{movie.poster}}" alt="">
-              <div ng-show="movie.poster === 'N/A'" class="no-image">
-                <h3>No Image</h3>
-              </div>
-            </div>
-          <!-- </div> -->
-
-
-
-
-        </div>
-      </div>
-
-
+      <h2><i class="fa fa-star"></i> {{movie.rating}}</h2>
     </div>
-
-  </div>
-
-  <!-- Sort & Filter -->
-  <div class="col-md-2 col-sm-4 sort-filter">
-    <div class="inner">
-      <div class="search">
-        <i class="fa fa-search"></i> <input type="text" name="" value="" ng-model="search.$" placeholder="Search">
-      </div>
-
-
-      <div class="dropdown sort">
-        <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Sort by: {{sortOptions[propertyName]}}
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <li><a href="" ng-repeat="(option, name) in sortOptions" ng-click="sortBy(option)">{{name}}</a></li>
-        </ul>
-      </div>
-
-
-      <ul class="filter-source">
-        <li>
-          <label>
-            <input type="radio" ng-click="setSource(null)" name="movSort" checked>
-            <i class="fa fa-circle-thin fa-fw" ng-show="source !== null"></i>
-            <i class="fa fa-circle fa-fw" ng-show="source === null"></i>
-            All
-          </label>
-        </li>
-        <li ng-repeat="movSource in sources">
-          <label>
-            <input type="radio" ng-click="setSource(movSource)" name="movSort">
-            <i class="fa fa-circle-thin fa-fw" ng-show="source !== movSource"></i>
-            <i class="fa fa-circle fa-fw" ng-show="source === movSource"></i>
-            {{movSource}}
-          </label>
-        </li>
-      </ul>
-
-
-      <ul class="filter-genre">
-        <!-- <li ng-repeat="(genre, value) in genres"> -->
-        <li ng-repeat="genre in sortedGenres">
-          <label>
-            <input type="checkbox" ng-click="toggleGenre(genre)" ng-model="genreCheckbox[genre]">
-            <i class="fa fa-square-o fa-fw" ng-show="!genres[genre]"></i>
-            <i class="fa fa-check-square-o fa-fw" ng-show="genres[genre]"></i>
-            {{genre}}
-          </label>
-        </li>
-      </ul>
-      <!-- <input type="checkbox" ng-model="v"> Non -->
-      <a href="" ng-click="resetGenre()" class="btn reset-button default-btn-style">Reset</a>
-    </div>
-  </div>
-
 
 </div>

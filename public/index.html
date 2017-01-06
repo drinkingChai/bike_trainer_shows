@@ -12,17 +12,17 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-fixed-top" ng-controller="NavController">
-      <div class="container-fluid">
-        <a href="#/" class="navbar-brand"><i class="fa fa-bicycle fa-fw"></i> Trainer Show</a>
+    <nav class="" ng-controller="NavController">
+      <div class="">
+        <a href="#/" class="navbar-brand"><span class="hidden-xs">Trainer Shows</span> <span class="visible-xs">TS</span></a>
         <!-- <a href="" class="navbar-brand" ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i> Log out</a> -->
-        <a href="#/" class="navbar-brand pull-right sort-open" id="sort-open" ng-show="currentLocation === '/'"><i class="fa fa-sort-amount-desc fa-fw"></i>Sort</a>
-        <a href="#/" class="navbar-brand pull-right sort-close" id="sort-close" ng-show="currentLocation === '/'"><i class="fa fa-close fa-fw"></i>Close</a>
+        <a href="#/" class="" id="sort-open" ng-show="currentLocation === '/'"><i class="fa fa-sort-amount-desc fa-fw"></i>Sort</a>
+        <a href="#/" class="" id="sort-close" ng-show="currentLocation === '/'"><i class="fa fa-close fa-fw"></i>Close</a>
 
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#/login" ng-show="user"><i class="fa fa-user-circle-o fa-fw"></i> {{user.username}}</a></li>
-          <li><a href="" ng-click="logout()" ng-show="user"><i class="fa fa-sign-out fa-fw"></i> Log Out</a></li>
-          <li><a href="#/login" ng-show="!user"><i class="fa fa-sign-in fa-fw"></i> Log In</a></li>
+        <ul class="">
+          <li><a href="#/login" ng-show="user">{{user.username}}</a></li>
+          <li><a href="" ng-click="logout()" ng-show="user">sign out</a></li>
+          <li><a href="#/login" ng-show="!user">Log In</a></li>
         </ul>
       </div>
 
@@ -62,7 +62,7 @@
     <script src="assets/js/controllers/userNewController.js" charset="utf-8"></script>
 
     <!-- Directives -->
-
+    <script src="assets/js/directives/btsSortFilter.js" charset="utf-8"></script>
 
     <!-- Filters -->
     <script src="assets/js/filters/minutesToHours.js" charset="utf-8"></script>
