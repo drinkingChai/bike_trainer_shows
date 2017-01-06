@@ -1,20 +1,18 @@
-<div class="">
+<div class="show-card">
   <figure>
     <img ng-src="{{movie.poster}}" alt="">
   </figure>
 
   <div class="details">
     {{movie.title}}
-    <ul>
+    <ul class="genres">
       <li ng-repeat="genre in movie.genres">{{genre}}</li>
     </ul>
 
     <p>{{movie.synopsis | limitTo: 250}}<span ng-show="movie.synopsis.length > 250">...</span></p>
-
-
   </div>
 
-  <div class="statis">
+  <div class="stats">
     <ul>
       <li ng-show="movie.source">You can watch it on <strong>{{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></strong></li>
       <li>{{movie.runtime | minutesToHours}}</li>

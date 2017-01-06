@@ -26,3 +26,26 @@ h2 {
 nav, footer {
   font-size: 1em;
 }
+
+/**/
+
+
+
+
+.show-card {
+  width: 100%;
+  display: flex;
+  /*border-top: solid 5px #000;*/
+  border-bottom: solid 2px #000;
+  margin-bottom: 15px;
+}
+.show-card figure img {
+  width: 150px;
+}
+.show-card .details {
+  width: 70%;
+  border-left: solid 2px #000;
+}
+.show-card .stats {
+  width: 30%;
+}
