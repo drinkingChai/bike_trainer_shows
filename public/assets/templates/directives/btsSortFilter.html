@@ -1,19 +1,19 @@
-<div class="">
-    <i class="fa fa-search"></i> <input type="text" name="" value="" ng-model="search.$" placeholder="Search">
+<div class="sort-filter">
+    <input class="search-show" type="text" name="" value="" ng-model="search.$" placeholder="Search">
 
 
-    <div class="dropdown sort">
+    <div class="dropdown">
       <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Sort by: {{sortOptions[prop]}}
+        {{sortOptions[prop]}}
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li><a href="" ng-repeat="(option, name) in sortOptions" ng-click="sortBy(option)">{{name}}</a></li>
+        <li ng-repeat="(option, name) in sortOptions" ng-click="sortBy(option)">{{name}}</li>
       </ul>
     </div>
 
 
-    <ul class="">
+    <ul class="source-list">
       <li>
         <label>
           <input type="radio" ng-click="setSource(null)" name="movSort" checked>
@@ -32,7 +32,7 @@
       </li>
     </ul>
 
-    <ul class="">
+    <ul class="genre-list">
       <li ng-repeat="(genre, value) in genres">
         <label>
           <input type="checkbox" ng-click="toggleGenre(genre)" ng-model="genreCheckbox[genre]">
@@ -42,5 +42,6 @@
         </label>
       </li>
     </ul>
-    <a href="" ng-click="resetGenre()" class="btn reset-button default-btn-style">Reset</a>
+
+    <a class="bts-default-btn" ng-click="resetGenre()">Reset</a>
 </div>

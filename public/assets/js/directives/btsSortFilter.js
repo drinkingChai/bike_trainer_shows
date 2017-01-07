@@ -15,6 +15,7 @@ angular.module('BikeTrainerShows')
         $scope.sources.sort();
         $scope.genreCheckbox = {};
         $scope.sortOptions = sortOptions.all;
+        $scope.prop = '-rating';
 
         $scope.toggleGenre = function(genre) {
           $scope.genres[genre] = !$scope.genres[genre];

@@ -4,25 +4,22 @@
   </figure>
 
   <div class="details">
-    {{movie.title}}
-    <ul class="genres">
-      <li ng-repeat="genre in movie.genres">{{genre}}</li>
-    </ul>
+    <h2>{{movie.title}}</h2>
+    <h3>{{movie.genresCommad}}</h3>
 
     <p>{{movie.synopsis | limitTo: 250}}<span ng-show="movie.synopsis.length > 250">...</span></p>
   </div>
 
   <div class="stats">
     <ul>
-      <li ng-show="movie.source">You can watch it on <strong>{{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></strong></li>
-      <li>{{movie.runtime | minutesToHours}}</li>
-      <li>{{movie.rating}}</li>
+      <li><h2>{{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></h2> <h3>- stream it there</h3></li>
+      <li><h2>{{movie.runtime | minutesToHours}}</h2> <h3>training hours</h3></li>
+      <li><h2>{{movie.rating}}</h2> <h3>/10 on IMDb</h3></li>
     </ul>
 
-    <a ng-href="{{movie.imdburl}}">IMDb</a>
-    <a ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i> Watchlist</a>
-    <a ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i> Watchlist</a>
-
+    <a class="bts-default-btn" ng-href="{{movie.imdburl}}">IMDb</a>
+    <a class="bts-default-btn" ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i> Watchlist</a>
+    <a class="bts-default-btn" ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i> Watchlist</a>
   </div>
 
   <!-- <a class="btn" href="#/" ng-click="deleteMovie(movie.imdbid)">Delete</a> -->

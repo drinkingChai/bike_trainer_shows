@@ -100,6 +100,7 @@ movies.get('/searchById/:id', function(request, response) {
           poster: movie.poster,
           imdburl: movie.imdburl,
           genres: movie.genres.split(', '),
+          genresCommad: movie.genres,
           runtime: parseInt(movie.runtime, 10),
           source: result.source,
           blurb: result.blurb,

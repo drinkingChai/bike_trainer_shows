@@ -13,6 +13,8 @@ html {
 body {
   font-size: 100%;
   line-height: 1.5em;
+  background-color: #272f32;
+  color: #ffffff;
 }
 
 h1 {
@@ -23,21 +25,79 @@ h2 {
   font-size: 1.5em;
 }
 
+h3 {
+  font-size: 0.75em;
+  line-height: 0.75em;
+}
+
 nav, footer {
   font-size: 1em;
 }
 
-/**/
+ul li {
+  list-style-type: none;
+}
+
+/* Sort-filter */
+.sort-filter {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.sort-filter .search-show {
+  text-align: center;
+}
+#dropdownMenu1 {
+  background-color: inherit;
+  border: 0;
+  padding: 5px 15px;
+}
+.sort-filter ul.dropdown-menu {
+  background-color: hsla(196, 12%, 22%, 1);
+  border-radius: 0;
+  width: 100%;
+  font-size: 1em;
+}
+.sort-filter ul.dropdown-menu li {
+  padding: 5px 15px;
+  cursor: pointer;
+}
+.sort-filter ul.dropdown-menu li:hover {
+  background-color: hsla(196, 12%, 37%, 1);
+}
+.sort-filter .search-show,
+.sort-filter div.dropdown,
+.source-list,
+.genre-list {
+  margin-bottom: 15px;
+}
 
 
 
 
+
+
+/* Shows index */
+.show-card-parent {
+  position: relative;
+  width: 85%;
+  left: 15%;
+}
+.shows .sort-filter {
+  position: fixed;
+  width: 15%;
+}
+
+
+
+/* Show Card */
 .show-card {
   width: 100%;
   display: flex;
-  /*border-top: solid 5px #000;*/
   border-bottom: solid 2px #000;
   margin-bottom: 15px;
+}
+.show-card figure {
+  background-color: #000;
 }
 .show-card figure img {
   width: 150px;
@@ -45,7 +105,57 @@ nav, footer {
 .show-card .details {
   width: 70%;
   border-left: solid 2px #000;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.show-card .details ul li {
+  display: inline-block;
+  margin-right: 5px;
 }
 .show-card .stats {
   width: 30%;
+}
+.show-card .stats h2,
+.show-card .stats h3 {
+  display: inline;
+}
+.show-card .stats .bts-default-btn {
+  margin-top: 5px;
+  display: block;
+  width: auto;
+}
+
+
+
+
+
+/* Radio and checkbox */
+input[type=radio],
+input[type=checkbox] {
+  display: none;
+}
+
+/* Input */
+input[type=text] {
+  background-color: inherit;
+  border-bottom: solid 2px transparent;
+  transition: all 0.25s;
+}
+input[type=text]:focus {
+  outline: none;
+  border-bottom: solid 2px #fff;
+}
+
+
+
+/* Buttons */
+.bts-default-btn {
+  background-color: #FF3D2E;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
+.bts-default-btn:hover {
+  text-decoration: none;
+  color: inherit;
 }
