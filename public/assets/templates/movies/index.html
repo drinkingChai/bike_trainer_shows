@@ -1,5 +1,5 @@
 <div class="shows">
-    <bts-sort-filter source="source" genres="genres" genre="genre" prop="prop"></bts-sort-filter>
+    <!-- <bts-sort-filter source="source" genres="genres" genre="genre" prop="prop"></bts-sort-filter> -->
 
     <div class="show-card-parent" ng-repeat="movie in movies | filter:search | genreFilter:genres | sourceFilter:source | orderBy:prop">
       <bts-show-card movie="movie"></bts-show-card>

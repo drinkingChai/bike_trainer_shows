@@ -1,26 +1,41 @@
 <div class="show-card">
-  <figure>
+  <!-- <figure>
     <img ng-src="{{movie.poster}}" alt="">
-  </figure>
+  </figure> -->
+
+  <!-- <div class="watchlist" ng-class="watchlist.indexOf(movie.imdbid) === -1 ? 'add' : 'remove'">
+    <a ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i></a>
+    <a ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i></a>
+  </div> -->
 
   <div class="details">
     <h2>{{movie.title}}</h2>
-    <h3>{{movie.genresCommad}}</h3>
+    <!-- <h2>{{movie.title}} // {{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></h2> -->
+    <!-- <h3>{{movie.genresCommad}}</h3> -->
 
-    <p>{{movie.synopsis | limitTo: 250}}<span ng-show="movie.synopsis.length > 250">...</span></p>
+    <!-- <p>{{movie.synopsis | limitTo: 250}}<span ng-show="movie.synopsis.length > 250">...</span></p> -->
   </div>
 
   <div class="stats">
-    <ul>
+    <!-- <ul>
       <li><h2>{{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></h2> <h3>- stream it there</h3></li>
       <li><h2>{{movie.runtime | minutesToHours}}</h2> <h3>training hours</h3></li>
       <li><h2>{{movie.rating}}</h2> <h3>/10 on IMDb</h3></li>
-    </ul>
+    </ul> -->
 
-    <a class="bts-default-btn" ng-href="{{movie.imdburl}}">IMDb</a>
+    <!-- <a class="bts-default-btn" ng-href="{{movie.imdburl}}">IMDb</a>
     <a class="bts-default-btn" ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i> Watchlist</a>
-    <a class="bts-default-btn" ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i> Watchlist</a>
+    <a class="bts-default-btn" ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i> Watchlist</a> -->
+
+
+    <ul>
+      <!-- Add hover training hours and rating -->
+      <li><h3>{{movie.runtime | minutesToHours}}</h3> <h4>hours</h4></li>
+      <li><h3>{{movie.rating}}</h3><h4>/10</h4></li>
+    </ul>
   </div>
+
+
 
   <!-- <a class="btn" href="#/" ng-click="deleteMovie(movie.imdbid)">Delete</a> -->
 

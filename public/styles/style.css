@@ -13,8 +13,7 @@ html {
 body {
   font-size: 100%;
   line-height: 1.5em;
-  background-color: #272f32;
-  color: #ffffff;
+  font-family: 'Open Sans'
 }
 
 h1 {
@@ -26,6 +25,10 @@ h2 {
 }
 
 h3 {
+  font-size: 1.25em;
+}
+
+h4 {
   font-size: 0.75em;
   line-height: 0.75em;
 }
@@ -36,6 +39,10 @@ nav, footer {
 
 ul li {
   list-style-type: none;
+}
+
+h1, h2, h3 {
+  font-family: 'Roboto';
 }
 
 /* Sort-filter */
@@ -52,7 +59,6 @@ ul li {
   padding: 5px 15px;
 }
 .sort-filter ul.dropdown-menu {
-  background-color: hsla(196, 12%, 22%, 1);
   border-radius: 0;
   width: 100%;
   font-size: 1em;
@@ -62,7 +68,6 @@ ul li {
   cursor: pointer;
 }
 .sort-filter ul.dropdown-menu li:hover {
-  background-color: hsla(196, 12%, 37%, 1);
 }
 .sort-filter .search-show,
 .sort-filter div.dropdown,
@@ -79,12 +84,12 @@ ul li {
 /* Shows index */
 .show-card-parent {
   position: relative;
-  width: 85%;
-  left: 15%;
+  /*width: 85%;
+  left: 15%;*/
 }
 .shows .sort-filter {
   position: fixed;
-  width: 15%;
+  /*width: 15%;*/
 }
 
 
@@ -93,30 +98,50 @@ ul li {
 .show-card {
   width: 100%;
   display: flex;
-  border-bottom: solid 2px #000;
-  margin-bottom: 15px;
+  border-bottom: solid 2px hsl(0, 0%, 90%);
+  padding: 20px;
 }
 .show-card figure {
-  background-color: #000;
 }
 .show-card figure img {
   width: 150px;
 }
+.show-card .watchlist {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+}
+.show-card .watchlist a {
+  color: #fff;
+}
+.show-card .watchlist.add {
+  background-color: #2C3E50;
+}
+.show-card .watchlist.remove {
+  background-color: #E74C3C;
+}
 .show-card .details {
-  width: 70%;
-  border-left: solid 2px #000;
+  width: 80%;
   padding-left: 15px;
   padding-right: 15px;
+  display: flex;
+  align-items: center;
 }
 .show-card .details ul li {
   display: inline-block;
   margin-right: 5px;
 }
 .show-card .stats {
-  width: 30%;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .show-card .stats h2,
-.show-card .stats h3 {
+.show-card .stats h3,
+.show-card .stats h4 {
   display: inline;
 }
 .show-card .stats .bts-default-btn {
@@ -124,6 +149,7 @@ ul li {
   display: block;
   width: auto;
 }
+/* test */
 
 
 
@@ -150,8 +176,6 @@ input[type=text]:focus {
 
 /* Buttons */
 .bts-default-btn {
-  background-color: #FF3D2E;
-  color: #fff;
   padding: 10px;
   cursor: pointer;
 }
