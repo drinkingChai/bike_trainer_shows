@@ -102,24 +102,15 @@ h1, h2, h3 {
   padding: 20px;
 }
 .show-card figure {
+  width: 13.636363636%;
 }
 .show-card figure img {
-  width: 150px;
+  width: 100%;
+  /*width: 150px;*/
 }
-.show-card .watchlist {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 15px;
-}
-.show-card .watchlist a {
-  color: #fff;
-}
-.show-card .watchlist.add {
-  background-color: #2C3E50;
-}
-.show-card .watchlist.remove {
-  background-color: #E74C3C;
+.show-card .bts-default-btn.added {
+  border-color: #E74C3C;
+  color: #E74C3C;
 }
 .show-card .details {
   width: 80%;
@@ -127,6 +118,10 @@ h1, h2, h3 {
   padding-right: 15px;
   display: flex;
   align-items: center;
+}
+.show-card .details p {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .show-card .details ul li {
   display: inline-block;
@@ -178,8 +173,29 @@ input[type=text]:focus {
 .bts-default-btn {
   padding: 10px;
   cursor: pointer;
+  border: solid 1px #2C3E50;
+  color: #000;
 }
 .bts-default-btn:hover {
   text-decoration: none;
   color: inherit;
+}
+
+
+
+
+
+
+
+
+/* Media Queries */
+@media only screen and (max-width: 550px) {
+  .show-card figure {
+    display: none;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .show-card .details p {
+    display: none;
+  }
 }

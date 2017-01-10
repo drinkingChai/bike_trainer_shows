@@ -4,16 +4,20 @@
   </figure> -->
 
   <!-- <div class="watchlist" ng-class="watchlist.indexOf(movie.imdbid) === -1 ? 'add' : 'remove'">
-    <a ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i></a>
-    <a ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i></a>
   </div> -->
 
   <div class="details">
-    <h2>{{movie.title}}</h2>
-    <!-- <h2>{{movie.title}} // {{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></h2> -->
-    <!-- <h3>{{movie.genresCommad}}</h3> -->
+    <div class="inner">
+      <h2>{{movie.title}}</h2>
+      <h4>{{movie.genresCommad}}</h4>
+      <h3>{{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></h3>
 
-    <!-- <p>{{movie.synopsis | limitTo: 250}}<span ng-show="movie.synopsis.length > 250">...</span></p> -->
+
+      <p>{{movie.synopsis | limitTo: 250}}<span ng-show="movie.synopsis.length > 250">...</span></p>
+      <a class="bts-default-btn" ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i> watchlist</a>
+      <a class="bts-default-btn added" ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i> watchlist</a>
+    </div>
+
   </div>
 
   <div class="stats">
