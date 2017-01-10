@@ -106,6 +106,7 @@ h1, h2, h3 {
 }
 .show-card figure img {
   width: 100%;
+  height: 100%;
   /*width: 150px;*/
 }
 .show-card .bts-default-btn.added {
@@ -117,10 +118,18 @@ h1, h2, h3 {
   padding-left: 15px;
   padding-right: 15px;
   display: flex;
-  align-items: center;
+  /*display: block;*/
+  /*align-items: center;*/
 }
+.show-card .inner {
+  position: relative;
+}
+.show-card .button-container {
+  /*position: absolute;*/
+  /*bottom: 0;*/
+}
+.show-card .source,
 .show-card .details p {
-  margin-top: 20px;
   margin-bottom: 20px;
 }
 .show-card .details ul li {
@@ -138,11 +147,6 @@ h1, h2, h3 {
 .show-card .stats h3,
 .show-card .stats h4 {
   display: inline;
-}
-.show-card .stats .bts-default-btn {
-  margin-top: 5px;
-  display: block;
-  width: auto;
 }
 /* test */
 
@@ -171,6 +175,7 @@ input[type=text]:focus {
 
 /* Buttons */
 .bts-default-btn {
+  display: inline-block;
   padding: 10px;
   cursor: pointer;
   border: solid 1px #2C3E50;
