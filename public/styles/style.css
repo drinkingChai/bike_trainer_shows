@@ -13,7 +13,9 @@ html {
 body {
   font-size: 100%;
   line-height: 1.5em;
-  font-family: 'Open Sans'
+  font-family: 'Open Sans';
+  overflow-x: hidden;
+  /*-webkit-overflow-scrolling: hidden;*/
 }
 
 h1 {
@@ -79,27 +81,57 @@ h1, h2, h3 {
 
 
 
-
-
 /* Shows index */
+.shows-container {
+  position: relative;
+}
+.shows-container nav {
+  position: fixed;
+  z-index: 9999;
+}
+.shows-container .sort-filter {
+  position: fixed;
+  transition: all 0.1s;
+  z-index: -1;
+  display: none;
+}
+.shows-container .sort-filter.visible {
+  z-index: 999;
+  display: block;
+}
 .shows {
-  display: flex;
+  position: relative;
+  /*width: 100%;*/
+  /*display: flex;*/
+  /*margin-top: 50px; /* spacing for nav */
+  left: 0;
+  right: 0;
+  transition: left 0.25s;
+  z-index: 99;
+}
+.shows.shift {
+  /*height: 100%;
+  overflow-y: hidden;*/
+  /*top: -400px;*/
+  position: fixed;
+  left: 85%;
+  right: -85%;
 }
 .show-card-parent {
-  position: absolute;
-  transition: all linear 0.5s;
+  /*position: absolute;*/
+  /*left: 0;
+  right: 0;
+  transition: all 0.1s;
+  position: fixed;*/
 }
 .show-card-parent.shift {
-  left: 85%;
-}
-.shows .sort-filter {
-  position: absolute;
-  width: 85%;
-  left: -85%;
-  transition: all linear 0.5s;
-}
-.shows .sort-filter.visible {
-  left: 0;
+  /*position: fixed;*/
+  /*left: 100%;
+  right: -100%;*/
+  /* overflow needs the height to be set */
+  /* prevents overflow when menus are open */
+  /*height: 100%;
+  overflow: hidden;*/
 }
 
 

@@ -1,4 +1,30 @@
-
+// var lastX, lastY;
+// $(document).on('touchstart', function(e) {
+//   lastX = e.originalEvent.touches[0].clientX;
+//   lastY = e.originalEvent.touches[0].clientY;
+// })
+// $(document).on('touchmove', function(e){
+//      //prevent native touch activity like scrolling
+//     //  console.log('test');
+//     var currentX = e.originalEvent.touches[0].clientX,
+//       currentY = e.originalEvent.touches[0].clientY;
+//      if (currentX > lastX) {
+//       //  console.log('move right');
+//        e.preventDefault();
+//      } else if (currentX < lastX) {
+//       //  console.log('move left');
+//      }
+//      lastX = currentX;
+//     //  e.preventDefault();
+//
+//     // if (currentY < lastY && $('.sort-filter').hasClass('visible')) {
+//     //   if ($(e.target).closest('.show-card-parent').length == 1) {
+//     //     e.preventDefault();
+//     //
+//     //   }
+//     // }
+//
+// });
 
 
 

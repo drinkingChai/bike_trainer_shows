@@ -1,11 +1,12 @@
 <div class="shows-container">
   <nav>
-    <a class="toggle-filter" ng-click="filterToggle = !filterToggle"><i class="fa fa-filter"></i></a>
+    <a class="toggle-filter" ng-click="toggleMenu()"><i class="fa fa-filter"></i></a>
   </nav>
 
-  <div class="shows">
+  <bts-sort-filter ng-class="{visible: filterToggle}" source="source" genres="genres" genre="genre" prop="prop"></bts-sort-filter>
 
-    <bts-sort-filter ng-class="{visible: filterToggle}" source="source" genres="genres" genre="genre" prop="prop"></bts-sort-filter>
+  <div class="shows" ng-class="{shift: filterToggle}" ng-style="{'top': -1 * scrollY}">
+
     <div class="show-card-parent" ng-class="{shift: filterToggle}">
       <div ng-repeat="movie in movies | filter:search | genreFilter:genres | sourceFilter:source | orderBy:prop">
         <bts-show-card movie="movie"></bts-show-card>
