@@ -100,6 +100,7 @@ h1, h2, h3 {
   display: flex;
   border-bottom: solid 2px hsl(0, 0%, 90%);
   padding: 20px;
+  min-height: 280px;
 }
 .show-card figure {
   width: 13.636363636%;
@@ -117,16 +118,20 @@ h1, h2, h3 {
   width: 80%;
   padding-left: 15px;
   padding-right: 15px;
-  display: flex;
+  /*display: flex;*/
   /*display: block;*/
   /*align-items: center;*/
-}
-.show-card .inner {
   position: relative;
 }
-.show-card .button-container {
-  /*position: absolute;*/
-  /*bottom: 0;*/
+.show-card .plot-100 {
+  display: none;
+}
+.show-card .plot-150 {
+  display: none;
+}
+.show-card .details .buttons {
+  position: absolute;
+  bottom: 0;
 }
 .show-card .source,
 .show-card .details p {
@@ -194,12 +199,31 @@ input[type=text]:focus {
 
 
 /* Media Queries */
+@media only screen and (max-width: 830px) {
+  .show-card .plot-200 {
+    display: none;
+  }
+  .show-card .plot-150 {
+    display: block;
+  }
+}
+@media only screen and (max-width: 640px) {
+  .show-card .plot-150 {
+    display: none;
+  }
+  .show-card .plot-100 {
+    display: block;
+  }
+}
 @media only screen and (max-width: 550px) {
   .show-card figure {
     display: none;
   }
 }
 @media only screen and (max-width: 450px) {
+  .show-card {
+    min-height: 200px;
+  }
   .show-card .details p {
     display: none;
   }
