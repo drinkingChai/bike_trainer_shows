@@ -82,14 +82,24 @@ h1, h2, h3 {
 
 
 /* Shows index */
+.shows {
+  display: flex;
+}
 .show-card-parent {
-  position: relative;
-  /*width: 85%;
-  left: 15%;*/
+  position: absolute;
+  transition: all linear 0.5s;
+}
+.show-card-parent.shift {
+  left: 85%;
 }
 .shows .sort-filter {
-  position: fixed;
-  /*width: 15%;*/
+  position: absolute;
+  width: 85%;
+  left: -85%;
+  transition: all linear 0.5s;
+}
+.shows .sort-filter.visible {
+  left: 0;
 }
 
 
@@ -98,7 +108,7 @@ h1, h2, h3 {
 .show-card {
   width: 100%;
   display: flex;
-  border-bottom: solid 2px hsl(0, 0%, 90%);
+  border-bottom: solid 1px hsl(0, 0%, 90%); /* maybe keep this at 2px */
   padding: 20px;
   min-height: 280px;
 }
@@ -113,6 +123,9 @@ h1, h2, h3 {
 .show-card .bts-default-btn.added {
   border-color: #E74C3C;
   color: #E74C3C;
+}
+.show-card .bts-default-btn.more {
+  display: none;
 }
 .show-card .details {
   width: 80%;
@@ -129,9 +142,23 @@ h1, h2, h3 {
 .show-card .plot-150 {
   display: none;
 }
+/* Animation */
+/*.show-card .plot-250 {
+  height: auto;
+}
+.show-card .plot-250.ng-hide {
+  height: 0;
+}
+.show-card .plot-250.ng-hide-add,
+.show-card .plot-250.ng-hide-remove {
+  transition: all linear 0.5s;
+}*/
 .show-card .details .buttons {
   position: absolute;
   bottom: 0;
+}
+.show-card .details .buttons.relative {
+  position: relative;
 }
 .show-card .source,
 .show-card .details p {
@@ -153,8 +180,9 @@ h1, h2, h3 {
 .show-card .stats h4 {
   display: inline;
 }
-/* test */
-
+.show-card .more-details {
+  width: 100%;
+}
 
 
 
@@ -224,7 +252,10 @@ input[type=text]:focus {
   .show-card {
     min-height: 200px;
   }
-  .show-card .details p {
+  .show-card .details p:not(.plot-250) {
     display: none;
+  }
+  .show-card .bts-default-btn.more {
+    display: inline-block;
   }
 }

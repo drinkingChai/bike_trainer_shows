@@ -9,6 +9,7 @@ angular.module('BikeTrainerShows')
       templateUrl: 'assets/templates/directives/btsShowCard.html',
       controller: function($scope, User) {
         $scope.watchlist = [];
+        $scope.plotShown = false;
 
         User.getUser().then(function success(response) {
           $scope.user = response.data;
@@ -23,6 +24,10 @@ angular.module('BikeTrainerShows')
         $scope.removeFrmWatchlist = function(imdbid) {
           User.removeMovie(imdbid);
           $scope.watchlist.splice($scope.watchlist.indexOf(imdbid), 1);
+        }
+
+        $scope.togglePlot = function() {
+          $scope.plotShown = !$scope.plotShown;
         }
       }
     }

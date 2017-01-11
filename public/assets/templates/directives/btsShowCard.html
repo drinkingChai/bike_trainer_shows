@@ -7,24 +7,25 @@
   </div> -->
 
   <div class="details">
-    <div class="content">
-      <h2>{{movie.title}}</h2>
-      <h4>{{movie.genresCommad}}</h4>
-      <h3 class="source">{{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></h3>
+    <h2>{{movie.title}}</h2>
+    <h4>{{movie.genresCommad}}</h4>
+    <h3 class="source">{{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></h3>
 
 
-      <p class="plot-200">{{movie.synopsis | limitTo: 200}}<span ng-show="movie.synopsis.length > 200">...</span></p>
-      <p class="plot-150">{{movie.synopsis | limitTo: 150}}<span ng-show="movie.synopsis.length > 150">...</span></p>
-      <p class="plot-100">{{movie.synopsis | limitTo: 100}}<span ng-show="movie.synopsis.length > 100">...</span></p>
+    <p class="plot-200">{{movie.synopsis | limitTo: 200}}<span ng-show="movie.synopsis.length > 200">...</span></p>
+    <p class="plot-150">{{movie.synopsis | limitTo: 150}}<span ng-show="movie.synopsis.length > 150">...</span></p>
+    <p class="plot-100">{{movie.synopsis | limitTo: 100}}<span ng-show="movie.synopsis.length > 100">...</span></p>
+
+    <p class="plot-250" ng-show="plotShown">{{movie.synopsis | limitTo: 250}}<span ng-show="movie.synopsis.length > 250">...</span></p>
 
       <!-- <a class="bts-default-btn" ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i> watchlist</a>
       <a class="bts-default-btn added" ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i> watchlist</a> -->
-    </div>
 
-    <div class="buttons">
+    <div class="buttons" ng-class="{relative: plotShown}">
       <a class="bts-default-btn" ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i></a>
       <a class="bts-default-btn added" ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i></a>
-      <a class="bts-default-btn"><i class="fa fa-thumbs-up fa-fw"></i></a>
+      <a class="bts-default-btn"><i class="fa fa-heart fa-fw"></i></a>
+      <a class="bts-default-btn more" ng-click="togglePlot()"><i class="fa fa-ellipsis-h fa-fw"></i></a>
     </div>
   </div>
 
