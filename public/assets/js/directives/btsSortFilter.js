@@ -21,7 +21,7 @@ angular.module('BikeTrainerShows')
           $scope.genres[genre] = !$scope.genres[genre];
         }
 
-        $scope.resetGenre = function() {
+        $scope.reset = function() {
           for (var genre in $scope.genres) {
             $scope.genres[genre] = false;
             $scope.genreCheckbox[genre] = false;

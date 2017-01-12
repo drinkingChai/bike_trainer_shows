@@ -48,9 +48,7 @@ h1, h2, h3 {
 
 /* Sort-filter */
 .sort-filter {
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 15px;
+  padding: 5%;
   background-color: #212121;
   color: #fff;
   box-shadow: inset -7px 0 15px -7px hsla(0, 0%, 0%, 0.4);
@@ -58,12 +56,17 @@ h1, h2, h3 {
 .sort-filter .search-show {
   text-align: center;
 }
+.sort-filter > * {
+  width: 100%;
+}
 #dropdownMenu1 {
   background-color: inherit;
   border: 0;
   padding: 5px 15px;
+  width: 100%;
 }
 .sort-filter ul.dropdown-menu {
+  background-color: #424242;
   border-radius: 0;
   width: 100%;
   font-size: 1em;
@@ -71,6 +74,7 @@ h1, h2, h3 {
 .sort-filter ul.dropdown-menu li {
   padding: 5px 15px;
   cursor: pointer;
+  text-align: center;
 }
 .sort-filter ul.dropdown-menu li:hover {
 }
@@ -80,14 +84,70 @@ h1, h2, h3 {
 .genre-list {
   margin-bottom: 15px;
 }
+.sort-filter a.reset {
+  text-align: center;
+}
+/* Sort-filter hide */
+.sort-filter.hidden-left {
+  position: absolute;
+  left: -70%;
+  width: 70%;
+  transition: left 0.25s;
+  overflow-y: scroll;
+  z-index: 999;
+}
+.sort-filter.visible {
+  left: 0%;
+  height: 100vh;
+}
+
+
+
+
+/* User nav */
+.user-nav {
+  padding: 5%;
+  background-color: #212121;
+  color: #fff;
+  box-shadow: inset -7px 0 15px -7px hsla(0, 0%, 0%, 0.4);  /* FIXME: shadow on the reverse side */
+}
+.user-nav p {
+  padding: 0.625em;
+  padding-left: 0;
+}
+/* User nav hide */
+.user-nav.hidden-right {
+  position: absolute;
+  right: -70%;
+  width: 70%;
+  transition: right 0.25s;
+  overflow-y: scroll;
+  z-index: 999;
+
+  display: none;
+}
+.user-nav.visible {
+  right: 0;
+  height: 100vh;
+
+  display: block;
+}
+
+
+
+
+
+
+
 
 
 
 
 /* Shows index */
 .shows-container {
-  position: relative;
+  /*position: relative;*/
   height: 100vh;
+  width: 100vw;
   overflow: scroll;
 }
 .shows-container.freeze-scroll {
@@ -96,35 +156,46 @@ h1, h2, h3 {
 .shows-container nav {
   position: fixed;
   background-color: #fff;
-  width: 100%;
-  height: 50px;
+  width: 100vw;
+  /*height: 2em;*/
   z-index: 99;
+  font-size: 1.2em;
+
+  transition: all 0.25s;
+
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+
+  border-bottom: solid 1px hsl(0, 0%, 90%); /* maybe keep this at 2px */
 }
-.shows-container .sort-filter {
-  position: absolute;
-  left: -70%;
-  width: 70%;
-  transition: left 0.1s;
-  overflow-y: scroll;
+.shows-container nav.shift {
+  margin-left: 70%;
+  margin-right: -70%;
 }
-.shows-container .sort-filter.visible {
-  left: 0%;
-  height: 100vh;
-  z-index: 999;
+.shows-container nav a {
+  width: 25%;
+}
+.shows-container nav a:nth-child(2) {
+  width: 50%;
+  text-align: center;
+}
+.shows-container nav a:last-child {
+  text-align: right;
 }
 .shows {
-  position: absolute;
-  top: 50px;
-  left: 0;
-  transition: left 0.25s;
+  /*position: absolute;*/
+  /*top: 50px;*/
+  margin-top: 2em;
+  /*left: 0;
+  right: 0;*/
+  transition: all 0.25s;
 }
 .shows.shift {
-  left: 70%;
-  right: -70%;
-}
-.show-card-parent {
-}
-.show-card-parent.shift {
+  margin-left: 70%;
+  margin-right: -70%;
+  /*left: 70%;
+  right: -70%;*/
 }
 
 
@@ -235,7 +306,7 @@ input[type=text]:focus {
 /* Buttons */
 .bts-default-btn {
   display: inline-block;
-  padding: 10px;
+  padding: 0.625em;
   cursor: pointer;
   border: solid 1px #2C3E50;
   color: #000;

@@ -24,25 +24,32 @@ angular.module('BikeTrainerShows')
     });
 
 
+    User.getUser().then(function success(response) {
+      $scope.user = response.data;
+    });
+
+
 
 
 
     // side menu
     var toggleMenu = function() {
       $('.shows-container .sort-filter').toggleClass('visible');
-      $('.shows').toggleClass('shift');
+      $('.shows, .shows-container nav').toggleClass('shift');
       $('.shows-container').toggleClass('freeze-scroll');
 
-      $('.shows-container .sort-filter').css('top', $('.shows-container').scrollTop());
+      // $('.shows-container .sort-filter').css('top', $('.shows-container').scrollTop());
+    }
+    var toggleUserMenu = function() {
+      $('.shows-container .user-nav').toggleClass('visible');
     }
 
     $('.shows-container .toggle-filter').click(function() {
       toggleMenu();
-      // $('.shows-container .sort-filter').toggleClass('visible');
-      // $('.shows').toggleClass('shift');
-      // $('.shows-container').toggleClass('freeze-scroll');
-      //
-      // $('.shows-container .sort-filter').css('top', $('.shows-container').scrollTop());
+    })
+
+    $('.shows-container .toggle-user-nav').click(function() {
+      toggleUserMenu();
     })
 
     $('.shows').click(function() {
