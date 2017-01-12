@@ -24,32 +24,32 @@ angular.module('BikeTrainerShows')
     });
 
 
-    // side menu - solution 1
-    // $scope.scrollY = 0;
-    // $document.on('scroll', function() {
-    //   $scope.scrollY = $window.scrollY;
-    //   // console.log($scope.scrollY);
-    // })
-    //
-    // $('.shows-container .toggle-filter').click(function() {
-    //   $('.shows-container .sort-filter').toggleClass('visible');
-    //   $('.shows').toggleClass('shift');
-    //
-    //   if ($('.shows').hasClass('shift')) {
-    //     $('.shows').css('top', -$scope.scrollY);
-    //     $scope.cachedScrollY = $scope.scrollY;
-    //   } else {
-    //     $('.shows').css('top', 0);
-    //     setTimeout(function () {
-    //       $('body').scrollTo($scope.cachedScrollY);
-    //       // $('body').scrollTo(539);
-    //     }, 250);
-    //   }
-    // })
 
 
 
+    // side menu
+    var toggleMenu = function() {
+      $('.shows-container .sort-filter').toggleClass('visible');
+      $('.shows').toggleClass('shift');
+      $('.shows-container').toggleClass('freeze-scroll');
 
+      $('.shows-container .sort-filter').css('top', $('.shows-container').scrollTop());
+    }
+
+    $('.shows-container .toggle-filter').click(function() {
+      toggleMenu();
+      // $('.shows-container .sort-filter').toggleClass('visible');
+      // $('.shows').toggleClass('shift');
+      // $('.shows-container').toggleClass('freeze-scroll');
+      //
+      // $('.shows-container .sort-filter').css('top', $('.shows-container').scrollTop());
+    })
+
+    $('.shows').click(function() {
+      if ($(this).hasClass('shift')) {
+        toggleMenu();
+      }
+    })
 
 
     // $scope.deleteMovie = function(imdbid) {
