@@ -7,6 +7,12 @@
 
   <bts-sort-filter class="hidden-left" source="source" genres="genres" genre="genre" prop="prop"></bts-sort-filter>
 
+  <div class="user-nav hidden-right">
+    <p>Hello! {{user.username}}</p>
+    <a class="bts-default-btn inverted" ng-click="logout()">Logout</a>
+  </div>
+
+
   <div class="shows">
     <div class="show-card-parent">
       <div ng-repeat="movie in movies | filter:search | genreFilter:genres | sourceFilter:source | orderBy:prop">
@@ -15,10 +21,6 @@
     </div>
   </div>
 
-  <div class="user-nav hidden-right">
-    <p>Hello! {{user.username}}</p>
-    <a class="bts-default-btn inverted" ng-click="">Logout</a>
-  </div>
 
 
 </div>

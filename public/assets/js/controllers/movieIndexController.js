@@ -1,5 +1,5 @@
 angular.module('BikeTrainerShows')
-  .controller('MovieIndexController', function($scope, $document, $window, User, Movie, SearchById) {
+  .controller('MovieIndexController', function($scope, $document, $route, User, Movie, SearchById) {
     $scope.movies = [];
     $scope.genres = {};
     $scope.source = null;
@@ -29,32 +29,46 @@ angular.module('BikeTrainerShows')
     });
 
 
+    $scope.logout = function() {
+      User.logout();
+      $scope.user = null;
+      $scope.watchlist = [];
+      $route.reload();
+    }
 
 
 
-    // side menu
+
+
+    // freeze scroll
     var toggleMenu = function() {
-      $('.shows-container .sort-filter').toggleClass('visible');
-      $('.shows, .shows-container nav').toggleClass('shift');
-      $('.shows-container').toggleClass('freeze-scroll');
-
-      // $('.shows-container .sort-filter').css('top', $('.shows-container').scrollTop());
+      $('.shows-container').toggleClass('freeze-scroll'); //shift the body
     }
-    var toggleUserMenu = function() {
-      $('.shows-container .user-nav').toggleClass('visible');
-    }
-
-    $('.shows-container .toggle-filter').click(function() {
+    // filter menu
+    var toggleLeftMenu = function() {
+      $('.shows, .shows-container nav').toggleClass('shift-right'); // shift the body & nav
+      $('.shows-container .sort-filter').toggleClass('visible-left');
       toggleMenu();
+    }
+    $('.shows-container .toggle-filter').click(function() {
+      toggleLeftMenu();
     })
 
+    // user menu
+    var toggleRightMenu = function() {
+      $('.shows, .shows-container nav').toggleClass('shift-left'); // shift the body & nav
+      $('.shows-container .user-nav').toggleClass('visible-right');
+      toggleMenu();
+    }
     $('.shows-container .toggle-user-nav').click(function() {
-      toggleUserMenu();
+      toggleRightMenu();
     })
-
+    //unfreeze scroll
     $('.shows').click(function() {
-      if ($(this).hasClass('shift')) {
-        toggleMenu();
+      if ($(this).hasClass('shift-right')) {
+        toggleLeftMenu();
+      } else if ($(this).hasClass('shift-left')) {
+        toggleRightMenu();
       }
     })
 
