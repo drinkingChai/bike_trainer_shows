@@ -305,7 +305,13 @@ h1, h2, h3 {
   bottom: 2em;
   font-size: 0.75em;
 }
+/* REVIEW Not sure if I want to do this
+ Doing it because the inputs aren't stretching on user registration */
 .input-group input {
+  width: 100%;
+}
+.input-group {
+  width: 100%;
 }
 
 /* Radio and checkbox */

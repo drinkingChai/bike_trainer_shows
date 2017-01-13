@@ -6,6 +6,7 @@ angular.module('BikeTrainerShows')
         "Hulu",
         "HBO GO",
         "Amazon",
+        "YouTube",
         "Other"
       ]
     }

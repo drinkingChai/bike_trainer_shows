@@ -11,6 +11,16 @@ var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://localhost:27017/bike_trainer_shows';
 
 
+function Movie(imdbData, source, blurb) {
+  this.imdbid = imdbData.imdbid;
+  this.imdbData = imdbData;
+  this.hearts = 0;
+  this.source = source;
+  this.comments = [blurb];
+}
+
+
+// rename to getALL or ALL
 movies.get('/', function(request, response) {
   var result = [];
   MongoClient.connect(url, function(err, db) {
@@ -24,27 +34,35 @@ movies.get('/', function(request, response) {
   });
 });
 
+
+
 movies.get('/new/:id', function(request, response) {
   imdb.getById(request.params.id).then(function(movie) {
-    response.status(200).json({
-      title: movie.title,
-      year: movie.year,
-      poster: movie.poster,
-      imdbid: movie.imdbid
-    });
+    response.status(200).json(movie);
   });
 });
 
+
+
+
 movies.post('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
-  var item = {
-    imdbid: request.body.imdbid,
-    source: request.body.source,
-    blurb: request.body.blurb,
-    sourceOther: request.body.sourceOther
-  };
+  // var wrapper = this;
+  // imdb.getById(request.body.imdbid).then(function(err, result) {
+  //   wrapper.imdbData = result;
+  // });
+
+  var body = request.body,
+    newMovie = new Movie(body.imdbData, body.source, body.blurb);
+
+  // var item = {
+  //   imdbid: request.body.imdbid,
+  //   source: request.body.source,
+  //   blurb: request.body.blurb,
+  //   sourceOther: request.body.sourceOther
+  // };
 
   MongoClient.connect(url, function(err, db) {
-    db.collection('movies').insertOne(item, function(err, result) {
+    db.collection('movies').insertOne(newMovie, function(err, result) {
       console.log('Item inserted');
     });
 

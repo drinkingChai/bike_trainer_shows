@@ -5,13 +5,13 @@ angular.module('BikeTrainerShows')
     $scope.searchTitle = $routeParams.title;
     $scope.newSearch = false;
 
-    Exists.get({imdbid: $routeParams.imdbid}).$promise.then(function(data) {
-      $scope.exists = data.exists;
-    })
+    // Exists.get({imdbid: $routeParams.imdbid}).$promise.then(function(data) {
+    //   $scope.exists = data.exists;
+    // })
 
     $scope.addMovie = function(imdbid, source, blurb) {
       var newMovie = new Movie();
-      newMovie.imdbid = imdbid;
+      newMovie.imdbData = $scope.movie;
       newMovie.source = source || false;
       newMovie.blurb = blurb || false;
       if ($scope.movie.source === "Other") { newMovie.sourceOther = $scope.other; }
