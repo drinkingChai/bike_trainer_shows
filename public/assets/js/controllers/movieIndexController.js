@@ -1,5 +1,5 @@
 angular.module('BikeTrainerShows')
-  .controller('MovieIndexController', function($scope, $document, $route, User, Movie, SearchById) {
+  .controller('MovieIndexController', function($scope, $document, $route, Movie, SearchById) {
     $scope.movies = [];
     $scope.genres = {};
     $scope.source = null;
@@ -24,17 +24,7 @@ angular.module('BikeTrainerShows')
     });
 
 
-    User.getUser().then(function success(response) {
-      $scope.user = response.data;
-    });
 
-
-    $scope.logout = function() {
-      User.logout();
-      $scope.user = null;
-      $scope.watchlist = [];
-      $route.reload();
-    }
 
 
 

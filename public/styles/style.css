@@ -251,6 +251,63 @@ h1, h2, h3 {
 
 
 
+
+/* User login */
+.user {
+  /*position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;*/
+  height: 100vh;
+  width: 100vw;
+  overflow: scroll;
+
+  padding-top: 20vh;
+
+  display: flex;
+  /*align-items: center;*/
+  justify-content: center;
+
+  background-color: #222;
+}
+.user p {
+  text-align: center;
+}
+.user form > * {
+  margin-bottom: 15px;
+}
+.user form .bts-default-btn {
+  width: 100%;
+  text-align: center;
+}
+
+.user.login p {
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+/* Text inputs */
+.input-group label {
+  position: absolute;
+  left: 0;
+  bottom: 0.625em;
+  color: #D8D8D8;
+  transition: all 0.1s;
+}
+.input-group label.float {
+  bottom: 2em;
+  font-size: 0.75em;
+}
+.input-group input {
+}
+
 /* Radio and checkbox */
 input[type=radio],
 input[type=checkbox] {
@@ -258,13 +315,21 @@ input[type=checkbox] {
 }
 
 /* Input */
-input[type=text] {
+input[type=text],
+input[type=password],
+button {
   background-color: inherit;
-  border-bottom: solid 2px transparent;
+  border-bottom: solid 2px #fff;
+  /*border-bottom: solid 2px transparent;*/
   border-radius: 0;
   transition: all 0.25s;
+  padding-top: 0.625em;
+  padding-bottom: 0.455em;
+
+  color: #fff;
 }
-input[type=text]:focus {
+input[type=text]:focus,
+input[type=password]:focus {
   outline: none;
   border-bottom: solid 2px #fff;
 }

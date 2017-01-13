@@ -1,11 +1,19 @@
 <div class="user login">
 
   <form>
-    <label>Username: <input type="text" ng-model="user.username"></label>
-    <label>Name: <input type="text" ng-model="user.name"></label>
-    <label>Password: <input type="password" ng-model="user.password"></label>
-    <label>Password: <input type="password" ng-model="password2"></label>
-    <button class="btn btn-default" type="submit" ng-click="user.password === password2 && newUser(user)">Login</button>
+    <bts-input type="'text'" label="'Username'" model="user.username"></bts-input>
+    <bts-input type="'text'" label="'Name'" model="user.name"></bts-input>
+    <bts-input type="'password'" label="'Password'" model="user.password"></bts-input>
+    <bts-input type="'password'" label="'Confirm password'" model="password2"></bts-input>
+
+
+    <button class="bts-default-btn inverted" type="submit" ng-click="user.password === password2 && newUser(user)">Register</button><br><br>
+
+
+    <p>Already a user? Log in here</p>
+    <a class="bts-default-btn inverted" href="#/login">Sign In</a>
+
+
   </form>
 
 </div>

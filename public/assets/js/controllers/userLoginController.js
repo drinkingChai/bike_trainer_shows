@@ -32,6 +32,44 @@ angular.module('BikeTrainerShows')
       $route.reload();
     }
 
+
+
+
+
+    // input float that mimics material design
+    $('.input-group label').click(function() {
+      $(this).addClass('float');
+      $(this).parent().children('input').focus();
+    })
+
+    $('.input-group input').focusout(function() {
+      if (!$(this).val().length) { // maybe check for whitespaces
+        $(this).parent().children('label').removeClass('float');
+      }
+    })
+
+    $('.input-group input').focusin(function() {
+      $(this).parent().children('label').addClass('float');
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // take this to a separate page
     // on this page, check if user is logged in and if so, route to this page
     var getUserMovies = function(watchlist) {
