@@ -8,8 +8,11 @@
   <bts-sort-filter class="hidden-left" source="source" genres="genres" genre="genre" prop="prop"></bts-sort-filter>
 
   <div class="user-nav hidden-right">
-    <p>Hello! {{user.username}}</p>
-    <a class="bts-default-btn inverted" ng-click="logout()">Logout</a>
+    <p>Hello! {{user.name}}</p>
+    <a class="bts-default-btn inverted" href="#/login" ng-show="user">Profile</a>
+    <a class="bts-default-btn inverted" ng-click="logout()" ng-show="user">Sign Out</a>
+    <a class="bts-default-btn inverted" href="#/login" ng-hide="user">Sign In</a>
+    <a class="bts-default-btn inverted" href="#/login/new" ng-hide="user">Register</a>
   </div>
 
 

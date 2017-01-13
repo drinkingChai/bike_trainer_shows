@@ -101,6 +101,12 @@ h1, h2, h3 {
 .user-nav p {
   padding: 0.625em;
   padding-left: 0;
+  text-align: center;
+}
+.user-nav a {
+  display: block;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
 
@@ -255,6 +261,7 @@ input[type=checkbox] {
 input[type=text] {
   background-color: inherit;
   border-bottom: solid 2px transparent;
+  border-radius: 0;
   transition: all 0.25s;
 }
 input[type=text]:focus {

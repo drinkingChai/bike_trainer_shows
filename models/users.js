@@ -13,6 +13,13 @@ var url = 'mongodb://localhost:27017/bike_trainer_shows';
 
 var users = express();
 
+function user(username, name, password) {
+  this.username = username;
+  this.name = name;
+  this.password = bcrypt.hashSync(password, saltRounds);
+  this.watchlist = [];
+}
+
 users.use(parseUrlJSON);
 users.use(expressJwt({ secret: statics.jwtSecret }).unless({ path: ['/users/login', '/users/new'] }));
 
@@ -39,15 +46,11 @@ users.post('/login', authenticate, function(request, response) {
 })
 
 users.post('/new', function(request, response) {
-  var username = request.body.username,
-    password = request.body.password;
+  var body = request.body,
+    newUser = new user(body.username, body.name, body.password);
 
   MongoClient.connect(url, function(err, db) {
-    db.collection('users').insertOne({
-      username: username,
-      password: bcrypt.hashSync(password, saltRounds),
-      watchlist: []
-    }, function(err, result) {
+    db.collection('users').insertOne(newUser, function(err, result) {
       console.log('new user created');
       response.sendStatus(201);
     })
@@ -57,8 +60,7 @@ users.post('/new', function(request, response) {
 users.get('/me', function(request, response) {
   MongoClient.connect(url, function(err, db) {
     db.collection('users').findOne({ username: request.user.username }, function(err, result) {
-      request.user.watchlist = result.watchlist;
-      response.send(request.user);
+      response.send(result);
     })
   });
 })
