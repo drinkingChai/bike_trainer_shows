@@ -1,5 +1,5 @@
 angular.module('BikeTrainerShows')
-  .controller('UserLoginController', function($scope, User, SearchById, $window, $route) {
+  .controller('UserLoginController', function($scope, User, Movie, $window, $route) {
     $scope.genres = {};
     $scope.source = null;
     $scope.prop = null;
@@ -74,13 +74,9 @@ angular.module('BikeTrainerShows')
     // on this page, check if user is logged in and if so, route to this page
     var getUserMovies = function(watchlist) {
       for (var i = 0, l = watchlist.length, m = watchlist; i < l; i++) {
-        SearchById.get({id: m[i]}).$promise.then(function(data) {
+        Movie.get({id: m[i]}).$promise.then(function(data) {
           $scope.watchlist.push(data);
           data.genres.forEach(function(genre) {
-            // if (!(genre in $scope.genres)) {
-              // $scope.sortedGenres.push(genre);
-              // $scope.sortedGenres.sort();
-            // }
             $scope.genres[genre] = false;
           })
         })

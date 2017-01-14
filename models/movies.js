@@ -22,7 +22,6 @@ function Movie(imdbData, source, blurb) {
 }
 
 
-// rename to getALL or ALL
 movies.get('/', function(request, response) {
   var result = [];
   MongoClient.connect(url, function(err, db) {
@@ -38,18 +37,9 @@ movies.get('/', function(request, response) {
 
 
 
-movies.get('/new/:id', function(request, response) {
-  imdb.getById(request.params.id).then(function(movie) {
-    response.status(200).json(movie);
-  });
-});
-
-
-
-
 movies.post('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
   var body = request.body,
-    newMovie = new Movie(body.imdbData, body.source, body.blurb);
+  newMovie = new Movie(body.imdbData, body.source, body.blurb);
 
   MongoClient.connect(url, function(err, db) {
     db.collection('movies').insertOne(newMovie, function(err, result) {
@@ -74,6 +64,19 @@ movies.post('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
 });
 
 
+
+// fetches from local database by imdbID
+movies.get('/:id', function(request, response) {
+  MongoClient.connect(url, function(err, db) {
+    db.collection('movies').findOne({imdbid: request.params.id}, function(err, result) {
+      response.status(200).json(result);
+    });
+  });
+});
+
+
+
+
 movies.delete('/:id', function(request, response) {
   MongoClient.connect(url, function(err, db) {
     db.collection('movies').remove({imdbid: request.params.id}, function(err, result) {
@@ -85,25 +88,8 @@ movies.delete('/:id', function(request, response) {
 });
 
 
-movies.get('/search/:title', function(request, response) {
-  var searchResults = [];
-  omdb.search(request.params.title, function(err, result) {
-    result.forEach(function(movie) {
-      searchResults.push(movie);
-    });
-    response.status(200).json(searchResults);
-  });
-
-});
 
 
-movies.get('/searchById/:id', function(request, response) {
-  MongoClient.connect(url, function(err, db) {
-    db.collection('movies').findOne({imdbid: request.params.id}, function(err, result) {
-      response.status(200).json(result);
-    });
-  });
-});
 
 
 movies.get('/exists/:imdbid', function(request, response) {

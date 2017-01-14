@@ -1,20 +1,18 @@
 angular.module('BikeTrainerShows')
-  .controller('MovieIndexController', function($scope, $document, $route, Movie, SearchById) {
+  .controller('MovieIndexController', function($scope, $document, $route, Movie) {
     $scope.movies = [];
     $scope.genres = {};
     $scope.source = null;
     $scope.prop = null;
     $scope.filterToggle = false;
 
-    Movie.query().$promise.then(function(allMovies) {
-      for (var i = 0, l = allMovies.length; i < l; i++) {
-        SearchById.get({id: allMovies[i].imdbid}).$promise.then(function(data) {
-          $scope.movies.push(data);
+    Movie.query().$promise.then(function(movies) {
+      for (var i = 0, l = movies.length; i < l; i++) {
+        $scope.movies.push(movies[i]);
 
-          data.imdbData.genres.split(',').forEach(function(genre) {
-            $scope.genres[genre] = false;
-          })
-        });
+        movies[i].imdbData.genres.split(',').forEach(function(genre) {
+          $scope.genres[genre] = false;
+        })
       }
     });
 

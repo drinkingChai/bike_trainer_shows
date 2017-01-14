@@ -8,8 +8,10 @@ var expressJwt = require('express-jwt');
 app.use(express.static('public'));
 
 var movies = require('./models/movies');
+var search = require('./models/search');
 var users = require('./models/users');
 app.use('/movies', movies);
+app.use('/search', search);
 app.use('/users', users);
 
 // app.use(expressJwt({ secret: jwtSecret }).unless({ path: ['/movies', '/login']}));
