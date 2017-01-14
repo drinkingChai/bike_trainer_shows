@@ -8,15 +8,15 @@
 
   <div class="details">
     <h2>{{movie.title}}</h2>
-    <h4>{{movie.genresCommad}}</h4>
+    <h4>{{movie.genres}}</h4>
     <h3 class="source">{{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></h3>
 
 
-    <p class="plot-200">{{movie.synopsis | limitTo: 200}}<span ng-show="movie.synopsis.length > 200">...</span></p>
-    <p class="plot-150">{{movie.synopsis | limitTo: 150}}<span ng-show="movie.synopsis.length > 150">...</span></p>
-    <p class="plot-100">{{movie.synopsis | limitTo: 100}}<span ng-show="movie.synopsis.length > 100">...</span></p>
+    <p class="plot-200">{{movie.plot | limitTo: 200}}<span ng-show="movie.plot.length > 200">...</span></p>
+    <p class="plot-150">{{movie.plot | limitTo: 150}}<span ng-show="movie.plot.length > 150">...</span></p>
+    <p class="plot-100">{{movie.plot | limitTo: 100}}<span ng-show="movie.plot.length > 100">...</span></p>
 
-    <p class="plot-250" ng-show="plotShown">{{movie.synopsis | limitTo: 250}}<span ng-show="movie.synopsis.length > 250">...</span></p>
+    <p class="plot-250" ng-show="plotShown">{{movie.plot | limitTo: 250}}<span ng-show="movie.plot.length > 250">...</span></p>
 
       <!-- <a class="bts-default-btn" ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i> watchlist</a>
       <a class="bts-default-btn added" ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i> watchlist</a> -->

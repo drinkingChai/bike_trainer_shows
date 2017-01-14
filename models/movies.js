@@ -1,19 +1,21 @@
 var express = require('express');
 var movies = express();
-var omdb = require('omdb');
 var imdb = require('imdb-api');
+var omdb = require('omdb');
 var bodyParser = require('body-parser');
 var parseUrlJSON = bodyParser.json();
 var parseUrlEncoded = bodyParser.urlencoded({ extended: true });
 
 var MongoClient = require('mongodb').MongoClient;
 
+// var url = 'mongodb://localhost:27017/bike_trainer_shows';
 var url = 'mongodb://localhost:27017/bike_trainer_shows';
 
 
 function Movie(imdbData, source, blurb) {
   this.imdbid = imdbData.imdbid;
   this.imdbData = imdbData;
+  this.imdbData.runtime = parseInt(this.imdbData.runtime, 10);
   this.hearts = 0;
   this.source = source;
   this.comments = [blurb];
@@ -46,31 +48,31 @@ movies.get('/new/:id', function(request, response) {
 
 
 movies.post('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
-  // var wrapper = this;
-  // imdb.getById(request.body.imdbid).then(function(err, result) {
-  //   wrapper.imdbData = result;
-  // });
-
   var body = request.body,
     newMovie = new Movie(body.imdbData, body.source, body.blurb);
-
-  // var item = {
-  //   imdbid: request.body.imdbid,
-  //   source: request.body.source,
-  //   blurb: request.body.blurb,
-  //   sourceOther: request.body.sourceOther
-  // };
 
   MongoClient.connect(url, function(err, db) {
     db.collection('movies').insertOne(newMovie, function(err, result) {
       console.log('Item inserted');
     });
-
-    db.close();
-
     response.status(201).redirect('/');
   });
+
+  if (newMovie.imdbData.series) {
+    MongoClient.connect(url, function(err, db) {
+      imdb.getById(newMovie.imdbid).then(function(result) {
+        result.episodes().then(function(episodes) {
+          db.collection('movies').update(
+            { 'imdbid': newMovie.imdbid },
+            { $set: { 'imdbData.runtime' : newMovie.imdbData.runtime * episodes.length }}
+          )
+          response.status(201).redirect('/');
+        })
+      })
+    });
+  }
 });
+
 
 movies.delete('/:id', function(request, response) {
   MongoClient.connect(url, function(err, db) {
@@ -84,20 +86,10 @@ movies.delete('/:id', function(request, response) {
 
 
 movies.get('/search/:title', function(request, response) {
-  // console.log(request.params);
-  // console.log(request.params.title);
-
   var searchResults = [];
-  omdb.search(request.params.title, function(err, movies) {
-    movies.forEach(function(movie) {
-      searchResults.push({
-        title: movie.title,
-        year: movie.year,
-        imdbRating: movie.imdb.rating,
-        synopsis: movie.plot,
-        imdbid: movie.imdb,
-        poster: movie.poster
-      });
+  omdb.search(request.params.title, function(err, result) {
+    result.forEach(function(movie) {
+      searchResults.push(movie);
     });
     response.status(200).json(searchResults);
   });
@@ -106,37 +98,9 @@ movies.get('/search/:title', function(request, response) {
 
 
 movies.get('/searchById/:id', function(request, response) {
-  imdb.getById(request.params.id).then(function(movie) {
-    MongoClient.connect(url, function(err, db) {
-      db.collection('movies').findOne({imdbid: request.params.id}, function(err, result) {
-        var mov = {
-          title: movie.title,
-          year: movie.year,
-          rating: movie.rating,
-          synopsis: movie.plot,
-          imdbid: movie.imdbid,
-          poster: movie.poster,
-          imdburl: movie.imdburl,
-          genres: movie.genres.split(', '),
-          genresCommad: movie.genres,
-          runtime: parseInt(movie.runtime, 10),
-          source: result.source,
-          blurb: result.blurb,
-          sourceOther: result.sourceOther
-        }
-        if (movie.hasOwnProperty('_episodes')) {
-          mov.totalseasons = movie.totalseasons;
-          movie.episodes().then(function(allEpisodes) {
-            mov.runtimePerEp = mov.runtime;
-            mov.runtime = allEpisodes.length * mov.runtime;
-            mov.totalepisodes = allEpisodes.length;
-            response.status(200).json(mov);
-          });
-        } else {
-          response.status(200).json(mov);
-        }
-      });
-      db.close();
+  MongoClient.connect(url, function(err, db) {
+    db.collection('movies').findOne({imdbid: request.params.id}, function(err, result) {
+      response.status(200).json(result);
     });
   });
 });

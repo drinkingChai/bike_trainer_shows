@@ -22,6 +22,6 @@ angular.module('BikeTrainerShows')
     }
 
     $scope.setSource = function(source) {
-      $scope.movie.source = source;
+      $scope.movieSource = source;
     }
   });

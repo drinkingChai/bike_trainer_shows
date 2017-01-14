@@ -6,20 +6,15 @@ angular.module('BikeTrainerShows')
     $scope.prop = null;
     $scope.filterToggle = false;
 
-    Movie.query().$promise.then(function(allMovies) {      var allGenres = [];
+    Movie.query().$promise.then(function(allMovies) {
       for (var i = 0, l = allMovies.length; i < l; i++) {
         SearchById.get({id: allMovies[i].imdbid}).$promise.then(function(data) {
           $scope.movies.push(data);
 
-          data.genres.forEach(function(genre) {
-            // if (!(genre in $scope.genres)) {
-              // $scope.sortedGenres.push(genre);
-              // $scope.sortedGenres.sort();
-            // }
+          data.imdbData.genres.split(',').forEach(function(genre) {
             $scope.genres[genre] = false;
           })
         });
-
       }
     });
 

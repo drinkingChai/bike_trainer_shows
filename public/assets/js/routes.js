@@ -5,7 +5,7 @@ angular.module('BikeTrainerShows')
         templateUrl: 'assets/templates/movies/index.html',
         controller: 'MovieIndexController'
       })
-      .when('/movies/search', {
+      .when('/search', {
         templateUrl: 'assets/templates/movies/search.html',
         controller: 'SearchMovieController'
       })

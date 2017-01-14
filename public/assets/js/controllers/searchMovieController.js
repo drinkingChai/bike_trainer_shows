@@ -1,13 +1,7 @@
 angular.module('BikeTrainerShows')
   .controller('SearchMovieController', function($scope, $http, $routeParams, Movie, Search, SearchById) {
-    $scope.searchMovies2 = function() {
-      $scope.searchResults = Search.get({title: $scope.title});
-      // console.log($scope.searchResults.length);
-    }
-
-    // console.log($routeParams.title);
     if ($routeParams.title) {
       $scope.title = $routeParams.title;
-      $scope.searchMovies2();
+      $scope.searchResults = Search.get({title: $scope.title});
     };
   });
