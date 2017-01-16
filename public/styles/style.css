@@ -159,7 +159,7 @@ h1, h2, h3 {
 .shows {
   /*position: absolute;*/
   /*top: 50px;*/
-  margin-top: 2em;
+  margin-top: 2.75em;
   /*left: 0;
   right: 0;*/
   transition: all 0.25s;
@@ -289,8 +289,121 @@ h1, h2, h3 {
 
 
 
+/* Search */
+.search-new-container form {
+  width: 100%;
+  display: flex;
+  /*margin-top: 15px;*/
+  padding: 30px;
+  /*box-shadow: 0 1px 1px 1px #000;*/
+  box-shadow: 0px 1px 3px hsla(0,0%,0%,0.2);
+  background-color: #fff;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+}
+.search-new-container form > * {
+  margin-right: 10px;
+}
+.search-new-container form .search-new {
+  width: 80%;
+}
+.search-new-container form button {
+  width: 3em;
+  height: 3em;
+  border-radius: 100%;
+  border: 0;
+  box-shadow: 0px 3px 5px hsla(0,0%,0%,0.2);
+  /*background-color: #8C546E;*/
+  background-color: #222;
+  color: #fff;
+}
 
 
+
+
+/* Search card */
+.shows.search {
+  margin-top: 6.75em;
+}
+
+
+
+
+/* New movie */
+.new-movie {
+  padding: 20px;
+}
+.new-movie > *,
+.new-movie form > * {
+  margin-bottom: 15px;
+}
+.new-movie form button {
+  width: 100%;
+}
+.new-movie h2,
+.new-movie h4 {
+  text-align: center;
+}
+.new-movie textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: solid 2px #000;
+}
+.new-movie textarea:focus {
+  outline: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: #fff;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.overlay .inner > * {
+  margin-bottom: 15px;
+}
+.overlay .inner {
+  width: 100%;
+}
+.overlay a {
+  width: 65%;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Drowdown */
+ul.dropdown-menu {
+  width: 100%;
+}
 
 
 /* Text inputs */
@@ -322,22 +435,35 @@ input[type=checkbox] {
 
 /* Input */
 input[type=text],
+input[type=search],
 input[type=password],
 button {
   background-color: inherit;
-  border-bottom: solid 2px #fff;
-  /*border-bottom: solid 2px transparent;*/
+  border-bottom: solid 2px #000;
   border-radius: 0;
-  transition: all 0.25s;
+  transition: all ease 0.25s;
   padding-top: 0.625em;
   padding-bottom: 0.455em;
 
-  color: #fff;
+  color: #000;
 }
 input[type=text]:focus,
+input[type=search]:focus,
 input[type=password]:focus {
   outline: none;
+  border-bottom: solid 2px #8C546E; /* Raphac color */
+  /*border-bottom: solid 2px #fff;*/
+}
+input[type=text].inverted,
+input[type=search].inverted,
+input[type=password].inverted {
   border-bottom: solid 2px #fff;
+  color: #fff;
+}
+input[type=text].inverted:focus,
+input[type=search].inverted:focus,
+input[type=password].inverted:focus {
+  /*border-bottom: solid 2px #fff;*/
 }
 
 
@@ -398,6 +524,11 @@ input[type=password]:focus {
 }
 
 
+/* Disable transition */
+.notransition {
+  transition: none;
+}
+
 
 
 /* Media Queries */
@@ -425,6 +556,9 @@ input[type=password]:focus {
 @media only screen and (max-width: 450px) {
   .show-card {
     min-height: 200px;
+  }
+  .show-card.search-card {
+    min-height: 100px;
   }
   .show-card .details p:not(.plot-250) {
     display: none;

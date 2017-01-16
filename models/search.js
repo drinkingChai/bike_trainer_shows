@@ -4,24 +4,28 @@ var imdb = require('imdb-api');
 var omdb = require('omdb');
 
 
-// gets data from imdb API by imdbid
-search.get('/id/:id', function(request, response) {
-  imdb.getById(request.params.id).then(function(movie) {
-    response.status(200).json(movie);
-  });
-});
+// // gets data from imdb API by imdbid
+// search.get('/id/:id', function(request, response) {
+//   imdb.getById(request.params.id).then(function(movie) {
+//     response.status(200).json(movie);
+//   });
+// });
+//
+//
+// // searches through OMDB API for possible matches to title
+// search.get('/title/:title', function(request, response) {
+//   var searchResults = [];
+//   omdb.search(request.params.title, function(err, result) {
+//     result.forEach(function(movie) {
+//       searchResults.push(movie);
+//     });
+//     response.status(200).json(searchResults);
+//   });
+// });
 
-
-// searches through OMDB API for possible matches to title
-search.get('/title/:title', function(request, response) {
-  var searchResults = [];
-  omdb.search(request.params.title, function(err, result) {
-    result.forEach(function(movie) {
-      searchResults.push(movie);
-    });
-    response.status(200).json(searchResults);
-  });
-});
+// search.all('/', function(request, response) {
+//   console.log('pass');
+// })
 
 
 search.get('/:value/:type', function(request, response) {

@@ -9,11 +9,11 @@ angular.module('BikeTrainerShows')
         templateUrl: 'assets/templates/movies/search.html',
         controller: 'SearchMovieController'
       })
-      .when('/movies/search/:title', {
+      .when('/search/:title', {
         templateUrl: 'assets/templates/movies/search.html',
         controller: 'SearchMovieController'
       })
-      .when('/movies/new/:imdbid/:title', {
+      .when('/new/:imdbid', {
         templateUrl: 'assets/templates/movies/new.html',
         controller: 'NewMovieController'
       })

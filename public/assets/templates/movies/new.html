@@ -1,5 +1,31 @@
 <div class="new-movie">
-  <div class="row">
+
+  <bts-overlay ng-show="exists" message="'Added!'" nexturl="'#/'"></bts-overlay>
+
+  <h2>{{movie.title}}</h2>
+  <h4>Release year: {{movie.year.from || movie.year}}</h4>
+
+  <form>
+    <div class="dropdown">
+      <button class="btn default-btn-style dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Where can I watch this? {{movieSource}}
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li ng-repeat="source in sources"><a href="" ng-click="setSource(source)">{{source}}</a></li>
+      </ul>
+    </div>
+    <div class="other-input" ng-show="movieSource === 'Other'">
+      <bts-input type="'text'" model="other" label="'Other'"></bts-input>
+    </div>
+
+
+    <textarea name="blurb" rows="8" ng-model="blurb" placeholder="Tell us why it's great for cycling!"></textarea>
+
+    <button class="bts-default-btn" ng-click="addMovie(movie.imdbid, movieSource, blurb)">Add</button>
+  </form>
+
+  <!-- <div class="row">
     <div class="col-md-2 col-md-offset-2 col-sm-3 hidden-xs">
       <img ng-hide="movie.poster === 'N/A'" ng-src="{{movie.poster}}" alt="">
       <div ng-show="movie.poster === 'N/A'" class="no-image">
@@ -12,32 +38,16 @@
       <h3>Release year: {{movie.year.from || movie.year}}</h3>
 
       <br>
-      <!-- <p>Where can I watch this?</p> -->
-      <div class="dropdown source" ng-show="!exists">
-        <button class="btn default-btn-style dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Where can I watch this?: {{movieSource}}
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <li ng-repeat="source in sources"><a href="" ng-click="setSource(source)">{{source}}</a></li>
-        </ul>
-      </div>
-      <div class="other-input" ng-show="!exists && movieSource === 'Other'">
-        <input type="text" ng-model="other" placeholder="Other...">
-      </div>
 
 
-      <textarea name="blurb" rows="8" cols="80" ng-show="!exists" ng-model="blurb" placeholder="Tell us why it's great for cycling!"></textarea>
       <br>
 
 
       <ul class="movie-add-buttons">
         <li ng-show="!exists" ><a class="btn default-btn-style add-button" ng-click="addMovie(movie.imdbid, movieSource, blurb)">Add</a></li>
         <li ng-show="exists"><a class="btn default-btn-style already-added add-button">Added</a></li>
-        <li><a class="btn default-btn-style add-button" ng-href="#/movies/search/{{searchTitle}}">Back</a></li>
-        <li ng-show="exists"><a class="btn default-btn-style add-button" ng-href="#/movies/search">New Search</a></li>
       </ul>
 
     </div>
-  </div>
+  </div> -->
 </div>

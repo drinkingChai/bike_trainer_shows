@@ -1,0 +1,26 @@
+<div class="show-card search-card">
+  <figure>
+    <img ng-src="{{movie.poster}}" alt="">
+  </figure>
+
+
+  <div class="details">
+    <h2>{{movie.title}}</h2>
+    <h4>{{movie.type}}</h4>
+
+    <div class="buttons" ng-class="{relative: plotShown}">
+    </div>
+  </div>
+
+  <div class="stats">
+    <ul>
+      <a class="bts-default-btn more" ng-show="movieIds.indexOf(movie.imdb) !== -1"><i class="fa fa-check fa-fw"></i></a>
+      <a class="bts-default-btn more" ng-hide="movieIds.indexOf(movie.imdb) !== -1" ng-href="#/new/{{movie.imdb}}"><i class="fa fa-plus fa-fw"></i></a>
+    </ul>
+  </div>
+
+
+
+  <!-- <a class="btn" href="#/" ng-click="deleteMovie(movie.imdbid)">Delete</a> -->
+
+</div>

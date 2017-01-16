@@ -3,8 +3,6 @@
     <img ng-src="{{movie.poster}}" alt="">
   </figure>
 
-  <!-- <div class="watchlist" ng-class="watchlist.indexOf(movie.imdbid) === -1 ? 'add' : 'remove'">
-  </div> -->
 
   <div class="details">
     <h2>{{movie.title}}</h2>
@@ -18,8 +16,6 @@
 
     <p class="plot-250" ng-show="plotShown">{{movie.plot | limitTo: 250}}<span ng-show="movie.plot.length > 250">...</span></p>
 
-      <!-- <a class="bts-default-btn" ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i> watchlist</a>
-      <a class="bts-default-btn added" ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i> watchlist</a> -->
 
     <div class="buttons" ng-class="{relative: plotShown}">
       <a class="bts-default-btn" ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i></a>
@@ -30,15 +26,6 @@
   </div>
 
   <div class="stats">
-    <!-- <ul>
-      <li><h2>{{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></h2> <h3>- stream it there</h3></li>
-      <li><h2>{{movie.runtime | minutesToHours}}</h2> <h3>training hours</h3></li>
-      <li><h2>{{movie.rating}}</h2> <h3>/10 on IMDb</h3></li>
-    </ul> -->
-
-    <!-- <a class="bts-default-btn" ng-href="{{movie.imdburl}}">IMDb</a>
-    <a class="bts-default-btn" ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i> Watchlist</a>
-    <a class="bts-default-btn" ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i> Watchlist</a> -->
 
 
     <ul>

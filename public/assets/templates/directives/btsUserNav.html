@@ -1,5 +1,6 @@
 <div class="user-nav hidden-right">
   <p>Hello! {{user.name}}</p>
+  <a class="bts-default-btn inverted" href="#/search" ng-show="user">Add to List</a>
   <a class="bts-default-btn inverted" href="#/login" ng-show="user">Profile</a>
   <a class="bts-default-btn inverted" ng-click="logout()" ng-show="user">Sign Out</a>
   <a class="bts-default-btn inverted" href="#/login" ng-hide="user">Sign In</a>

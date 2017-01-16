@@ -7,9 +7,20 @@ angular.module('BikeTrainerShows')
       scope: {
         label: '<',
         type: '<',
+        inverted: '<',
         model: '='
       },
       controller: function($scope) {
+        $(document).ready(function() {
+          if ($('.input-group input').val().length) {
+            var $label = $('.input-group label');
+            // FIXME: the notransition class isn't working
+            $label.addClass('notransition');
+            $label.addClass('float');
+            $label.removeClass('notransition');
+          }
+        });
+
         $('.input-group label').click(function() {
           $(this).addClass('float');
           $(this).parent().children('input').focus();
