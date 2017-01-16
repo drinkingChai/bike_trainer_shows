@@ -12,7 +12,7 @@ angular.module('BikeTrainerShows')
 
       if (input && filterIsOn()) {
         for (var i = 0, l = collection.length; i < l; i++) {
-          var genres = collection[i].genres;
+          var genres = collection[i].imdbData.genres.split(', ');
           for (var j = 0, m = genres.length; j < m; j++) {
             if (input[genres[j]]) {
               newCollection.push(collection[i]);

@@ -64,6 +64,7 @@ h1, h2, h3 {
   border: 0;
   padding: 5px 15px;
   width: 100%;
+  color: #fff;
 }
 .sort-filter ul.dropdown-menu {
   background-color: #424242;

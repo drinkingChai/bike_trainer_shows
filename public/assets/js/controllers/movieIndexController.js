@@ -3,14 +3,15 @@ angular.module('BikeTrainerShows')
     $scope.movies = [];
     $scope.genres = {};
     $scope.source = null;
-    $scope.prop = null;
+    $scope.prop = '-runtime';
     $scope.filterToggle = false;
 
     Movie.query().$promise.then(function(movies) {
       for (var i = 0, l = movies.length; i < l; i++) {
         $scope.movies.push(movies[i]);
 
-        movies[i].imdbData.genres.split(',').forEach(function(genre) {
+        movies[i].imdbData.genres.split(', ').forEach(function(genre) {
+
           $scope.genres[genre] = false;
         })
       }
