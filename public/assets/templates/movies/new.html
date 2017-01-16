@@ -7,7 +7,7 @@
 
   <form>
     <div class="dropdown">
-      <button class="btn default-btn-style dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <button class="bts-default-btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         Where can I watch this? {{movieSource}}
         <span class="caret"></span>
       </button>
@@ -25,29 +25,4 @@
     <button class="bts-default-btn" ng-click="addMovie(movie.imdbid, movieSource, blurb)">Add</button>
   </form>
 
-  <!-- <div class="row">
-    <div class="col-md-2 col-md-offset-2 col-sm-3 hidden-xs">
-      <img ng-hide="movie.poster === 'N/A'" ng-src="{{movie.poster}}" alt="">
-      <div ng-show="movie.poster === 'N/A'" class="no-image">
-        <h3>No Image</h3>
-      </div>
-    </div>
-
-    <div class="col-md-6 col-sm-9">
-      <h2>{{movie.title}}</h2>
-      <h3>Release year: {{movie.year.from || movie.year}}</h3>
-
-      <br>
-
-
-      <br>
-
-
-      <ul class="movie-add-buttons">
-        <li ng-show="!exists" ><a class="btn default-btn-style add-button" ng-click="addMovie(movie.imdbid, movieSource, blurb)">Add</a></li>
-        <li ng-show="exists"><a class="btn default-btn-style already-added add-button">Added</a></li>
-      </ul>
-
-    </div>
-  </div> -->
 </div>

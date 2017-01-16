@@ -25,4 +25,8 @@ angular.module('BikeTrainerShows')
         templateUrl: 'assets/templates/login/new.html',
         controller: 'UserNewController'
       })
+      .when('/watchlist', {
+        templateUrl: 'assets/templates/login/watchlist.html',
+        controller: 'UserWatchlistController'
+      })
   });

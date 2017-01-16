@@ -121,17 +121,21 @@ h1, h2, h3 {
 
 
 
-/* Shows index */
-.shows-container {
+/* Shows index and
+  User Profile */
+.shows-container,
+.user.profile {
   /*position: relative;*/
   height: 100vh;
   /*width: 100vw;*/
   overflow: scroll;
 }
-.shows-container.freeze-scroll {
+.shows-container.freeze-scroll,
+.user.profile.freeze-scroll {
   overflow: hidden;
 }
-.shows-container nav {
+.shows-container nav,
+.user.profile nav {
   position: fixed;
   background-color: #fff;
   width: 100%;
@@ -147,14 +151,17 @@ h1, h2, h3 {
 
   border-bottom: solid 1px hsl(0, 0%, 90%); /* maybe keep this at 2px */
 }
-.shows-container nav a {
+.shows-container nav a,
+.user.profile nav a {
   width: 25%;
 }
-.shows-container nav a:nth-child(2) {
+.shows-container nav a:nth-child(2),
+.user.profile nav a:nth-child(2) {
   width: 50%;
   text-align: center;
 }
-.shows-container nav a:last-child {
+.shows-container nav a:last-child,
+.user.profile nav a:last-child {
   text-align: right;
 }
 .shows {
@@ -254,7 +261,7 @@ h1, h2, h3 {
 
 
 /* User login */
-.user {
+.user.login {
   /*position: fixed;
   top: 0;
   bottom: 0;
@@ -272,13 +279,13 @@ h1, h2, h3 {
 
   background-color: #222;
 }
-.user p {
+.user.login p {
   text-align: center;
 }
-.user form > * {
+.user.login form > * {
   margin-bottom: 15px;
 }
-.user form .bts-default-btn {
+.user.login form .bts-default-btn {
   width: 100%;
   text-align: center;
 }
@@ -556,7 +563,7 @@ input[type=password].inverted:focus {
 }
 @media only screen and (max-width: 450px) {
   .show-card {
-    min-height: 200px;
+    min-height: 180px; /* maybe leave this at 200px */
   }
   .show-card.search-card {
     min-height: 100px;

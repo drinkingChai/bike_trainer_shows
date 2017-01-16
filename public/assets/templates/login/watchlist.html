@@ -1,0 +1,23 @@
+<div class="user profile">
+  <nav>
+    <a class="toggle-filter"><i class="fa fa-list"></i></a>
+    <!-- <a class="">{{user.username}}</a> -->
+    <a href="#/"><i class="fa fa-home"></i></a>
+    <a class="toggle-user-nav"><i class="fa fa-user-circle"></i></a>
+  </nav>
+
+  <bts-sort-filter class="hidden-left" source="source" genres="genres" genre="genre" prop="prop"></bts-sort-filter>
+
+  <bts-user-nav class="hidden-right"></bts-user-nav>
+
+  <div class="shows">
+    <div class="show-card-parent">
+      <div ng-repeat="movie in watchlist | filter:search | genreFilter:genres | sourceFilter:source | orderMoviesBy:prop">
+        <bts-show-card movie="movie.imdbData"></bts-show-card>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

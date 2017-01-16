@@ -1,0 +1,81 @@
+angular.module('BikeTrainerShows')
+  .controller('UserWatchlistController', function($scope, User, Movie) {
+    $scope.genres = {};
+    $scope.source = null;
+    $scope.prop = null;
+    $scope.watchlist = [];
+    $scope.user = null;
+
+    User.getUser().then(function success(response) {
+      $scope.user = response.data;
+      getUserMovies(response.data.watchlist);
+    });
+
+    $scope.removeFrmWatchlist = function(imdbid) {
+      User.removeMovie(imdbid);
+      $route.reload();
+    }
+
+
+
+
+    // take this to a separate page
+    // on this page, check if user is logged in and if so, route to this page
+    var getUserMovies = function(watchlist) {
+      for (var i = 0, l = watchlist.length, m = watchlist; i < l; i++) {
+        Movie.get({id: m[i]}).$promise.then(function(result) {
+          $scope.watchlist.push(result);
+          var genres = result.imdbData.genres.split(', ');
+          genres.forEach(function(genre) {
+            $scope.genres[genre] = false;
+          })
+        })
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // freeze scroll
+    var toggleMenu = function() {
+      $('.user.profile').toggleClass('freeze-scroll'); //shift the body
+    }
+    // filter menu
+    var toggleLeftMenu = function() {
+      $('.shows, .user.profile nav').toggleClass('shift-right'); // shift the body & nav
+      $('.user.profile .sort-filter').toggleClass('visible-left');
+      toggleMenu();
+    }
+    $('.user.profile .toggle-filter').click(function() {
+      toggleLeftMenu();
+    })
+
+    // user menu
+    var toggleRightMenu = function() {
+      $('.shows, .user.profile nav').toggleClass('shift-left'); // shift the body & nav
+      $('.user.profile .user-nav').toggleClass('visible-right');
+      toggleMenu();
+    }
+    $('.user.profile .toggle-user-nav').click(function() {
+      toggleRightMenu();
+    })
+    //unfreeze scroll
+    $('.shows').click(function() {
+      if ($(this).hasClass('shift-right')) {
+        toggleLeftMenu();
+      } else if ($(this).hasClass('shift-left')) {
+        toggleRightMenu();
+      }
+    })
+
+  })
