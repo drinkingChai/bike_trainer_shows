@@ -143,6 +143,7 @@ h1, h2, h3 {
 /* Shows, watchlist and search nav */
 .shows-container nav,
 .user.watchlist nav,
+.user.profile nav,
 .search-new-container nav {
   position: fixed;
   background-color: #fff;
@@ -295,6 +296,7 @@ h1, h2, h3 {
   width: 100vw;
   overflow: scroll;
 
+  padding: 16%;
   padding-top: 20vh;
 
   display: flex;
@@ -305,6 +307,9 @@ h1, h2, h3 {
 }
 .user.login p {
   text-align: center;
+}
+.user.login form {
+  width: 100%;
 }
 .user.login form > * {
   margin-bottom: 15px;
@@ -320,12 +325,24 @@ h1, h2, h3 {
 
 
 
+/* New user */
+.user.login.new {
+  padding-top: 10vh;
+}
+
+
+
+
+
+
+
 
 
 
 /* User profile */
-.user.profile {
+.user.profile .inner {
   padding: 30px;
+  padding-top: 60px;
 }
 .user.profile > * {
   margin-bottom: 30px;
@@ -514,6 +531,7 @@ input[type=checkbox] {
 input[type=text],
 input[type=search],
 input[type=password],
+input[type=email],
 button {
   background-color: inherit;
   border-bottom: solid 2px #000;
@@ -526,6 +544,7 @@ button {
 }
 input[type=text]:focus,
 input[type=search]:focus,
+input[type=email]:focus,
 input[type=password]:focus {
   outline: none;
   border-bottom: solid 2px #8C546E; /* Raphac color */
@@ -533,12 +552,14 @@ input[type=password]:focus {
 }
 input[type=text].inverted,
 input[type=search].inverted,
+input[type=email].inverted,
 input[type=password].inverted {
   border-bottom: solid 2px #fff;
   color: #fff;
 }
 input[type=text].inverted:focus,
 input[type=search].inverted:focus,
+input[type=email].inverted:focus,
 input[type=password].inverted:focus {
   /*border-bottom: solid 2px #fff;*/
 }

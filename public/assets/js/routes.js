@@ -25,6 +25,10 @@ angular.module('BikeTrainerShows')
         templateUrl: 'assets/templates/login/new.html',
         controller: 'UserNewController'
       })
+      .when('/login/forgot', {
+        templateUrl: 'assets/templates/login/forgot.html',
+        controller: 'UserForgotPassController'
+      })
       .when('/watchlist', {
         templateUrl: 'assets/templates/login/watchlist.html',
         controller: 'UserWatchlistController'
@@ -32,5 +36,9 @@ angular.module('BikeTrainerShows')
       .when('/profile', {
         templateUrl: 'assets/templates/login/profile.html',
         controller: 'UserProfileController'
+      })
+      .when('/profile/edit', {
+        templateUrl: 'assets/templates/login/edit.html',
+        controller: 'UserProfileEditController'
       })
   });
