@@ -1,0 +1,33 @@
+<div class="user profile">
+
+  <bts-overlay ng-show="passwordChanged" message="'Password Changed!'" nexturl="'#/'"></bts-overlay>
+
+  <div class="user-info">
+    <h2>Hello, {{user.name}}</h2>
+    <h4>{{user.username}}</h4>
+  </div>
+
+  <div class="button-group">
+    <a class="bts-default-btn" href="#/watchlist">Watchlist</a>
+    <a class="bts-default-btn" ng-click="logout()">Sign out</a>
+  </div>
+
+  <form>
+    <bts-input type="'password'" label="'Current password'" model="currentPassword"></bts-input>
+    <bts-input type="'password'" label="'New password'" model="password1"></bts-input>
+    <bts-input type="'password'" label="'Confirm password'" model="password2"></bts-input>
+
+    <button class="bts-default-btn" ng-click="password1 === password2 && changePassword(user.username, currentPassword, password1)">Change password</button>
+    <p class="error" ng-show="wrongPass">Wrong or mismatched password</p>
+  </form>
+
+
+
+
+
+
+
+
+
+
+</div>

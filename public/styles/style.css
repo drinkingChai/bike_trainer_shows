@@ -122,20 +122,28 @@ h1, h2, h3 {
 
 
 /* Shows index and
-  User Profile */
+  User Watchlist and
+  Search */
 .shows-container,
-.user.profile {
+.user.watchlist,
+.search-new-container {
   /*position: relative;*/
   height: 100vh;
   /*width: 100vw;*/
   overflow: scroll;
 }
 .shows-container.freeze-scroll,
-.user.profile.freeze-scroll {
+.user.watchlist.freeze-scroll,
+.search-new-container.freeze-scroll {
   overflow: hidden;
 }
+
+
+
+/* Shows, watchlist and search nav */
 .shows-container nav,
-.user.profile nav {
+.user.watchlist nav,
+.search-new-container nav {
   position: fixed;
   background-color: #fff;
   width: 100%;
@@ -152,18 +160,29 @@ h1, h2, h3 {
   border-bottom: solid 1px hsl(0, 0%, 90%); /* maybe keep this at 2px */
 }
 .shows-container nav a,
-.user.profile nav a {
+.user.watchlist nav a {
   width: 25%;
 }
 .shows-container nav a:nth-child(2),
-.user.profile nav a:nth-child(2) {
+.user.watchlist nav a:nth-child(2) {
   width: 50%;
   text-align: center;
 }
 .shows-container nav a:last-child,
-.user.profile nav a:last-child {
+.user.watchlist nav a:last-child,
+.search-new-container nav a:last-child {
   text-align: right;
 }
+.search-new-container nav a {
+  width: 75%;
+  text-align: right;
+}
+
+
+
+
+/* Shows */
+/* REVIEW: turn this into a directive */
 .shows {
   /*position: absolute;*/
   /*top: 50px;*/
@@ -260,6 +279,11 @@ h1, h2, h3 {
 
 
 
+
+
+
+
+
 /* User login */
 .user.login {
   /*position: fixed;
@@ -297,11 +321,45 @@ h1, h2, h3 {
 
 
 
+
+
+/* User profile */
+.user.profile {
+  padding: 30px;
+}
+.user.profile > * {
+  margin-bottom: 30px;
+}
+.user.profile form > *,
+.user.profile .button-group > * {
+  margin-bottom: 15px;
+}
+.user.profile a,
+.user.profile button {
+  width: 100%;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Search */
 .search-new-container form {
   width: 100%;
   display: flex;
-  /*margin-top: 15px;*/
+  margin-top: 2.75em;
   padding: 30px;
   /*box-shadow: 0 1px 1px 1px #000;*/
   box-shadow: 0px 1px 3px hsla(0,0%,0%,0.2);
@@ -309,6 +367,8 @@ h1, h2, h3 {
   z-index: 1;
   position: fixed;
   top: 0;
+
+  transition: all 0.25s;
 }
 .search-new-container form > * {
   margin-right: 10px;
@@ -332,7 +392,7 @@ h1, h2, h3 {
 
 /* Search card */
 .shows.search {
-  margin-top: 6.75em;
+  margin-top: 9.5em;
 }
 
 
@@ -387,6 +447,8 @@ h1, h2, h3 {
   align-items: center;
   justify-content: center;
   text-align: center;
+
+  padding: 30px;
 }
 .overlay .inner > * {
   margin-bottom: 15px;
@@ -405,7 +467,14 @@ h1, h2, h3 {
 
 
 
-
+/* Error */
+p.error {
+  color: #F00;
+  text-align: center;
+}
+p.error.inverted {
+  color: #FD7400;
+}
 
 
 /* Drowdown */

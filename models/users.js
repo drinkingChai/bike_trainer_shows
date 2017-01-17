@@ -87,6 +87,28 @@ users.post('/removemovie', function(request, response) {
   })
 })
 
+users.post('/changepass', authenticate, function(request, response) {
+  MongoClient.connect(url, function(err, db) {
+    db.collection('users').update(
+      { username: request.user.username },
+      { $set: { password: bcrypt.hashSync(request.body.newpassword, saltRounds) }}
+    );
+    console.log('password updated');
+    db.collection('users').findOne({
+      username: request.user.username
+    }, function(err, result) {
+      var token = jwt.sign({
+        username: result.username
+      }, statics.jwtSecret);
+      response.send({
+        user: result,
+        token: token
+      })
+    })
+  })
+})
+
+
 function authenticate(request, response, next) {
   var body = request.body;
   if (!body.username || !body.password) {

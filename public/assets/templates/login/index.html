@@ -10,6 +10,7 @@
 
     <button class="bts-default-btn inverted" type="submit" ng-click="login(username, password)">Sign In</button>
     <a class="bts-default-btn inverted" href="#/login/new">Register</a>
+    <p class="error inverted" ng-show="wrongUserPass">Wrong username <br>or password</p>
   </form>
 
   <!-- <div class="" ng-show="user !== null">

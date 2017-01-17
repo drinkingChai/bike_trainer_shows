@@ -8,10 +8,11 @@ angular.module('BikeTrainerShows')
 
     $scope.login = function(username, password) {
       User.login(username.toLowerCase(), password).then(function success(response) {
-        if (response.data) {
+        if (response === 'wrong_userpass') {
+          $scope.wrongUserPass = true;
+        } else {
           $location.path('watchlist');
         }
-        // else show error
       });
     }
   })

@@ -4,7 +4,9 @@ angular.module('BikeTrainerShows')
       replace: true,
       restrict: 'E',
       templateUrl: 'assets/templates/directives/btsUserNav.html',
-      controller: function($scope, $location, User) {
+      controller: function($scope, $route, $location, User) {
+        $scope.location = $location.path();
+
         User.getUser().then(function success(response) {
           $scope.user = response.data;
         });
@@ -14,7 +16,8 @@ angular.module('BikeTrainerShows')
           User.logout();
           $scope.user = null;
           $scope.watchlist = [];
-          $location.path('');
+          $route.reload();
+          $location.path('/');
         }
       }
     }

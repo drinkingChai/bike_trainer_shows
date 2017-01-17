@@ -48,25 +48,25 @@ angular.module('BikeTrainerShows')
 
     // freeze scroll
     var toggleMenu = function() {
-      $('.user.profile').toggleClass('freeze-scroll'); //shift the body
+      $('.user.watchlist').toggleClass('freeze-scroll'); //shift the body
     }
     // filter menu
     var toggleLeftMenu = function() {
-      $('.shows, .user.profile nav').toggleClass('shift-right'); // shift the body & nav
-      $('.user.profile .sort-filter').toggleClass('visible-left');
+      $('.shows, .user.watchlist nav').toggleClass('shift-right'); // shift the body & nav
+      $('.user.watchlist .sort-filter').toggleClass('visible-left');
       toggleMenu();
     }
-    $('.user.profile .toggle-filter').click(function() {
+    $('.user.watchlist .toggle-filter').click(function() {
       toggleLeftMenu();
     })
 
     // user menu
     var toggleRightMenu = function() {
-      $('.shows, .user.profile nav').toggleClass('shift-left'); // shift the body & nav
-      $('.user.profile .user-nav').toggleClass('visible-right');
+      $('.shows, .user.watchlist nav').toggleClass('shift-left'); // shift the body & nav
+      $('.user.watchlist .user-nav').toggleClass('visible-right');
       toggleMenu();
     }
-    $('.user.profile .toggle-user-nav').click(function() {
+    $('.user.watchlist .toggle-user-nav').click(function() {
       toggleRightMenu();
     })
     //unfreeze scroll

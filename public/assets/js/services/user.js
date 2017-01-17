@@ -5,9 +5,11 @@ angular.module('BikeTrainerShows')
         return $http.post('users/login', {
           username: username,
           password: password
-        }).then(function(response) {
+        }).then(function success(response) {
           AuthTokenFactory.setToken(response.data.token);
           return response;
+        }, function error(response) {
+          return response.data;
         })
       },
       logout: function() {
@@ -32,6 +34,22 @@ angular.module('BikeTrainerShows')
         return $http.post('users/removemovie', {
           imdbid: imdbid
         })
+      },
+      changePass: function(username, password, newpassword) {
+        return $http.post('users/changepass', {
+          username: username,
+          password: password,
+          newpassword: newpassword
+        }).then(function success(response) {
+          // console.log('passchanged');
+          AuthTokenFactory.setToken(response.data.token);
+          return response;
+        }, function error(response) {
+          return response.data;
+        })
+        // return $http.post('users/changepass', {
+        //   newpass: newpass
+        // })
       }
     };
   })
