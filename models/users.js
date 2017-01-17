@@ -13,8 +13,9 @@ var url = 'mongodb://localhost:27017/bike_trainer_shows';
 
 var users = express();
 
-function user(username, name, password) {
+function user(username, email, name, password) {
   this.username = username;
+  this.email = email;
   this.name = name;
   this.password = bcrypt.hashSync(password, saltRounds);
   this.watchlist = [];
@@ -47,7 +48,13 @@ users.post('/login', authenticate, function(request, response) {
 
 users.post('/new', function(request, response) {
   var body = request.body,
-    newUser = new user(body.username, body.name, body.password);
+    newUser = new user(body.username, body.email, body.name, body.password);
+
+  if (!isComplex(body.password)) {
+    console.log('not complex');
+    response.sendStatus(406);
+    return;
+  }
 
   MongoClient.connect(url, function(err, db) {
     db.collection('users').insertOne(newUser, function(err, result) {
@@ -125,6 +132,11 @@ function authenticate(request, response, next) {
       }
     })
   })
+}
+
+function isComplex(password) {
+  // simple for now
+  return password.length >= 6;
 }
 
 module.exports = users;

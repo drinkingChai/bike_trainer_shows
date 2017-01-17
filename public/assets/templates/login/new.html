@@ -1,20 +1,23 @@
 <div class="user login new">
 
-  <form>
-    <bts-input type="'text'" label="'Username'" model="user.username" inverted="true"></bts-input>
-    <bts-input type="'text'" label="'Name'" model="user.name" inverted="true"></bts-input>
-    <bts-input type="'email'" label="'E-mail'" model="user.email" inverted="true"></bts-input>
-    <bts-input type="'password'" label="'Password'" model="user.password" inverted="true"></bts-input>
-    <bts-input type="'password'" label="'Confirm password'" model="password2" inverted="true"></bts-input>
+  <form novalidate name='newuserform' ng-submit="newUser(user)">
+    <bts-input type="'text'" label="'Username'" model="user.username" inverted="true" required="true"></bts-input>
+    <p class="error inverted left" ng-show="submitted && !user.username">Blank username</p>
+    <bts-input type="'text'" label="'Name'" model="user.name" inverted="true" required="true"></bts-input>
+    <p class="error inverted left" ng-show="submitted && !user.name">Blank name</p>
+    <bts-input type="'email'" label="'E-mail'" model="user.email" inverted="true" required="true"></bts-input>
+    <p class="error inverted left" ng-show="submitted && !user.email">Invalid email</p>
+    <bts-input type="'password'" label="'Password'" model="user.password" inverted="true" required="true"></bts-input>
+    <bts-input type="'password'" label="'Confirm password'" model="password2" inverted="true" required="true"></bts-input>
+    <p class="error inverted left" ng-show="submitted && user.password !== password2">Password mismatch</p>
+    <p class="error inverted left" ng-show="submitted && user.password.length < 6">Password too short</p>
 
 
-    <button class="bts-default-btn inverted" type="submit" ng-submit="user.password === password2 && newUser(user)">Register</button><br><br>
+    <button class="bts-default-btn inverted" type="submit">Register</button><br><br>
 
 
     <p>Already a user? Log in here</p>
     <a class="bts-default-btn inverted" href="#/login">Sign In</a>
-
-
   </form>
 
 </div>

@@ -486,11 +486,15 @@ h1, h2, h3 {
 
 /* Error */
 p.error {
+  font-size: 0.75em;
   color: #F00;
   text-align: center;
 }
 p.error.inverted {
   color: #FD7400;
+}
+p.error.left {
+  text-align: left;
 }
 
 

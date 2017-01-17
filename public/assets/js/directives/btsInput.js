@@ -8,6 +8,7 @@ angular.module('BikeTrainerShows')
         label: '<',
         type: '<',
         inverted: '<',
+        required: '<',
         model: '='
       },
       controller: function($scope) {
