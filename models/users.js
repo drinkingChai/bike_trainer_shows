@@ -47,14 +47,15 @@ users.post('/login', authenticate, function(request, response) {
 })
 
 users.post('/new', function(request, response) {
-  var body = request.body,
-    newUser = new user(body.username, body.email, body.name, body.password);
+  var body = request.body;
 
-  if (!isComplex(body.password)) {
-    console.log('not complex');
+  if (body.password != body.password2 || !isComplex(body.password)) {
+    console.log('password mismatch or not complex');
     response.sendStatus(406);
     return;
   }
+
+  var newUser = new user(body.username, body.email, body.name, body.password);
 
   MongoClient.connect(url, function(err, db) {
     db.collection('users').insertOne(newUser, function(err, result) {
