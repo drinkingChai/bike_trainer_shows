@@ -35,6 +35,11 @@ angular.module('BikeTrainerShows')
           imdbid: imdbid
         })
       },
+      likeMovie: function(imdbid) {
+        return $http.put('users/likemovie', {
+          imdbid: imdbid
+        })
+      },
       changePass: function(username, password, newpassword) {
         return $http.post('users/changepass', {
           username: username,

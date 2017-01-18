@@ -8,8 +8,11 @@
     <bts-overlay ng-show="passwordChanged" message="'Password Changed!'" nexturl="'#/'"></bts-overlay>
 
     <div class="user-info">
-      <h2>Hello, {{user.name}}</h2>
-      <h4>{{user.username}}</h4>
+      <h2>Hello, {{user.name}}</h2><br>
+      <h3>Username</h3>
+      <p>{{user.username}}</p>
+      <h3>Email</h3>
+      <p>{{user.email}} <a>change</a></p>
     </div>
 
     <div class="button-group">

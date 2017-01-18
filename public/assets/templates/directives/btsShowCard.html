@@ -1,27 +1,27 @@
 <div class="show-card">
   <figure>
-    <img ng-src="{{movie.poster}}" alt="">
+    <img ng-src="{{movie.imdbData.poster}}" alt="">
   </figure>
 
 
   <div class="details">
-    <h2>{{movie.title}}</h2>
-    <h4>{{movie.genres}}</h4>
-    <h3 class="source">{{movie.source}}<span ng-show="movie.sourceOther">: {{movie.sourceOther}}</span></h3>
+    <h2>{{movie.imdbData.title}}</h2>
+    <h4>{{movie.imdbData.genres}}</h4>
+    <h3 class="source">{{movie.imdbData.source}}<span ng-show="movie.imdbData.sourceOther">: {{movie.imdbData.sourceOther}}</span></h3>
 
 
-    <p class="plot-200">{{movie.plot | limitTo: 200}}<span ng-show="movie.plot.length > 200">...</span></p>
-    <p class="plot-150">{{movie.plot | limitTo: 150}}<span ng-show="movie.plot.length > 150">...</span></p>
-    <p class="plot-100">{{movie.plot | limitTo: 100}}<span ng-show="movie.plot.length > 100">...</span></p>
+    <p class="plot-200">{{movie.imdbData.plot | limitTo: 200}}<span ng-show="movie.imdbData.plot.length > 200">...</span></p>
+    <p class="plot-150">{{movie.imdbData.plot | limitTo: 150}}<span ng-show="movie.imdbData.plot.length > 150">...</span></p>
+    <p class="plot-100">{{movie.imdbData.plot | limitTo: 100}}<span ng-show="movie.imdbData.plot.length > 100">...</span></p>
 
-    <p class="plot-250" ng-show="plotShown">{{movie.plot | limitTo: 250}}<span ng-show="movie.plot.length > 250">...</span></p>
+    <p class="plot-250" ng-show="plotShown">{{movie.imdbData.plot | limitTo: 250}}<span ng-show="movie.imdbData.plot.length > 250">...</span></p>
 
 
     <div class="buttons" ng-class="{relative: plotShown}">
-      <a class="bts-default-btn" ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i></a>
-      <a class="bts-default-btn added" ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i></a>
-      <a class="bts-default-btn like" ng-click="toggleLike()"><i class="fa fa-heart-o fa-fw"></i> {{movie.hearts}}</a>
-      <!-- movie.hearts doesn't work beacuse this reads imdbData -->
+      <a class="bts-default-btn" ng-click="addToWatchlist(movie.imdbData.imdbid)" ng-show="watchlist.indexOf(movie.imdbData.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i></a>
+      <a class="bts-default-btn added" ng-click="removeFrmWatchlist(movie.imdbData.imdbid)" ng-show="watchlist.indexOf(movie.imdbData.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i></a>
+      <a class="bts-default-btn like" ng-click="toggleLike()"><i class="fa fa-heart-o fa-fw"></i> {{movie.imdbData.hearts}}</a>
+      <!-- movie.imdbData.hearts doesn't work beacuse this reads imdbData -->
       <a class="bts-default-btn more" ng-click="togglePlot()"><i class="fa fa-ellipsis-h fa-fw"></i></a>
     </div>
   </div>
@@ -31,13 +31,13 @@
 
     <ul>
       <!-- Add hover training hours and rating -->
-      <li><h3>{{movie.runtime | minutesToHours}}</h3> <h4>hours</h4></li>
-      <li><h3>{{movie.rating}}</h3><h4>/10</h4></li>
+      <li><h3>{{movie.imdbData.runtime | minutesToHours}}</h3> <h4>hours</h4></li>
+      <li><h3>{{movie.imdbData.rating}}</h3><h4>/10</h4></li>
     </ul>
   </div>
 
 
 
-  <!-- <a class="btn" href="#/" ng-click="deleteMovie(movie.imdbid)">Delete</a> -->
+  <!-- <a class="btn" href="#/" ng-click="deleteMovie(movie.imdbData.imdbid)">Delete</a> -->
 
 </div>

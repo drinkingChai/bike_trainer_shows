@@ -13,7 +13,7 @@
   <div class="shows">
     <div class="show-card-parent">
       <div ng-repeat="movie in movies | filter:search | genreFilter:genres | sourceFilter:source | orderMoviesBy:prop">
-        <bts-show-card movie="movie.imdbData"></bts-show-card>
+        <bts-show-card movie="movie"></bts-show-card>
       </div>
     </div>
   </div>

@@ -383,6 +383,10 @@ nav a {
   width: 100%;
   text-align: center;
 }
+.user.profile .user-info p > a {
+  width: auto;
+  display: inline-block;
+}
 
 
 

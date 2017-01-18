@@ -96,6 +96,17 @@ users.post('/removemovie', function(request, response) {
   })
 })
 
+users.put('/likemovie', function(request, response) {
+  MongoClient.connect(url, function(err, db) {
+    db.collection('users').update(
+      { username: request.user.username },
+      { $push: { likes: request.body.imdbid } }
+    )
+    console.log('liked movie');
+    response.sendStatus(202);
+  })
+})
+
 users.post('/changepass', authenticate, function(request, response) {
   MongoClient.connect(url, function(err, db) {
     db.collection('users').update(

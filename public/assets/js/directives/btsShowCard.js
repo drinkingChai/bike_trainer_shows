@@ -37,6 +37,8 @@ angular.module('BikeTrainerShows')
             movie.hearts++;
             movie.$update();
 
+            User.likeMovie($scope.movie.imdbid);
+
             $scope.movie.hearts++;
           })
 
