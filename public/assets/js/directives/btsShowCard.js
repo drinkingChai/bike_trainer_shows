@@ -7,7 +7,7 @@ angular.module('BikeTrainerShows')
         movie: '='
       },
       templateUrl: 'assets/templates/directives/btsShowCard.html',
-      controller: function($scope, User) {
+      controller: function($scope, User, Movie) {
         $scope.watchlist = [];
         $scope.plotShown = false;
 
@@ -28,6 +28,19 @@ angular.module('BikeTrainerShows')
 
         $scope.togglePlot = function() {
           $scope.plotShown = !$scope.plotShown;
+        }
+
+        // console.log($scope.movie.imdbid);
+        $scope.toggleLike = function() {
+          Movie.get({id: $scope.movie.imdbid}).$promise.then(function success(response) {
+            var movie = new Movie(response);
+            movie.hearts++;
+            movie.$update();
+
+            $scope.movie.hearts++;
+          })
+
+          // Add like to user likes
         }
       }
     }

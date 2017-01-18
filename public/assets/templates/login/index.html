@@ -1,16 +1,17 @@
 <div class="user login">
 
   <!-- <div class="" ng-show="user === null"> -->
-  <form>
+  <form novalidate name="loginform" ng-submit="login(username, password)">
     <p>BTS</p>
     <p>Please sign in</p><br>
 
     <bts-input inverted='true' type="'text'" label="'Username'" model="username"></bts-input>
     <bts-input inverted='true' type="'password'" label="'Password'" model="password"></bts-input>
 
-    <button class="bts-default-btn inverted" type="submit" ng-click="login(username, password)">Sign In</button>
+    <button class="bts-default-btn inverted" type="submit">Sign In</button>
     <a class="bts-default-btn inverted" href="#/login/forgot">Forgot password?</a>
     <a class="bts-default-btn inverted" href="#/login/new">Register</a>
+    <a class="bts-default-btn inverted" href="#/">Home</a>
     <p class="error inverted" ng-show="wrongUserPass">Wrong username <br>or password</p>
   </form>
 

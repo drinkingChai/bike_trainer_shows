@@ -12,6 +12,12 @@
 
   <div class="shows">
     <div class="show-card-parent">
+
+      <div ng-show="watchlist.length === 0" class="no-shows-container">
+        <p>No shows on your watchlist!</p>
+        <a class="bts-default-btn" href="#/search">Add one now!</a>
+      </div>
+
       <div ng-repeat="movie in watchlist | filter:search | genreFilter:genres | sourceFilter:source | orderMoviesBy:prop">
         <bts-show-card movie="movie.imdbData"></bts-show-card>
       </div>

@@ -90,14 +90,13 @@ movies.delete('/:id', function(request, response) {
 
 
 
-
-
-movies.get('/exists/:imdbid', function(request, response) {
+movies.put('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
   MongoClient.connect(url, function(err, db) {
-    db.collection('movies').findOne({imdbid: request.params.imdbid}, function(err, result) {
-      response.status(200).json({'exists': result === null ? false : true});
-    });
-  });
+    db.collection('movies').update(
+      { imdbid: request.body.imdbid },
+      { $inc: { hearts: 1 }}
+    )
+  })
 })
 
 

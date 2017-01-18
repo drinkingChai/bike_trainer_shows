@@ -18,6 +18,7 @@ function user(username, email, name, password) {
   this.email = email;
   this.name = name;
   this.password = bcrypt.hashSync(password, saltRounds);
+  this.likes = [];
   this.watchlist = [];
 }
 
@@ -49,7 +50,7 @@ users.post('/login', authenticate, function(request, response) {
 users.post('/new', function(request, response) {
   var body = request.body;
 
-  if (body.password != body.password2 || !isComplex(body.password)) {
+  if (body.password !== body.password2 || !isComplex(body.password)) {
     console.log('password mismatch or not complex');
     response.sendStatus(406);
     return;

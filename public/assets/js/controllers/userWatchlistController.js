@@ -1,5 +1,5 @@
 angular.module('BikeTrainerShows')
-  .controller('UserWatchlistController', function($scope, User, Movie) {
+  .controller('UserWatchlistController', function($scope, $location, User, Movie) {
     $scope.genres = {};
     $scope.source = null;
     $scope.prop = null;
@@ -9,6 +9,8 @@ angular.module('BikeTrainerShows')
     User.getUser().then(function success(response) {
       $scope.user = response.data;
       getUserMovies(response.data.watchlist);
+    }, function reject(response) {
+      $location.path('login');
     });
 
     $scope.removeFrmWatchlist = function(imdbid) {

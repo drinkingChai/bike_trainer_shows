@@ -11,14 +11,16 @@ angular.module('BikeTrainerShows')
 
       if (user === undefined) {
         return;
-      } else if (user.password !== user.password2) {
+      } else if (!user.password || user.password !== user.password2) {
         return;
       }
 
-      User.new(user);
-      User.login(user.username.toLowerCase(), user.password);
-      // needs to reload
-      // $location.path('watchlist');
-      $location.path('profile');
+      User.new(user).then(function success(response) {
+        User.login(user.username.toLowerCase(), user.password).then(function(response) {
+          $location.path('profile');
+        });
+      }, function reject(response) {
+        return;
+      });
     }
   })

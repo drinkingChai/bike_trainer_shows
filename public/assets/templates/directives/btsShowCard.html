@@ -20,7 +20,8 @@
     <div class="buttons" ng-class="{relative: plotShown}">
       <a class="bts-default-btn" ng-click="addToWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i></a>
       <a class="bts-default-btn added" ng-click="removeFrmWatchlist(movie.imdbid)" ng-show="watchlist.indexOf(movie.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i></a>
-      <a class="bts-default-btn like"><i class="fa fa-heart-o fa-fw"></i></a>
+      <a class="bts-default-btn like" ng-click="toggleLike()"><i class="fa fa-heart-o fa-fw"></i> {{movie.hearts}}</a>
+      <!-- movie.hearts doesn't work beacuse this reads imdbData -->
       <a class="bts-default-btn more" ng-click="togglePlot()"><i class="fa fa-ellipsis-h fa-fw"></i></a>
     </div>
   </div>

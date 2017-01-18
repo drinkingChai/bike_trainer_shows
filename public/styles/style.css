@@ -178,6 +178,9 @@ h1, h2, h3 {
   width: 75%;
   text-align: right;
 }
+nav a {
+  color: inherit;
+}
 
 
 
@@ -325,12 +328,24 @@ h1, h2, h3 {
 
 
 
+
 /* New user */
 .user.login.new {
   padding-top: 10vh;
 }
 
 
+
+
+
+/* Watchlist */
+.no-shows-container {
+  text-align: center;
+  padding-top: 30px;
+}
+.no-shows-container > * {
+  margin-top: 15px;
+}
 
 
 
@@ -341,8 +356,20 @@ h1, h2, h3 {
 
 /* User profile */
 .user.profile .inner {
+  height: 90vh;
+}
+.user.profile .inner {
   padding: 30px;
   padding-top: 60px;
+
+  display: flex;
+  flex-direction: column;
+}
+.user.profile .user-info {
+  flex: 2 0 0;
+}
+.user.profile .button-group {
+  flex: 1 0 0;
 }
 .user.profile > * {
   margin-bottom: 30px;
