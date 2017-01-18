@@ -3,6 +3,10 @@ angular.module('BikeTrainerShows')
     return $resource('/movies/:id', {id: '@id'}, {
       'update': {
         method: 'PUT'
+      },
+      'addcomment': {
+        method: 'PUT',
+        url: '/movies/addcomment'
       }
     });
   })

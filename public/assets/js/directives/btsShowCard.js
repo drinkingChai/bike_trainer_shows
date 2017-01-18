@@ -14,6 +14,7 @@ angular.module('BikeTrainerShows')
         User.getUser().then(function success(response) {
           $scope.user = response.data;
           $scope.watchlist = response.data.watchlist;
+          $scope.likes = response.data.likes;
         });
 
         $scope.addToWatchlist = function(imdbid) {
@@ -32,18 +33,30 @@ angular.module('BikeTrainerShows')
 
         // console.log($scope.movie.imdbid);
         $scope.toggleLike = function() {
-          Movie.get({id: $scope.movie.imdbid}).$promise.then(function success(response) {
+          var imdbid = $scope.movie.imdbid;
+          Movie.get({id: imdbid}).$promise.then(function success(response) {
             var movie = new Movie(response);
             movie.hearts++;
             movie.$update();
 
-            User.likeMovie($scope.movie.imdbid);
+            User.likeMovie(imdbid);
+            $scope.likes.push(imdbid);
 
             $scope.movie.hearts++;
           })
-
-          // Add like to user likes
         }
+
+
+        $scope.test = function() {
+          
+          // Movie.get({id: $scope.movie.imdbid}).$promise.then(function success(response) {
+          //   var movie = new Movie(response);
+          //   movie.$addcomment();
+          // })
+        }
+
+
+
       }
     }
   })

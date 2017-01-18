@@ -17,6 +17,10 @@ angular.module('BikeTrainerShows')
         templateUrl: 'assets/templates/movies/new.html',
         controller: 'NewMovieController'
       })
+      .when('/comment/:imdbid', {
+        templateUrl: 'assets/templates/movies/comment.html',
+        controller: 'MovieCommentController'
+      })
       .when('/login', {
         templateUrl: 'assets/templates/login/index.html',
         controller: 'UserLoginController'

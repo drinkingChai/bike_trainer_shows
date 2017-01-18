@@ -18,7 +18,13 @@ function Movie(imdbData, source, blurb) {
   this.imdbData.runtime = parseInt(this.imdbData.runtime, 10);
   this.hearts = 0;
   this.source = source;
-  this.comments = [blurb];
+  this.comments = blurb ? [blurb] : [];
+}
+
+function Comment(message, user, time) {
+  this.message = message;
+  this.user = user;
+  this.time = time;
 }
 
 
@@ -96,7 +102,34 @@ movies.put('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
       { imdbid: request.body.imdbid },
       { $inc: { hearts: 1 }}
     )
+
+    // add db.close to all the db calls
   })
+})
+
+
+movies.put('/addcomment', parseUrlJSON, parseUrlEncoded, function(request, response) {
+  var imdbid = request.body.imdbid,
+    comment = request.body.newComment;
+
+  if (comment.message.length === 0) {
+    response.sendStatus(406);
+    return;
+  }
+
+  var newComment = new Comment(comment.message, comment.user, comment.time);
+
+  MongoClient.connect(url, function(err, db) {
+    db.collection('movies').update(
+      { imdbid: imdbid },
+      { $push: { comments: newComment }}
+    )
+
+    console.log('comment added');
+    db.close();
+  })
+
+
 })
 
 

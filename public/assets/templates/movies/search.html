@@ -9,12 +9,12 @@
 
   <bts-user-nav class="hidden-right"></bts-user-nav>
 
-    <form>
-      <bts-input class="search-new" type="'search'" label="'Search'" model="title"></bts-input>
-      <button class="bts-default-btn" ng-click="search()"><i class="fa fa-search"></i></button>
-    </form>
+  <form novalidate name="search-form">
+    <bts-input class="search-new" type="'search'" label="'Search'" model="title"></bts-input>
+    <button class="bts-default-btn" ng-click="search()"><i class="fa fa-search"></i></button>
+  </form>
 
-    <p ng-show="searchResults.length === 0">No matching titles</p>
+  <p ng-show="searchResults.length === 0">No matching titles</p>
 
   <div class="shows search">
     <div class="show-card-parent">

@@ -126,7 +126,8 @@ h1, h2, h3 {
   Search */
 .shows-container,
 .user.watchlist,
-.search-new-container {
+.search-new-container,
+.show-comments {
   /*position: relative;*/
   height: 100vh;
   /*width: 100vw;*/
@@ -134,7 +135,8 @@ h1, h2, h3 {
 }
 .shows-container.freeze-scroll,
 .user.watchlist.freeze-scroll,
-.search-new-container.freeze-scroll {
+.search-new-container.freeze-scroll,
+.show-comments.freeze-scroll {
   overflow: hidden;
 }
 
@@ -144,7 +146,8 @@ h1, h2, h3 {
 .shows-container nav,
 .user.watchlist nav,
 .user.profile nav,
-.search-new-container nav {
+.search-new-container nav,
+.show-comments nav {
   position: fixed;
   background-color: #fff;
   width: 100%;
@@ -171,12 +174,15 @@ h1, h2, h3 {
 }
 .shows-container nav a:last-child,
 .user.watchlist nav a:last-child,
-.search-new-container nav a:last-child {
+.search-new-container nav a:last-child,
+.show-comments nav a:last-child {
+  width: 25%;
   text-align: right;
 }
-.search-new-container nav a {
+.search-new-container nav a,
+.show-comments nav a {
   width: 75%;
-  text-align: right;
+  text-align: left;
 }
 nav a {
   color: inherit;
@@ -278,6 +284,10 @@ nav a {
 .show-card .more-details {
   width: 100%;
 }
+.show-card .liked {
+  border-color: #E74C3C;
+  color: #E74C3C;
+}
 
 
 
@@ -348,6 +358,42 @@ nav a {
 }
 
 
+
+
+
+/* Comments */
+.show-comments .inner {
+  margin-top: 2.75em;
+  transition: all 0.25s;
+  padding: 20px;
+}
+.show-comments .inner > * {
+  margin-bottom: 15px;
+}
+.show-comments figure {
+  text-align: center;
+}
+.show-comments .inner a,
+.show-comments button {
+  width: 100%;
+  text-align: center;
+}
+.comment {
+  background-color: #F9F9F9;
+  padding: 10px;
+  border-bottom: solid 1px #D7D7D7;
+}
+.comments-container textarea {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  border: 0;
+  border: solid 1px #D7D7D7;
+  /*border-bottom: solid 2px #000;*/
+}
+.comments-container textarea:focus {
+  outline: none;
+}
 
 
 

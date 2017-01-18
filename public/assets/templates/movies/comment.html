@@ -1,0 +1,37 @@
+<div class="show-comments">
+  <nav>
+    <!-- <a class="toggle-filter"><i class="fa fa-list"></i></a> -->
+    <!-- <a class="">{{user.username}}</a> -->
+    <a href="#/"><i class="fa fa-home"></i></a>
+    <a class="toggle-user-nav"><i class="fa fa-user-circle"></i></a>
+  </nav>
+
+  <bts-user-nav class="hidden-right"></bts-user-nav>
+
+  <div class="inner">
+    <h2>{{movie.imdbData.title}}</h2>
+    <h4>{{movie.imdbData.genres}}</h4>
+    <p>{{movie.imdbData.plot | limitTo: 250}}</p>
+
+    <figure ng-show="posterHidden">
+      <img ng-src="{{movie.imdbData.poster}}" alt="">
+    </figure>
+
+    <a class="bts-default-btn" ng-show="!posterHidden" ng-click="posterHidden = !posterHidden">Show poster</a>
+    <a class="bts-default-btn" ng-show="posterHidden" ng-click="posterHidden = !posterHidden">Hide poster</a>
+
+    <div class="comments-container">
+      <div class="comment" ng-repeat="comment in movie.comments">
+        <p>{{comment.message}}</p>
+        <h4>{{comment.user}}, {{comment.time | date: 'shortDate'}}</h4>
+      </div>
+
+      <form novalidate name="comment" ng-submit="addComment()">
+        <textarea rows="4" ng-model="newComment" placeholder="Write a comment!"></textarea>
+        <button class="bts-default-btn" type="submit">Add comment</button>
+      </form>
+    </div>
+  </div>
+
+
+</div>
