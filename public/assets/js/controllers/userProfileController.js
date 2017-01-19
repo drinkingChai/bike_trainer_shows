@@ -13,14 +13,4 @@ angular.module('BikeTrainerShows')
       $route.reload();
       $location.path('/');
     }
-
-
-    
-
-
-
-
-
-
-
   })

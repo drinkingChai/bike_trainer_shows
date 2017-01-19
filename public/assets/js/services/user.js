@@ -40,21 +40,26 @@ angular.module('BikeTrainerShows')
           imdbid: imdbid
         })
       },
-      changePass: function(username, password, newpassword) {
+      changePass: function(username, currentPassword, newpassword1, newpassword2) {
         return $http.post('users/changepass', {
           username: username,
-          password: password,
-          newpassword: newpassword
+          password: currentPassword,
+          newpassword1: newpassword1,
+          newpassword2: newpassword2
         }).then(function success(response) {
           // console.log('passchanged');
           AuthTokenFactory.setToken(response.data.token);
           return response;
         }, function error(response) {
-          return response.data;
+          response.error = true;
+          return response;
         })
-        // return $http.post('users/changepass', {
-        //   newpass: newpass
-        // })
+      },
+      changeEmail: function(username, newemail) {
+        return $http.post('users/changeemail', {
+          username: username,
+          email: newemail
+        })
       }
     };
   })

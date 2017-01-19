@@ -439,11 +439,36 @@ nav a {
 
 
 
+/* Change password and email */
+.user.profile.edit {
+  padding: 30px;
+  height: 100vh;
+  padding-top: 20vh;
+}
+.user.profile .overlay {
+  padding-top: 50vh;
+}
 
 
 
 
 
+/* Forgot email */
+.user.forgot {
+  height: 100vh;
+  padding: 30px;
+  padding-top: 30vh;
+}
+.user.forgot form > * {
+  margin-bottom: 15px;
+}
+.user.forgot form > p {
+  text-align: center;
+}
+.user.forgot form > button {
+  width: 100%;
+  display: block;
+}
 
 
 

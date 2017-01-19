@@ -1,7 +1,14 @@
 angular.module('BikeTrainerShows')
   .filter('minutesToHours', function() {
     return function(minutes) {
-      return Math.ceil(minutes / 60);
-      // return Math.floor(minutes / 60) + " hour " + Math.floor((minutes % 60)) + " minutes";
+      var hours = Math.floor(minutes / 60);
+      if (minutes % 60 > 45) {
+        return hours++;
+      } else if (minutes % 60 > 15) {
+        return hours += 0.5;
+        hours += 0.5;
+      } else {
+        return hours;
+      }
     }
   });

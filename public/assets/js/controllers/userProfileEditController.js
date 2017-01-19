@@ -6,18 +6,22 @@ angular.module('BikeTrainerShows')
       $location.path('/login');
     });
 
-    $scope.changePassword = function(username, password, newpassword) {
-      if (newpassword.length !== 0 || password.length !== 0) {
-        User.changePass(username, password, newpassword).then(function(result) {
-          if (result === 'wrong_userpass') {
-            $scope.wrongPass = true;
-          } else {
-            $scope.passwordChanged = true;
-          }
-        });
-      }
+
+    $scope.changePassword = function(username, currentPassword, newpassword1, newpassword2) {
+      User.changePass(username, currentPassword, newpassword1, newpassword2).then(function success(response) {
+        if (response.error) {
+          $scope.passchanged = false;
+          $scope.wrongPass = true;
+        } else {
+          $scope.passchanged = true;
+        }
+      });
     }
 
-
+    $scope.changeEmail = function(username, newemail) {
+      User.changeEmail(username, newemail).then(function(response) {
+        $scope.emailchanged = true;
+      });
+    }
 
   })

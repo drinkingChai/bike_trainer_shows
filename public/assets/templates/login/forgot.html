@@ -1,11 +1,13 @@
 <div class="user forgot">
 
-  <form>
+  <form ng-submit="email && forgotPassword(email)">
     <bts-input type="'email'" label="'E-mail'" model="email"></bts-input>
     <p>Please enter your email above</p>
 
-    <button class="bts-default-btn" type="submit" ng-submit="">Submit</button>
-  </form>
+    <button class="bts-default-btn" type="submit">Submit</button><br><br>
 
+    <p>Know the password? Sign in</p>
+    <button class="bts-default-btn" href="#/login">Sign in</button>
+  </form>
 
 </div>

@@ -1,12 +1,21 @@
 <div class="user profile edit">
-  <form novalidate>
+  <bts-overlay ng-show="passchanged" message="'Password changed!'" nexturl="'#/profile'"></bts-overlay>
+  <bts-overlay ng-show="emailchanged" message="'Email changed!'" nexturl="'#/profile'"></bts-overlay>
+
+  <form novalidate name="changepass" ng-submit="changePassword(user.username, currentPassword, password1, password2)">
     <!-- add validation to all forms -->
     <bts-input type="'password'" label="'Current password'" model="currentPassword"></bts-input>
     <bts-input type="'password'" label="'New password'" model="password1"></bts-input>
     <bts-input type="'password'" label="'Confirm password'" model="password2"></bts-input>
 
-    <button class="bts-default-btn" ng-submit="password1 === password2 && changePassword(user.username, currentPassword, password1)">Change password</button>
+    <button class="bts-default-btn" type="submit">Change password</button>
     <p class="error" ng-show="wrongPass">Wrong or mismatched password</p>
+  </form>
+
+  <form novalidate name="changeemail" ng-submit="newemail && changeEmail(user.username, newemail)">
+    <bts-input type="'email'" label="'New E-mail'" model="newemail" required="true"></bts-input>
+
+    <button class="bts-default-btn" type="submit">Change email</button>
   </form>
 
 </div>

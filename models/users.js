@@ -50,6 +50,12 @@ users.post('/login', authenticate, function(request, response) {
 users.post('/new', function(request, response) {
   var body = request.body;
 
+  // if (body.username !== null || body.email) {
+  //   console.log('username or email is empty');
+  //   response.sendStatus(406);
+  //   return;
+  // }
+
   if (body.password !== body.password2 || !isComplex(body.password)) {
     console.log('password mismatch or not complex');
     response.sendStatus(406);
@@ -108,10 +114,20 @@ users.put('/likemovie', function(request, response) {
 })
 
 users.post('/changepass', authenticate, function(request, response) {
+  var body = request.body;
+
+  if (body.newpassword1 !== body.newpassword2 ||
+    !body.newpassword1 || !body.newpassword2 ||
+     !isComplex(body.newpassword1)) {
+    console.log('password mismatch or not complex');
+    response.sendStatus(406);
+    return;
+  }
+
   MongoClient.connect(url, function(err, db) {
     db.collection('users').update(
       { username: request.user.username },
-      { $set: { password: bcrypt.hashSync(request.body.newpassword, saltRounds) }}
+      { $set: { password: bcrypt.hashSync(body.newpassword1, saltRounds) }}
     );
     console.log('password updated');
     db.collection('users').findOne({
@@ -125,6 +141,22 @@ users.post('/changepass', authenticate, function(request, response) {
         token: token
       })
     })
+  })
+})
+
+
+users.post('/changeemail', function(request, response) {
+  var body = request.body;
+
+  MongoClient.connect(url, function(err, db) {
+    db.collection('users').update(
+      { username: request.body.username },
+      { $set: { email: request.body.email }}
+    );
+    console.log('email updated');
+
+    response.sendStatus(202);
+    db.close();
   })
 })
 
