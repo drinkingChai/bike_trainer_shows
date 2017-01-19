@@ -1,12 +1,11 @@
 <div class="user login">
 
-  <!-- <div class="" ng-show="user === null"> -->
   <form novalidate name="loginform" ng-submit="login(username, password)">
     <p>BTS</p>
     <p>Please sign in</p><br>
 
-    <bts-input inverted='true' type="'text'" label="'Username'" model="username"></bts-input>
-    <bts-input inverted='true' type="'password'" label="'Password'" model="password"></bts-input>
+    <bts-input class="inverted" type="'text'" label="'Username'" model="username" required="true"></bts-input>
+    <bts-input class="inverted" type="'password'" label="'Password'" model="password" required="true"></bts-input>
 
     <button class="bts-default-btn inverted" type="submit">Sign In</button>
     <a class="bts-default-btn inverted" href="#/login/forgot">Forgot password?</a>
@@ -14,16 +13,5 @@
     <a class="bts-default-btn inverted" href="#/">Home</a>
     <p class="error inverted" ng-show="wrongUserPass">Wrong username <br>or password</p>
   </form>
-
-  <!-- <div class="" ng-show="user !== null">
-
-    <bts-sort-filter source="source" genres="genres" genre="genre" prop="prop"></bts-sort-filter>
-
-
-        <div class="card row" ng-repeat="movie in watchlist | filter:search | genreFilter:genres | sourceFilter:source | orderBy:prop">
-          <bts-show-card movie="movie"></bts-show-card>
-        </div>
-    </div> -->
-
 
 </div>

@@ -26,8 +26,8 @@
         <h4>{{comment.user}}, {{comment.time | date: 'shortDate'}}</h4>
       </div>
 
-      <form novalidate name="comment" ng-submit="addComment()">
-        <textarea rows="4" ng-model="newComment" placeholder="Write a comment!"></textarea>
+      <form name="comment" ng-submit="addComment()">
+        <textarea rows="4" ng-model="newComment" placeholder="Write a comment!" required></textarea>
         <button class="bts-default-btn" type="submit">Add comment</button>
       </form>
     </div>

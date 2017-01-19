@@ -21,6 +21,7 @@ angular.module('BikeTrainerShows')
       movie.$addcomment();
 
       $scope.movie.comments.push(movie.newComment);
+      $scope.newComment = "";
     }
 
 

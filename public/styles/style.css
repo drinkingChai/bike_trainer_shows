@@ -441,7 +441,7 @@ nav a {
 
 /* Change password and email */
 .user.profile.edit {
-  padding: 30px;
+  padding: 16%;
   height: 100vh;
   padding-top: 20vh;
 }
@@ -456,18 +456,23 @@ nav a {
 /* Forgot email */
 .user.forgot {
   height: 100vh;
-  padding: 30px;
+  padding: 16%;
   padding-top: 30vh;
+
+  background-color: #222;
 }
 .user.forgot form > * {
   margin-bottom: 15px;
 }
 .user.forgot form > p {
   text-align: center;
+  color: #fff;
 }
-.user.forgot form > button {
+.user.forgot form > button,
+.user.forgot form > a {
   width: 100%;
   display: block;
+  text-align: center;
 }
 
 
@@ -656,10 +661,11 @@ input[type=password]:focus {
   border-bottom: solid 2px #8C546E; /* Raphac color */
   /*border-bottom: solid 2px #fff;*/
 }
-input[type=text].inverted,
+/*input[type=text].inverted,
 input[type=search].inverted,
 input[type=email].inverted,
-input[type=password].inverted {
+input[type=password].inverted {*/
+.bts-input.inverted input {
   border-bottom: solid 2px #fff;
   color: #fff;
 }

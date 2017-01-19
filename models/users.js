@@ -165,6 +165,7 @@ function authenticate(request, response, next) {
   var body = request.body;
   if (!body.username || !body.password) {
     response.status(400).end('empty_field');
+    return;
   }
   MongoClient.connect(url, function(err, db) {
     db.collection('users').findOne({ username: body.username }, function(err, result) {

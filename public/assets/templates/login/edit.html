@@ -4,9 +4,9 @@
 
   <form novalidate name="changepass" ng-submit="changePassword(user.username, currentPassword, password1, password2)">
     <!-- add validation to all forms -->
-    <bts-input type="'password'" label="'Current password'" model="currentPassword"></bts-input>
-    <bts-input type="'password'" label="'New password'" model="password1"></bts-input>
-    <bts-input type="'password'" label="'Confirm password'" model="password2"></bts-input>
+    <bts-input type="'password'" label="'Current password'" model="currentPassword" required="true"></bts-input>
+    <bts-input type="'password'" label="'New password'" model="password1" required="true"></bts-input>
+    <bts-input type="'password'" label="'Confirm password'" model="password2" required="true"></bts-input>
 
     <button class="bts-default-btn" type="submit">Change password</button>
     <p class="error" ng-show="wrongPass">Wrong or mismatched password</p>

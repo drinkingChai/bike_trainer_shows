@@ -1,24 +1,24 @@
-<div>
+<div class="bts-input">
   <div ng-show="type === 'text'" class="input-group">
     <!-- <label ng-class="model.length > 0 ? 'float' : ''">{{label}}</label> -->
     <label>{{label}}</label>
-    <input type="text" ng-model="model" ng-class="inverted ? 'inverted' : ''" ng-required="required">
+    <input type="text" ng-model="model" ng-required="required && type === 'text'">
   </div>
 
   <div ng-show="type === 'email'" class="input-group">
     <!-- <label ng-class="model.length > 0 ? 'float' : ''">{{label}}</label> -->
     <label>{{label}}</label>
-    <input type="email" ng-model="model" ng-class="inverted ? 'inverted' : ''" ng-required="required">
+    <input type="email" ng-model="model" ng-required="required && type === 'email'">
   </div>
 
   <div ng-show="type === 'search'" class="input-group">
     <!-- <label ng-class="model.length > 0 ? 'float' : ''">{{label}}</label> -->
     <label>{{label}}</label>
-    <input type="search" ng-model="model" ng-class="inverted ? 'inverted' : ''" ng-required="required">
+    <input type="search" ng-model="model" ng-required="required && type === 'search'">
   </div>
 
   <div ng-show="type === 'password'" class="input-group">
     <label>{{label}}</label>
-    <input type="password" ng-model="model" ng-class="inverted ? 'inverted' : ''" ng-required="required">
+    <input type="password" ng-model="model" ng-required="required && type === 'password'">
   </div>
 </div>
