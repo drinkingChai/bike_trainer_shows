@@ -2,7 +2,7 @@
 
   <form novalidate name='newuserform' ng-submit="newUser(user)">
     <bts-input class="inverted" type="'text'" label="'Username'" model="user.username" required="true"></bts-input>
-    <p class="error inverted left" ng-show="submitted && !user.username">Blank username</p>
+    <p class="error inverted left" ng-show="submitted && (!user.username || user.username.indexOf(' ') !== -1)">Blank username or has space</p>
 
     <bts-input class="inverted" type="'text'" label="'Name'" model="user.name" required="true"></bts-input>
     <p class="error inverted left" ng-show="submitted && !user.name">Blank name</p>

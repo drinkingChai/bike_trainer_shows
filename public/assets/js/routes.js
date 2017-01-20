@@ -33,6 +33,10 @@ angular.module('BikeTrainerShows')
         templateUrl: 'assets/templates/login/forgot.html',
         controller: 'UserForgotPassController'
       })
+      .when('/reset/:uniquekey', {
+        templateUrl: 'assets/templates/login/reset.html',
+        controller: 'UserResetPassController'
+      })
       .when('/watchlist', {
         templateUrl: 'assets/templates/login/watchlist.html',
         controller: 'UserWatchlistController'

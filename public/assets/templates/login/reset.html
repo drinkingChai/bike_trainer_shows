@@ -1,0 +1,15 @@
+<div class="login reset">
+
+  <bts-overlay ng-show="passchanged" message="'Password changed!'" nexturl="'#/login'"></bts-overlay>
+  <bts-overlay ng-show="keyexpired" message="'Key expired!'" nexturl="'#/login'"></bts-overlay>
+
+  <form novalidate ng-submit="resetPass(newpassword1, newpassword2)">
+    <bts-input type="'password'" label="'New password'" model="newpassword1" required="true"></bts-input>
+    <bts-input type="'password'" label="'Confirm password'" model="newpassword2" required="true"></bts-input>
+
+
+    <button class="bts-default-btn" type="submit">Reset</button>
+    <p class="error" ng-show="wrongPass">Mismatched password or not complex enough!</p>
+  </form>
+
+</div>

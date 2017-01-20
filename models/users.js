@@ -50,13 +50,10 @@ users.post('/login', authenticate, function(request, response) {
 users.post('/new', function(request, response) {
   var body = request.body;
 
-  // if (body.username !== null || body.email) {
-  //   console.log('username or email is empty');
-  //   response.sendStatus(406);
-  //   return;
-  // }
-
-  if (body.password !== body.password2 || !isComplex(body.password)) {
+  if (body.username.indexOf(' ') !== -1 ||
+    body.newpassword1 !== body.newpassword2 ||
+    !body.newpassword1 || !body.newpassword2 ||
+     !isComplex(body.newpassword1)) {
     console.log('password mismatch or not complex');
     response.sendStatus(406);
     return;
@@ -65,10 +62,22 @@ users.post('/new', function(request, response) {
   var newUser = new user(body.username, body.email, body.name, body.password);
 
   MongoClient.connect(url, function(err, db) {
-    db.collection('users').insertOne(newUser, function(err, result) {
-      console.log('new user created');
-      response.sendStatus(201);
+    db.collection('users').findOne({ username: newUser.username }, function(err, result) {
+      if (!result) {
+        MongoClient.connect(url, function(err, db) {
+          db.collection('users').insertOne(newUser, function(err, result) {
+            console.log('new user created');
+          });
+        })
+        response.sendStatus(201);
+        return;
+      } else {
+        response.sendStatus(409);
+        return;
+      }
     })
+
+    db.close();
   })
 })
 

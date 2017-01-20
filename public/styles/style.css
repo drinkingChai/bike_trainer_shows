@@ -361,6 +361,23 @@ nav a {
 
 
 
+/* Reset password */
+.login.reset {
+  padding: 16%;
+  padding-top: 30vh;
+}
+.login.reset form > * {
+  margin-bottom: 15px;
+}
+.login.reset button {
+  width: 100%;
+}
+
+
+
+
+
+
 /* Comments */
 .show-comments .inner {
   margin-top: 2.75em;

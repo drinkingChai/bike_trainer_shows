@@ -1,5 +1,7 @@
 <div class="user forgot">
-  
+
+  <bts-overlay ng-show="emailsent" message="'Email sent!'" nexturl="'#/login'"></bts-overlay>
+
   <form ng-submit="email && forgotPassword(email)">
     <bts-input class="inverted" type="'email'" label="'E-mail'" model="email"></bts-input>
     <p>Please enter your email above</p>
