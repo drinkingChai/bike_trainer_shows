@@ -47,8 +47,9 @@ email.post('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
            }}
         )
 
-        var hostName = 'localhost';
-        var html = "http://"+hostName+":3000/#/reset/" + key; // '/reset' from angular route
+        var testHost = 'localhost:3000';
+        var liveHost = 'bts.wasifzaman.net';
+        var html = "http://"+hostName+"/#/reset/" + key; // '/reset' from angular route
 
         var mailOptions = {
           from: 'example@gmail.com', // sender address

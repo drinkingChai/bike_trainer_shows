@@ -51,9 +51,9 @@ users.post('/new', function(request, response) {
   var body = request.body;
 
   if (body.username.indexOf(' ') !== -1 ||
-    body.newpassword1 !== body.newpassword2 ||
-    !body.newpassword1 || !body.newpassword2 ||
-     !isComplex(body.newpassword1)) {
+    body.password !== body.password2 ||
+    !body.password || !body.password2 ||
+     !isComplex(body.password)) {
     console.log('password mismatch or not complex');
     response.sendStatus(406);
     return;
