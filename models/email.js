@@ -1,4 +1,5 @@
 var express = require('express');
+var email = express();
 var bodyParser = require('body-parser');
 var parseUrlJSON = bodyParser.json();
 var parseUrlEncoded = bodyParser.urlencoded({ extended: true });
@@ -7,13 +8,16 @@ var MongoClient = require('mongodb').MongoClient;
 var randomString = require('randomstring');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
-// var passwords = require('./passwords.js');
+
 
 var url = 'mongodb://localhost:27017/bike_trainer_shows';
 
 
-var email = express();
 
+//
+// sends an email with a temporary key that mongo can match against
+// request expects an email address string
+//
 email.post('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
   var transporterData = {
     service: 'Gmail',
@@ -42,14 +46,12 @@ email.post('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
 
         db.collection('users').update(
           { username: result.username },
-          { $set: {
-            key: key
-           }}
+          { $set: { key: key }}
         )
 
         var testHost = 'localhost:3000';
         var liveHost = 'bts.wasifzaman.net';
-        var html = "http://"+hostName+"/#/reset/" + key; // '/reset' from angular route
+        var html = "Your username is: " + result.username + "<br>Reset link: http://"+liveHost+"/#/reset/" + key; // '/reset' from angular route
 
         var mailOptions = {
           from: 'example@gmail.com', // sender address
@@ -77,6 +79,10 @@ email.post('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
 })
 
 
+//
+// looks for the key in the database and
+// if it's found, update the password and set the key to false
+//
 email.post('/:uniquekey', parseUrlJSON, parseUrlEncoded, function(request, response) {
   var body = request.body;
 
@@ -96,7 +102,7 @@ email.post('/:uniquekey', parseUrlJSON, parseUrlEncoded, function(request, respo
         db.collection('users').update(
           { key: request.params.uniquekey },
           { $set: {
-            key: false,
+            key: false, // FIXME: maybe delete the key altogether
             password: bcrypt.hashSync(body.newpassword1, saltRounds)
           }}
         )
@@ -112,5 +118,6 @@ function isComplex(password) {
   // simple for now
   return password.length >= 6;
 }
+
 
 module.exports = email;

@@ -1,5 +1,9 @@
 angular.module('BikeTrainerShows')
   .filter('sourceFilter', function() {
+    //
+    // filters by source
+    // param collection @array
+    // param input @string
     return function(collection, input) {
       var newCollection = [];
 

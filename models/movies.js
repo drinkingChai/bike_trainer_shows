@@ -1,17 +1,22 @@
 var express = require('express');
 var movies = express();
 var imdb = require('imdb-api');
-var omdb = require('omdb');
 var bodyParser = require('body-parser');
 var parseUrlJSON = bodyParser.json();
 var parseUrlEncoded = bodyParser.urlencoded({ extended: true });
 
 var MongoClient = require('mongodb').MongoClient;
 
-// var url = 'mongodb://localhost:27017/bike_trainer_shows';
+
 var url = 'mongodb://localhost:27017/bike_trainer_shows';
 
 
+//
+// movie constructor
+// param imdbData @object
+// param source @string
+// param blurb @string
+//
 function Movie(imdbData, source, blurb) {
   this.imdbid = imdbData.imdbid;
   this.imdbData = imdbData;
@@ -21,6 +26,12 @@ function Movie(imdbData, source, blurb) {
   this.comments = blurb ? [blurb] : [];
 }
 
+//
+// comment constructor
+// param message @string
+// param user @string
+// param time @object
+//
 function Comment(message, user, time) {
   this.message = message;
   this.user = user;
@@ -28,6 +39,8 @@ function Comment(message, user, time) {
 }
 
 
+//
+// returns an array of all movies
 movies.get('/', function(request, response) {
   var result = [];
   MongoClient.connect(url, function(err, db) {
@@ -35,14 +48,16 @@ movies.get('/', function(request, response) {
     allMovies.forEach(function(item) {
       result.push(item);
     }, function() {
-      db.close();
       response.status(200).json(result);
+      db.close();
     });
   });
 });
 
 
-
+//
+// adds a new movie
+// if it's a show, it will update the runtime with the total episodes * runtime
 movies.post('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
   var body = request.body,
   newMovie = new Movie(body.imdbData, body.source, body.blurb);
@@ -51,7 +66,8 @@ movies.post('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
     db.collection('movies').insertOne(newMovie, function(err, result) {
       console.log('Item inserted');
     });
-    response.status(201).redirect('/');
+    response.sendStatus(201);
+    db.close();
   });
 
   if (newMovie.imdbData.series) {
@@ -62,7 +78,8 @@ movies.post('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
             { 'imdbid': newMovie.imdbid },
             { $set: { 'imdbData.runtime' : newMovie.imdbData.runtime * episodes.length }}
           )
-          response.status(201).redirect('/');
+
+          db.close();
         })
       })
     });
@@ -70,19 +87,22 @@ movies.post('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
 });
 
 
-
-// fetches from local database by imdbID
+//
+// fetches from local database by taking imdbid as param id
 movies.get('/:id', function(request, response) {
   MongoClient.connect(url, function(err, db) {
     db.collection('movies').findOne({imdbid: request.params.id}, function(err, result) {
       response.status(200).json(result);
     });
+
+    db.close();
   });
 });
 
 
-
-
+//
+// deletes movie from the local database
+// REVIEW: not implemented yet
 movies.delete('/:id', function(request, response) {
   MongoClient.connect(url, function(err, db) {
     db.collection('movies').remove({imdbid: request.params.id}, function(err, result) {
@@ -94,8 +114,8 @@ movies.delete('/:id', function(request, response) {
 });
 
 
-
-
+//
+// add a heart to the movie
 movies.put('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
   MongoClient.connect(url, function(err, db) {
     db.collection('movies').update(
@@ -103,11 +123,13 @@ movies.put('/', parseUrlJSON, parseUrlEncoded, function(request, response) {
       { $inc: { hearts: 1 }}
     )
 
-    // add db.close to all the db calls
+    db.close();
   })
 })
 
 
+//
+// adds a comment
 movies.put('/addcomment', parseUrlJSON, parseUrlEncoded, function(request, response) {
   var imdbid = request.body.imdbid,
     comment = request.body.newComment;
@@ -126,10 +148,9 @@ movies.put('/addcomment', parseUrlJSON, parseUrlEncoded, function(request, respo
     )
 
     console.log('comment added');
+    response.sendStatus(200);
     db.close();
   })
-
-
 })
 
 

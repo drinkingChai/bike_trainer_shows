@@ -12,6 +12,8 @@ angular.module('BikeTrainerShows')
         model: '='
       },
       controller: function($scope) {
+        // jquery animations for floating the label above when it has focus
+        // or if the input is filled
         $(document).ready(function() {
           if ($('.input-group input').val().length) {
             var $label = $('.input-group label');

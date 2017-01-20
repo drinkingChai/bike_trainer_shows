@@ -47,7 +47,6 @@ angular.module('BikeTrainerShows')
           newpassword1: newpassword1,
           newpassword2: newpassword2
         }).then(function success(response) {
-          // console.log('passchanged');
           AuthTokenFactory.setToken(response.data.token);
           return response;
         }, function error(response) {

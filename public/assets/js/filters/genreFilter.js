@@ -1,5 +1,10 @@
 angular.module('BikeTrainerShows')
   .filter('genreFilter', function() {
+    //
+    // checks if the filter is on
+    // then applies the filter
+    // param collection @array
+    // param input @object
     return function(collection, input) {
       var filterIsOn = function() {
         for (var key in input) {

@@ -1,5 +1,10 @@
 angular.module('BikeTrainerShows')
   .filter('orderMoviesBy', function() {
+    //
+    // sorts movies
+    // param collection @array
+    // param input @string
+    // if string has minus sign, sorts descending and vice versa
     return function(collection, input) {
       var newCollection = [];
 

@@ -1,5 +1,8 @@
 angular.module('BikeTrainerShows')
   .filter('minutesToHours', function() {
+    //
+    // convert minutes to every 0.5 hours
+    // param minutes @integer
     return function(minutes) {
       var hours = Math.floor(minutes / 60);
       if (minutes % 60 > 45) {

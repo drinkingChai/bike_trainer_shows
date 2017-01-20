@@ -8,6 +8,9 @@ angular.module('BikeTrainerShows')
       },
       templateUrl: 'assets/templates/directives/btsSearchCard.html',
       controller: function($scope, User, Movie) {
+        //
+        // searches through the current list and adds to an array
+        // the card will compare against the array to check if it's already in the db
         $scope.movieIds = [];
 
         User.getUser().then(function success(response) {

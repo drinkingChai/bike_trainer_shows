@@ -20,7 +20,7 @@
     <div class="buttons" ng-class="{relative: plotShown}">
       <a class="bts-default-btn" ng-click="addToWatchlist(movie.imdbData.imdbid)" ng-show="watchlist.indexOf(movie.imdbData.imdbid) === -1 && user"><i class="fa fa-plus fa-fw"></i></a>
       <a class="bts-default-btn added" ng-click="removeFrmWatchlist(movie.imdbData.imdbid)" ng-show="watchlist.indexOf(movie.imdbData.imdbid) !== -1 && user"><i class="fa fa-check fa-fw"></i></a>
-      <a class="bts-default-btn" ng-show="likes.indexOf(movie.imdbData.imdbid) === -1" ng-click="toggleLike()"><i class="fa fa-heart-o fa-fw"></i> {{movie.hearts}}</a>
+      <a class="bts-default-btn" ng-show="likes.indexOf(movie.imdbData.imdbid) === -1" ng-click="toggleLike(movie.imdbData.imdbid)"><i class="fa fa-heart-o fa-fw"></i> {{movie.hearts}}</a>
       <a class="bts-default-btn liked" ng-show="likes.indexOf(movie.imdbData.imdbid) !== -1"><i class="fa fa-heart-o fa-fw"></i> {{movie.hearts}}</a>
       <a class="bts-default-btn" ng-show="plotShown" ng-href="#/comment/{{movie.imdbData.imdbid}}"><i class="fa fa-comment-o fa-fw"></i> {{movie.comments.length}}</a>
       <a class="bts-default-btn more" ng-click="togglePlot()"><i class="fa fa-ellipsis-h fa-fw"></i></a>

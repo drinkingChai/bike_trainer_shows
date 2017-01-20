@@ -1,4 +1,5 @@
 var express = require('express');
+var users = express();
 var bodyParser = require('body-parser');
 var parseUrlJSON = bodyParser.json();
 var jwt = require('jsonwebtoken');
@@ -11,8 +12,13 @@ const saltRounds = 10;
 
 var url = 'mongodb://localhost:27017/bike_trainer_shows';
 
-var users = express();
 
+//
+// user constructor
+// param username @string
+// param email @string
+// param name @string
+// param password @string
 function user(username, email, name, password) {
   this.username = username;
   this.email = email;
@@ -22,7 +28,9 @@ function user(username, email, name, password) {
   this.watchlist = [];
 }
 
+
 users.use(parseUrlJSON);
+// authenticate middleware
 users.use(expressJwt({ secret: statics.jwtSecret }).unless({ path: ['/users/login', '/users/new'] }));
 
 
@@ -30,6 +38,9 @@ users.get('/', function(request, response) {
   response.sendStatus(200);
 })
 
+
+//
+// log the user in
 users.post('/login', authenticate, function(request, response) {
   var body = request.body;
   MongoClient.connect(url, function(err, db) {
@@ -47,6 +58,9 @@ users.post('/login', authenticate, function(request, response) {
   })
 })
 
+
+//
+// create a new user
 users.post('/new', function(request, response) {
   var body = request.body;
 
@@ -81,6 +95,9 @@ users.post('/new', function(request, response) {
   })
 })
 
+
+//
+// check if user is logged in and if so, send the user data
 users.get('/me', function(request, response) {
   MongoClient.connect(url, function(err, db) {
     db.collection('users').findOne({ username: request.user.username }, function(err, result) {
@@ -89,6 +106,9 @@ users.get('/me', function(request, response) {
   });
 })
 
+
+//
+// add a movie to user watchlist
 users.post('/addmovie', function(request, response) {
   MongoClient.connect(url, function(err, db) {
     db.collection('users').update(
@@ -100,6 +120,9 @@ users.post('/addmovie', function(request, response) {
   })
 })
 
+
+//
+// remove a movie from user watchlist
 users.post('/removemovie', function(request, response) {
   MongoClient.connect(url, function(err, db) {
     db.collection('users').update(
@@ -111,6 +134,9 @@ users.post('/removemovie', function(request, response) {
   })
 })
 
+
+//
+// like a movie
 users.put('/likemovie', function(request, response) {
   MongoClient.connect(url, function(err, db) {
     db.collection('users').update(
@@ -122,6 +148,9 @@ users.put('/likemovie', function(request, response) {
   })
 })
 
+
+//
+// change user password
 users.post('/changepass', authenticate, function(request, response) {
   var body = request.body;
 
@@ -154,6 +183,8 @@ users.post('/changepass', authenticate, function(request, response) {
 })
 
 
+//
+// change user email
 users.post('/changeemail', function(request, response) {
   var body = request.body;
 
@@ -170,6 +201,8 @@ users.post('/changeemail', function(request, response) {
 })
 
 
+//
+// authenticate middleware
 function authenticate(request, response, next) {
   var body = request.body;
   if (!body.username || !body.password) {
@@ -189,6 +222,8 @@ function authenticate(request, response, next) {
   })
 }
 
+
+// complex password checker
 function isComplex(password) {
   // simple for now
   return password.length >= 6;

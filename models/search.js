@@ -4,30 +4,10 @@ var imdb = require('imdb-api');
 var omdb = require('omdb');
 
 
-// // gets data from imdb API by imdbid
-// search.get('/id/:id', function(request, response) {
-//   imdb.getById(request.params.id).then(function(movie) {
-//     response.status(200).json(movie);
-//   });
-// });
 //
-//
-// // searches through OMDB API for possible matches to title
-// search.get('/title/:title', function(request, response) {
-//   var searchResults = [];
-//   omdb.search(request.params.title, function(err, result) {
-//     result.forEach(function(movie) {
-//       searchResults.push(movie);
-//     });
-//     response.status(200).json(searchResults);
-//   });
-// });
-
-// search.all('/', function(request, response) {
-//   console.log('pass');
-// })
-
-
+// searches by either id or title
+// title search returns multiple results using omdb
+// REVIEW: maybe search by partial string by breaking up the string
 search.get('/:value/:type', function(request, response) {
   var params = request.params;
   switch (params.type) {
@@ -49,9 +29,6 @@ search.get('/:value/:type', function(request, response) {
       break;
   }
 })
-
-
-
 
 
 module.exports = search;

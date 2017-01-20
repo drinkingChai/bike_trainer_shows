@@ -8,6 +8,8 @@ angular.module('BikeTrainerShows')
       },
       templateUrl: 'assets/templates/directives/btsShowCard.html',
       controller: function($scope, User, Movie) {
+        //
+        // show card per movie
         $scope.watchlist = [];
         $scope.plotShown = false;
 
@@ -17,11 +19,16 @@ angular.module('BikeTrainerShows')
           $scope.likes = response.data.likes;
         });
 
+        //
+        // add to users watchlist
+        // param imdbid @string
         $scope.addToWatchlist = function(imdbid) {
           User.addMovie(imdbid);
           $scope.watchlist.push(imdbid);
         }
 
+        //
+        // remove from users watchlist
         $scope.removeFrmWatchlist = function(imdbid) {
           User.removeMovie(imdbid);
           $scope.watchlist.splice($scope.watchlist.indexOf(imdbid), 1);
@@ -31,9 +38,9 @@ angular.module('BikeTrainerShows')
           $scope.plotShown = !$scope.plotShown;
         }
 
-        // console.log($scope.movie.imdbid);
-        $scope.toggleLike = function() {
-          var imdbid = $scope.movie.imdbid;
+        //
+        // like a movie
+        $scope.toggleLike = function(imdbid) {
           Movie.get({id: imdbid}).$promise.then(function success(response) {
             var movie = new Movie(response);
             movie.hearts++;
@@ -45,17 +52,6 @@ angular.module('BikeTrainerShows')
             $scope.movie.hearts++;
           })
         }
-
-
-        $scope.test = function() {
-          
-          // Movie.get({id: $scope.movie.imdbid}).$promise.then(function success(response) {
-          //   var movie = new Movie(response);
-          //   movie.$addcomment();
-          // })
-        }
-
-
 
       }
     }
