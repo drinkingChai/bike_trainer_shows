@@ -707,7 +707,8 @@ input[type=password].inverted:focus {
   border: solid 1px #FAFAFA;
   color: #fff;
 }
-.bts-default-btn:hover {
+.bts-default-btn:hover,
+.bts-default-btn:focus {
   text-decoration: none;
   color: inherit;
 }
