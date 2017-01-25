@@ -19,10 +19,6 @@ angular.module('BikeTrainerShows')
     }
 
 
-
-
-    // take this to a separate page
-    // on this page, check if user is logged in and if so, route to this page
     var getUserMovies = function(watchlist) {
       for (var i = 0, l = watchlist.length, m = watchlist; i < l; i++) {
         Movie.get({id: m[i]}).$promise.then(function(result) {

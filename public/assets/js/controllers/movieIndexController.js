@@ -1,17 +1,22 @@
 angular.module('BikeTrainerShows')
   .controller('MovieIndexController', function($scope, $document, $route, Movie) {
-    $scope.movies = [];
+    // $scope.movies = [];
+    // $scope.genres = {};
+    // $scope.source = null;
+    // $scope.prop = '-runtime';
+    // $scope.filterToggle = false;
+
     $scope.genres = {};
     $scope.source = null;
-    $scope.prop = '-runtime';
-    $scope.filterToggle = false;
+    $scope.prop = null;
+    $scope.movies = [];
+    $scope.user = null;
 
     Movie.query().$promise.then(function(movies) {
       for (var i = 0, l = movies.length; i < l; i++) {
         $scope.movies.push(movies[i]);
-
-        movies[i].imdbData.genres.split(', ').forEach(function(genre) {
-
+        var genres = result.imdbData.genres.split(', ');
+        genres.split(', ').forEach(function(genre) {
           $scope.genres[genre] = false;
         })
       }
