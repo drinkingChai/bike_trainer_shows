@@ -22,7 +22,8 @@ angular.module('BikeTrainerShows')
         $scope.sources.sort();
         $scope.genreCheckbox = {};
         $scope.sortOptions = sortOptions.all;
-        $scope.prop = '-rating';
+        $scope.prop = '-runtime';
+        $scope.genres['All'] = true;
 
         $scope.reset = function() {
           for (var genre in $scope.genres) {
@@ -32,9 +33,12 @@ angular.module('BikeTrainerShows')
           $scope.source = null;
           $scope.search = "";
         }
-        
+
         $scope.toggleGenre = function(genre) {
           $scope.genres[genre] = !$scope.genres[genre];
+          if (genre !== 'All') {
+            $scope.genres['All'] = false;
+          }
         }
 
         $scope.sortBy = function(propertyName) {
