@@ -24,6 +24,7 @@ function Movie(imdbData, source, blurb) {
   this.hearts = 0;
   this.source = source;
   this.comments = blurb ? [blurb] : [];
+  this.immersions = [];
 }
 
 //
@@ -35,6 +36,22 @@ function Movie(imdbData, source, blurb) {
 function Comment(message, user, time) {
   this.message = message;
   this.user = user;
+  this.time = time;
+}
+
+//
+// immersion constructor
+// param rating @int
+// param user @string
+// param time @object
+// function Immersion(rating, user, time) {
+//   this.rating = rating;
+//   this.user = user;
+//   this.time = time;
+// }
+function Immersion(imdbid, rating, time) {
+  this.imdbid = imdbid;
+  this.rating = rating;
   this.time = time;
 }
 
@@ -148,6 +165,47 @@ movies.put('/addcomment', parseUrlJSON, parseUrlEncoded, function(request, respo
     )
 
     console.log('comment added');
+    response.sendStatus(200);
+    db.close();
+  })
+})
+
+
+//
+// add immersion rating
+movies.put('/addimmersion', parseUrlJSON, parseUrlEncoded, function(request, response) {
+  var imdbid = request.body.imdbid,
+    newImmersion = request.body.newImmersion;
+
+  var newImmersion = new Immersion(newImmersion.rating, newImmersion.user, newImmersion.time);
+
+  MongoClient.connect(url, function(err, db) {
+    db.collection('movies').findOne(
+      { imdbid: imdbid },
+      function(err, result) {
+        var immersions = result.immersions;
+
+        if (immersions.length === 0) immersions.push(newImmersion);
+        for (var i = 0, l = immersions.length; i < l; ++i) {
+          if (immersions[i].user === newImmersion.user) {
+            immersions[i] = newImmersion;
+            break;
+          }
+          if (i + 1 === l) {
+            immersions.push(newImmersion);
+          }
+        }
+
+        MongoClient.connect(url, function(err, db) {
+          db.collection('movies').update(
+            { imdbid: imdbid },
+            { $set: { immersions: immersions }}
+          )
+        })
+      }
+    )
+
+    console.log('immersion added');
     response.sendStatus(200);
     db.close();
   })

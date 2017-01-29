@@ -19,6 +19,15 @@
     <a class="bts-default-btn" ng-show="posterHidden" ng-click="posterHidden = !posterHidden">Hide poster</a>
 
     <div class="comments-container">
+      <div class="immersion-rating-container">
+        <!-- <p>Rate the immersion!</p> -->
+        <p>Your rating is: {{immersionRatings[userRating + 1]}}</p>
+        <bts-slider numbuttons="5" currentvalue="userRating"></bts-slider>
+
+        <a class="bts-default-btn" ng-click="addupdateImmersion()">Rate the immersion!</a>
+      </div>
+
+
       <div class="comment" ng-repeat="comment in movie.comments">
         <p>{{comment.message}}</p>
         <h4>{{comment.user}}, {{comment.time | date: 'shortDate'}}</h4>
@@ -29,6 +38,20 @@
         <button class="bts-default-btn" type="submit">Add comment</button>
       </form>
     </div>
+
+
+
+
+
+
+    <!-- test html -->
+
+
+
+
+
+
+
   </div>
 
 

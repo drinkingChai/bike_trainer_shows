@@ -7,6 +7,10 @@ angular.module('BikeTrainerShows')
       'addcomment': {
         method: 'PUT',
         url: '/movies/addcomment'
+      },
+      'addupdateimmersion': {
+        method: 'PUT',
+        url: '/movies/addimmersion'
       }
     });
   })

@@ -411,7 +411,13 @@ nav a {
 .comments-container textarea:focus {
   outline: none;
 }
-
+.immersion-rating-container p,
+.immersion-rating-container .slider-container {
+  text-align: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-style: italic;
+}
 
 
 
@@ -601,6 +607,65 @@ nav a {
   width: 65%;
 }
 
+
+
+
+
+
+
+
+
+
+/* Slider */
+.slider-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.slider-container .buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.slider-button {
+  width: 1em;
+  height: 1em;
+  border-radius: 100%;
+  background-color: #fff;
+  border: solid 1px #000;
+
+  position: relative;
+  z-index: 10;
+}
+.slider-button.active {
+  background-color: #FFB03B;
+}
+
+.slider-button:first-child {
+  margin-left: -1%;
+  background-color: #FFB03B;
+}
+.slider-button:last-child {
+  margin-right: -1%;
+}
+
+.slider-trail {
+  width: 100%;
+  height: 0.5em;
+  border-color: #000;
+  border: solid 1px #000;
+  background-color: #fff;
+
+  position: absolute;
+}
+/* REVIEW: not working with a second class selector for some reason */
+.slider-trail:nth-child(2) {
+  width: 0;
+  z-index: 1;
+  background-color: #FFB03B;
+}
 
 
 
