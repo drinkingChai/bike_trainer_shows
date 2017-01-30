@@ -49,9 +49,9 @@ function Comment(message, user, time) {
 //   this.user = user;
 //   this.time = time;
 // }
-function Immersion(imdbid, rating, time) {
-  this.imdbid = imdbid;
+function Immersion(rating, user, time) {
   this.rating = rating;
+  this.user = user;
   this.time = time;
 }
 
@@ -183,7 +183,9 @@ movies.put('/addimmersion', parseUrlJSON, parseUrlEncoded, function(request, res
     db.collection('movies').findOne(
       { imdbid: imdbid },
       function(err, result) {
-        var immersions = result.immersions;
+        var immersions = result.immersions,
+          avgRating = 0,
+          count = 0;
 
         if (immersions.length === 0) immersions.push(newImmersion);
         for (var i = 0, l = immersions.length; i < l; ++i) {
@@ -196,10 +198,17 @@ movies.put('/addimmersion', parseUrlJSON, parseUrlEncoded, function(request, res
           }
         }
 
+        for (var i = 0, l = immersions.length; i < l; i++) {
+          avgRating += immersions[i].rating;
+          count++;
+        }
+
+        avgRating /= count;
+
         MongoClient.connect(url, function(err, db) {
           db.collection('movies').update(
             { imdbid: imdbid },
-            { $set: { immersions: immersions }}
+            { $set: { immersions: immersions, 'imdbData.immersionRating': avgRating }}
           )
         })
       }

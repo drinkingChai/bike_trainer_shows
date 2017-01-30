@@ -1,5 +1,5 @@
 angular.module('BikeTrainerShows')
-  .controller('MovieCommentController', function($scope, $routeParams, immersionRatings, Movie, User) {
+  .controller('MovieCommentController', function($scope, $routeParams, $timeout, immersionRatings, Movie, User) {
     $scope.immersionRatings = immersionRatings.all;
     $scope.userRating = false;
 
@@ -8,19 +8,18 @@ angular.module('BikeTrainerShows')
     });
 
 
-    Movie.get({id: $routeParams.imdbid}).$promise.then(function(response) {
+    $timeout(Movie.get({id: $routeParams.imdbid}).$promise.then(function(response) {
       $scope.movie = response;
 
-      // console.log(response.immersions[1].user === $scope.user.username);
-
-      for (var i = 0, immersions = response.immersions, l = response.immersions.length; i < l; i++) {
-        if (immersions[i].user === $scope.user.username) {
-          // console.log(immersions[i]);
-          $scope.userRating = immersions[i].rating;
-          break;
+      if ($scope.user) {
+        for (var i = 0, immersions = response.immersions, l = response.immersions.length; i < l; i++) {
+          if (immersions[i].user === $scope.user.username) {
+            $scope.userRating = immersions[i].rating;
+            break;
+          }
         }
       }
-    })
+    }), 500);
 
 
     $scope.addComment = function() {
@@ -42,35 +41,12 @@ angular.module('BikeTrainerShows')
       var movie = new Movie();
       movie.imdbid = $scope.movie.imdbid;
       movie.newImmersion = {
-        rating: $scope.userRating + 1,
+        rating: $scope.userRating,
         user: $scope.user.username,
         time: new Date()
       }
       movie.$addupdateimmersion();
     }
-
-
-
-    // $scope.$watch('userRating', function() {
-    //   if ($scope.userRating !== false) {
-    //     var movie = new Movie();
-    //     movie.imdbid = $scope.movie.imdbid;
-    //     movie.newImmersion = {
-    //       rating: $scope.userRating + 1,
-    //       user: $scope.user.username,
-    //       time: new Date()
-    //     }
-    //     movie.$addupdateimmersion();
-    //
-    //     // $scope.movie.immersions.push(movie.newImmersion);
-    //   }
-    // })
-
-
-
-
-
-
 
 
 

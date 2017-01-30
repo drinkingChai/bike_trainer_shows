@@ -7,11 +7,12 @@ angular.module('BikeTrainerShows')
         movie: '='
       },
       templateUrl: 'assets/templates/directives/btsShowCard.html',
-      controller: function($scope, User, Movie) {
+      controller: function($scope, User, Movie, immersionRatings) {
         //
         // show card per movie
         $scope.watchlist = [];
         $scope.plotShown = false;
+        // $scope.immersionRating = immersionRatings.all[Math.floor($scope.movie.imdbData.immersionRating)];
 
         User.getUser().then(function success(response) {
           $scope.user = response.data;

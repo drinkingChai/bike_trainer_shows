@@ -6,8 +6,8 @@ angular.module('BikeTrainerShows')
         'runtime': 'Runtime - Low to High',
         '-rating': 'Rating - High to Low',
         'rating': 'Rating - Low to High',
-        '-immersion': 'Immersion - High to Low',
-        'immersion': 'Immersion - Low to High'
+        '-immersionRating': 'Immersion - High to Low',
+        'immersionRating': 'Immersion - Low to High'
       }
     }
   });

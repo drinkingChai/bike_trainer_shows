@@ -418,6 +418,9 @@ nav a {
   padding-bottom: 0.5em;
   font-style: italic;
 }
+.immersion-rating-container .slider-container {
+  padding-bottom: 1.5em;
+}
 
 
 
@@ -757,6 +760,11 @@ input[type=email].inverted:focus,
 input[type=password].inverted:focus {
   /*border-bottom: solid 2px #fff;*/
 }
+input[type=text].disabed {
+  border-color: #424242;
+  background-color: #9E9E9E;
+  color: #424242;
+}
 
 
 
@@ -776,6 +784,11 @@ input[type=password].inverted:focus {
 .bts-default-btn:focus {
   text-decoration: none;
   color: inherit;
+}
+.bts-default-btn.disabed {
+  border-color: #424242;
+  color: #424242;
+  cursor: not-allowed;
 }
 
 

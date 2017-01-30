@@ -11,6 +11,9 @@
     <h4>{{movie.imdbData.genres}}</h4>
     <p>{{movie.imdbData.plot | limitTo: 250}}</p>
 
+    <!-- <h3>{{movie.imdbData.rating}}</h3>
+    <h4>IMDb rating</h4> -->
+
     <figure ng-show="posterHidden">
       <img ng-src="{{movie.imdbData.poster}}" alt="">
     </figure>
@@ -19,9 +22,9 @@
     <a class="bts-default-btn" ng-show="posterHidden" ng-click="posterHidden = !posterHidden">Hide poster</a>
 
     <div class="comments-container">
-      <div class="immersion-rating-container">
+      <div class="immersion-rating-container" ng-show="user">
         <!-- <p>Rate the immersion!</p> -->
-        <p>Your rating is: {{immersionRatings[userRating + 1]}}</p>
+        <p>Your rating is: {{immersionRatings[userRating]}}</p>
         <bts-slider numbuttons="5" currentvalue="userRating"></bts-slider>
 
         <a class="bts-default-btn" ng-click="addupdateImmersion()">Rate the immersion!</a>
@@ -33,7 +36,8 @@
         <h4>{{comment.user}}, {{comment.time | date: 'shortDate'}}</h4>
       </div>
 
-      <form name="comment" ng-submit="addComment()">
+      <!-- <form name="comment" ng-submit="!user && addComment()"> -->
+      <form name="comment" ng-show="user">
         <textarea rows="4" ng-model="newComment" placeholder="Write a comment!" required></textarea>
         <button class="bts-default-btn" type="submit">Add comment</button>
       </form>
